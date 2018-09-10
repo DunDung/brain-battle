@@ -39,6 +39,6 @@ class ButtonEvent implements ActionListener{
 	public void actionPerformed(ActionEvent e) { 
 		MainServer.re_thread.start();
 		MainServer.se_thread.start();
-s
+
 	}
 }
