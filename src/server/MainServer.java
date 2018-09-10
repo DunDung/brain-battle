@@ -14,12 +14,10 @@ public class MainServer {
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;
 		try {
-			serverSocket = new ServerSocket(2222);
+			serverSocket = new ServerSocket(5555);
 			clientSocket = serverSocket.accept(); 
 			se_thread = new SendThread();
 			re_thread = new ReceiveThread();
-			
-			new MainFrame();
 			
 			re_thread.setSocket(clientSocket);
 			se_thread.setSocket(clientSocket);

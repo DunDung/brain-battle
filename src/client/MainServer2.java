@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class MainServer {
+public class MainServer2 {
 	public static void main(String [] args) {
 		try {
-			Socket clientSocket =new Socket("192.168.43.190",5001); 
+			Socket clientSocket =new Socket("192.168.43.190",5555); 
 			
 			ReceiveThread re_thread = new ReceiveThread();
 			re_thread.setSocket(clientSocket);
