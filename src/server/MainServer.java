@@ -14,7 +14,7 @@ public class MainServer {
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;
 		try {
-			serverSocket = new ServerSocket(5555);
+			serverSocket = new ServerSocket(5775);
 			clientSocket = serverSocket.accept(); 
 			se_thread = new SendThread();
 			re_thread = new ReceiveThread();

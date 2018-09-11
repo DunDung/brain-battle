@@ -28,6 +28,7 @@ public class ReceiveThread extends Thread{
 				else
 					System.out.println("»ó´ë¹æ : "+receiveString);
 			}
+
 			buf.close();
 		}catch(IOException e) {
 			e.printStackTrace();
