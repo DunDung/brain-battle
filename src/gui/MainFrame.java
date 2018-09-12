@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
 	Container c = this.getContentPane(); //추가
-	ChattingPanel chat = new ChattingPanel();
+	public ChattingPanel chat = new ChattingPanel();
 	public MainFrame() {
 		setLocation(new Point(700,350)); //윈도우상의 창의 위치를 잡아준다.
 		setPreferredSize(new Dimension(1500, 1000));//프레임의 창의크기 설정
