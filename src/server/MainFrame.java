@@ -22,7 +22,7 @@ public class MainFrame extends JFrame{
 		setVisible(true); //프레임을 보여준다.
 	
 	}
-	public ChattingPanel getChat() {
+	public ChattingPanel getChat() { //MainFrame에 ChattingPanel을 리턴
 		return chat;
 	}
 }

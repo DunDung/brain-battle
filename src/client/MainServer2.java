@@ -8,7 +8,7 @@ public class MainServer2 {
 	public static MainFrame mainFrame;
 	public static void main(String [] args) {
 		try {
-			Socket clientSocket =new Socket("1.1.1.154",8999); 
+			Socket clientSocket =new Socket("172.30.1.10",8999); 
 			mainFrame  = new MainFrame();
 			ReceiveThread re_thread = new ReceiveThread(mainFrame.getChat());
 			re_thread.setSocket(clientSocket);

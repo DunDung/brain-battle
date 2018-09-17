@@ -25,7 +25,7 @@ public class SendThread extends Thread {
 		try {
 
 
-			BufferedReader buf = new BufferedReader(new InputStreamReader(System.in)); //키보드 입력 대기/입력
+		//	BufferedReader buf = new BufferedReader(new InputStreamReader(System.in)); //키보드 입력 대기/입력
 			PrintWriter sendWriter = new PrintWriter(socket.getOutputStream()); 
 			
 			//sendString = buf.readLine(); //지우고싶지만 남겨두기
