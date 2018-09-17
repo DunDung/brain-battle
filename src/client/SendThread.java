@@ -7,53 +7,41 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
 import javax.swing.JTextField;
 
-import gui.MainFrame;
 
 public class SendThread extends Thread {
 
 	private Socket socket;
-	private MainFrame s_Frame;
+	private ChattingPanel chat; //추가
+
+	public SendThread(ChattingPanel chat) { //생성자 추가
+		this.chat = chat;
+	}
 
 	@Override
 	public void run() {
 		super.run();
 		try {
+
+
 			BufferedReader buf = new BufferedReader(new InputStreamReader(System.in)); //키보드 입력 대기/입력
 			PrintWriter sendWriter = new PrintWriter(socket.getOutputStream()); 
-			String sendString;
-
-			while(true) {
-				s_Frame.chat.send.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if(e.getSource()==s_Frame.chat.send){//전송버튼 눌렀을 경우
-							//메세지 입력없이 전송버튼만 눌렀을 경우
-							if(s_Frame.chat.tf.getText().equals(""))
-								return;
-							
-							s_Frame.chat.ta.append(""+ s_Frame.chat.tf.getText()+"\n");
-							s_Frame.chat.tf.setText("");
-						}
-					}
-				});
-
-				s_Frame.chat.tf.addActionListener(new ActionListener() {
+			
+			//sendString = buf.readLine(); //지우고싶지만 남겨두기
+		
+				this.chat.tf.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JTextField t = (JTextField)e.getSource();
-						s_Frame.chat.ta.append(t.getText() + "\n"); 
-						t.setText(""); 
+						String sendString =t.getText();
+						sendWriter.println(sendString);
+						chat.ta.append("나 : "+sendString ); 
+						t.setText("");
+						sendWriter.flush();
+						chat.setVisible(true); 
 					}
 				});
-				sendString = buf.readLine();
-				
-				if(sendString.equals("exit"))
-						break;
-				
-				sendWriter.println(sendString);
-				sendWriter.flush();
-			}
+			
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -61,10 +49,6 @@ public class SendThread extends Thread {
 	public void setSocket(Socket socket) {
 		this.socket = socket;
 	}
-	public void setJFrame(MainFrame s_Frame) {
-		this.s_Frame = s_Frame;
-	}
-
 }
 
 

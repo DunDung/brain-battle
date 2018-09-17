@@ -5,13 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-import gui.MainFrame;
 
 public class ReceiveThread extends Thread{
 	private Socket socket;
-	private MainFrame s_Frame;
-
-
+	private ChattingPanel chat; //추가
+	
+	public ReceiveThread(ChattingPanel chat) { //생성자 추가
+		this.chat = chat;
+	}
+	
 	@Override
 	public void run() {
 		super.run();
@@ -25,11 +27,11 @@ public class ReceiveThread extends Thread{
 				receiveString = buf.readLine();
 				if(receiveString == null)
 				{
-					s_Frame.chat.ta.append("상대방 연결이 끊겼습니다.\n");
+					chat.taAdd("상대방 연결이 끊겼습니다.\n");
 					break;
 				}
 				else
-					s_Frame.chat.ta.append("상대방 : "+receiveString);
+					chat.taAdd("클라이언트 : "+receiveString+"\n");
 			}
 
 			buf.close();
@@ -39,9 +41,6 @@ public class ReceiveThread extends Thread{
 	}
 	public void setSocket(Socket socket) {
 		this.socket = socket;
-	}
-	public void setJFrame(MainFrame s_Frame) {
-		this.s_Frame = s_Frame;
 	}
 
 }
