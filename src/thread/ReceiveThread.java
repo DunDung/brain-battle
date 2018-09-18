@@ -1,9 +1,11 @@
-package server;
+package thread;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+
+import gui.ChattingPanel;
 
 
 public class ReceiveThread extends Thread{

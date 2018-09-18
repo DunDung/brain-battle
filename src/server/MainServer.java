@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+import gui.MainFrame;
+import thread.ReceiveThread;
+import thread.SendThread;
 
 public class MainServer {
 	public static ReceiveThread re_thread; //문자열을 받아줄 쓰레드
