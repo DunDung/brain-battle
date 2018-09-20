@@ -34,7 +34,7 @@ public class ReceiveThread extends Thread{
 					break;
 				}
 				else
-					chat.taAdd("클라이언트 : "+receiveString+"\n"); //JTestArea에 추가해준다.
+					chat.taAdd("아이디 : "+receiveString+"\n"); //JTestArea에 추가해준다.
 			}
 
 			buf.close(); 

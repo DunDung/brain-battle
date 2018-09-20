@@ -45,6 +45,9 @@ public class ChattingPanel extends JPanel{
 	public JTextField getTf() { //입력 필드 getter
 		return tf;
 	}
+	public JButton getEnter() {
+		return enter;
+	}
 
 	public void taAdd(String a) { //추가
 		this.ta.append(a);

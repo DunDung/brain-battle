@@ -2,16 +2,18 @@ package gui;
 
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 public class MainFrame extends JFrame{
-	private Container c = this.getContentPane(); //컨테이너을 컨텐트판으로 초기화
-	private ChattingPanel chat = new ChattingPanel(); //채팅채널
+	private Container c = this.getContentPane(); //추가
+	private String ip;
+	private String nickName;
+	private ChattingPanel chat = new ChattingPanel();
+	
 	public MainFrame() {
 		setLocation(new Point(700,350)); //윈도우상의 창의 위치를 잡아준다.
 		setPreferredSize(new Dimension(1500, 1000));//프레임의 창의크기 설정
@@ -22,9 +24,23 @@ public class MainFrame extends JFrame{
 		setVisible(true); //프레임을 보여준다.
 	
 	}
-	public ChattingPanel getChat() { //MainFrame에 ChattingPanel을 리턴
+	public ChattingPanel getChat() {
 		return chat;
 	}
+	
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
+	public String getIp() {
+		return ip;
+	}
+		
+	
 }
 
 
