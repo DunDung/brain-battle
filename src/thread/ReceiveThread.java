@@ -6,14 +6,15 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 import gui.ChattingPanel;
+import gui.MainFrame;
 
 
 public class ReceiveThread extends Thread{
 	private Socket socket;
-	private ChattingPanel chat; //추가
+	private MainFrame mainFrame; //추가
 	
-	public ReceiveThread(ChattingPanel chat) { //생성자 추가
-		this.chat = chat;
+	public ReceiveThread(MainFrame mainFrame) { //생성자 추가
+		this.mainFrame = mainFrame;
 	}
 	
 	@Override
@@ -30,11 +31,11 @@ public class ReceiveThread extends Thread{
 				receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				if(receiveString == null)
 				{
-					chat.taAdd("상대방 연결이 끊겼습니다.\n"); //실행이 안되는듯 수정요망
+					mainFrame.getChat().taAdd("상대방 연결이 끊겼습니다.\n"); //실행이 안되는듯 수정요망
 					break;
 				}
 				else
-					chat.taAdd("아이디 : "+receiveString+"\n"); //JTestArea에 추가해준다.
+					mainFrame.getChat().taAdd(receiveString+"\n"); //JTestArea에 추가해준다.
 			}
 
 			buf.close(); 
@@ -42,7 +43,7 @@ public class ReceiveThread extends Thread{
 			e.printStackTrace();
 		}
 	}
-	public void setSocket(Socket socket) {
+	public void setSocket(Socket socket) { //소켓 초기화
 		this.socket = socket;
 	}
 

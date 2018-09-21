@@ -30,8 +30,10 @@ public class ChattingPanel extends JPanel{
 		ts.setBounds(20,20, 1440, 830);
 		tf.setBounds(20,850,1340,60);
 		enter.setBounds(1360,850,100,60);
-		
-		enter.setFont(enter.getFont().deriveFont(16.0f)); //전송 버튼 글씨크기 변경
+		//전송버튼, 채팅창, 채팅입력창 글자크기 변경
+		enter.setFont(enter.getFont().deriveFont(16.0f)); 
+		tf.setFont(enter.getFont().deriveFont(16.0f));
+		ta.setFont(enter.getFont().deriveFont(16.0f));
 		
 		enter.setBackground(Color.YELLOW); //전송 버튼 배경색 변경
 		ta.setBackground(Color.LIGHT_GRAY); //채팅창 배경색 변경
@@ -45,11 +47,11 @@ public class ChattingPanel extends JPanel{
 	public JTextField getTf() { //입력 필드 getter
 		return tf;
 	}
-	public JButton getEnter() {
+	public JButton getEnter() { //전송 버튼 getter
 		return enter;
 	}
 
-	public void taAdd(String a) { //추가
+	public void taAdd(String a) { //채팅화면에 사용자가 입력한 텍스트를 추가하는 메소드
 		this.ta.append(a);
 	}
 
