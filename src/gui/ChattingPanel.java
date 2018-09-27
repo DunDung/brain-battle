@@ -27,11 +27,11 @@ public class ChattingPanel extends JPanel{
 		add(tf);
 		add(enter);
 		//레이아웃이 없기에 위치를 각자 지정해 준다.
-		ts.setBounds(20,20, 1440, 830);
-		tf.setBounds(20,850,1340,60);
-		enter.setBounds(1360,850,100,60);
+		ts.setBounds(0,0, 450, 693);
+		tf.setBounds(0, 691,350,50);
+		enter.setBounds(349,690,100,50);
 		//전송버튼, 채팅창, 채팅입력창 글자크기 변경
-		enter.setFont(enter.getFont().deriveFont(16.0f)); 
+		enter.setFont(enter.getFont().deriveFont(15.0f)); 
 		tf.setFont(enter.getFont().deriveFont(16.0f));
 		ta.setFont(enter.getFont().deriveFont(16.0f));
 		

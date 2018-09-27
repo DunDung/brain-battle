@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import javax.swing.JTextArea;
+
 import gui.ChattingPanel;
 import gui.MainFrame;
 
@@ -26,7 +28,6 @@ public class ReceiveThread extends Thread{
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 
 			String receiveString; //클라이언트가 보낸 문자열을 받아줄 변수
-
 			while(true) {
 				receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				if(receiveString == null)

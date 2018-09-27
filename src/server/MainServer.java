@@ -20,7 +20,7 @@ public class MainServer {
 		Socket clientSocket  =null;
 		mainFrame = new MainFrame(); //mainFrmae 객체 생성
 		introFrame = new IntroFrame(mainFrame); //introFrame 객체 생성
-		introFrame.getIpFiedl().setText("닉네임만 입력하세요."); //서버컴퓨터인 경우엔 Ip를 입력할 필요가 없으므로 introFrame의 ipField를 따로 설정
+		introFrame.getIpFiedl().setText(" 닉네임만 입력하세요."); //서버컴퓨터인 경우엔 Ip를 입력할 필요가 없으므로 introFrame의 ipField를 따로 설정
 
 		try {
 			serverSocket = new ServerSocket(8999); //서버소켓을 포트번호로 받아서 초기화 한다.
