@@ -13,11 +13,13 @@ import javax.swing.JTextField;
 public class ScorePanel extends JPanel{
 
 	private JLabel score = new JLabel("Score");
-	private JLabel myNickName = new JLabel("홍준성");
-	private JLabel yourNickName = new JLabel("홍준성");
+	private JLabel myNickName = new JLabel("");
+	private JLabel yourNickName = new JLabel("");
 	private JLabel vs = new JLabel("VS");
-	private JLabel myScore = new JLabel("3");
-	private JLabel yourScore = new JLabel("2");
+	private JLabel myScore = new JLabel("");
+	private JLabel yourScore = new JLabel("");
+	private int myScoreCount;
+	private int yourScoreCount;
 	
 
 	public ScorePanel() {
@@ -53,11 +55,30 @@ public class ScorePanel extends JPanel{
 //		enter.setBackground(Color.YELLOW); //전송 버튼 배경색 변경
 //		ta.setBackground(Color.LIGHT_GRAY); //채팅창 배경색 변경
 		
-	
-		
+	}
+	public void setMyNickName(String nickName) {
+		this.myNickName.setText(nickName);
 	}
 
+	public void setYourNickName(String nickName) {
+		this.yourNickName.setText(nickName);
+	}
 
+	public int getMyScore() {
+		return myScoreCount;
+	}
+
+	public void setMyScore(int score) {
+		this.myScoreCount = score;
+	}
+
+	public int getYourScore() {
+		return yourScoreCount;
+	}
+
+	public void setYourScore(int score) {
+		this.yourScoreCount = score;
+	}
 	
 }
 

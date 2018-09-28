@@ -66,7 +66,6 @@ public class IntroFrame extends JFrame{
 				ipManner.setFont(ipManner.getFont().deriveFont(13.0f)); //글씨크기 변경
 //				revalidate();
 //				repaint();
-				
 			}
 		});
 		
@@ -75,7 +74,8 @@ public class IntroFrame extends JFrame{
 				mainFrame.setIp(ipField.getText().toString()); //mainFrame의 ip필드를 IntroFrame의 ipField에 있는 텍스트로 초기화 
 				mainFrame.setNickName(nickNameField.getText()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
 				dispose(); //introFrame창을 끈다.
-				mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다.
+				mainFrame.getScore().setMyNickName(mainFrame.getNickName());
+				mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
 			}
 		});
 		
