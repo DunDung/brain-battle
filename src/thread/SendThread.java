@@ -24,9 +24,10 @@ public class SendThread extends Thread {
 		try {
 
 			sendWriter = new PrintWriter(socket.getOutputStream());  //setSocket으로 초기화한 소켓의 아웃풋스트림을 저장한다.
-			
+
 			mainFrame.getChat().getTf().addActionListener(new SendEvent());//enter키를 누를 때 이벤트
 			mainFrame.getChat().getEnter().addActionListener(new SendEvent()); //전송버튼을 누를 때 이벤트
+
 
 		}catch(IOException e) {
 			e.printStackTrace();

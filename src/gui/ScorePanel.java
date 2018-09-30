@@ -63,6 +63,14 @@ public class ScorePanel extends JPanel{
 	public void setYourNickName(String nickName) {
 		this.yourNickName.setText(nickName);
 	}
+	
+	public String getMyNickName() {
+		return myNickName.getText().toString();
+	}
+	
+	public String getYourNickName() {
+		return yourNickName.getText().toString();
+	}
 
 	public int getMyScore() {
 		return myScoreCount;
