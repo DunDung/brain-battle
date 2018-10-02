@@ -2,12 +2,12 @@ package gui;
 
 
 import java.awt.Color;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.Socket;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 
 public class ScorePanel extends JPanel{
@@ -20,6 +20,7 @@ public class ScorePanel extends JPanel{
 	private JLabel yourScore = new JLabel("");
 	private int myScoreCount;
 	private int yourScoreCount;
+	private Socket socket;
 	
 
 	public ScorePanel() {
@@ -86,6 +87,10 @@ public class ScorePanel extends JPanel{
 
 	public void setYourScore(int score) {
 		this.yourScoreCount = score;
+	}
+	
+	public void setSocket(Socket socket) {  //client소켓으로 초기화하는 용도.
+		this.socket = socket;
 	}
 	
 }

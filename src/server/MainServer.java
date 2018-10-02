@@ -10,8 +10,7 @@ import thread.ReceiveThread;
 import thread.SendThread;
 
 public class MainServer {
-	public static ReceiveThread re_thread; //문자열을 받아줄 쓰레드
-	public static SendThread se_thread; //문자열을 보낼 쓰레드
+	
 	public static MainFrame mainFrame; //MainFrmae 
 	public static IntroFrame introFrame; //introFrmae
 
@@ -26,21 +25,20 @@ public class MainServer {
 		try {
 			serverSocket = new ServerSocket(8999); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
-					
-			se_thread = new SendThread(mainFrame); //SendThread를 MainFrame을 파라미터로 생성한다.
-			re_thread = new ReceiveThread(mainFrame);// ReceiveThread를 MainFrame을 파라미터로 생성한다.
-
-			re_thread.setSocket(clientSocket); //서버소켓에 접근한 클라이언트 소켓으로 쓰레드들을 초기화
+			
+			introFrame.setSocket(clientSocket);
+			ReceiveThread re_thread = new ReceiveThread(mainFrame);
+			re_thread.setSocket(clientSocket);
+			SendThread se_thread = new SendThread(mainFrame);
 			se_thread.setSocket(clientSocket);
-
+			
 			re_thread.start();
 			se_thread.start();
+			
 
 
 		}catch(IOException e){
 			e.printStackTrace();
-		}finally {
-			serverSocket.close(); //서버소켓을 닫는다.
 		}
 	}
 

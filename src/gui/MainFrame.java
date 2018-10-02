@@ -48,6 +48,7 @@ public class MainFrame extends JFrame{
 	public ScorePanel getScore() {
 		return score;
 	}
+	
 	public void viewTrue() { //호출 시 mainFrame을 화면에 띄울 메소드
 		setVisible(true);
 	}
