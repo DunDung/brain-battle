@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 public class MainFrame extends JFrame{
 	private Container c = this.getContentPane(); //추가
 	private ChattingPanel chat = new ChattingPanel();
-	private String ip = null;
 	private String nickName = null;
 	private ScorePanel score = new ScorePanel();
 
@@ -33,12 +32,7 @@ public class MainFrame extends JFrame{
 	public ChattingPanel getChat() { //ChattingPanel getter
 		return chat;
 	}
-	public String getIp() { //ip필드 getter
-		return ip;
-	}
-	public void setIp(String ip) { //ip필드 setter
-		this.ip = ip;
-	}
+
 	public String getNickName() { //nickName필드 getter
 		return nickName;
 	}

@@ -5,9 +5,9 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 import javax.swing.JButton;
@@ -77,16 +77,16 @@ public class IntroFrame extends JFrame{
 
 		inputOk.addActionListener(new ActionListener() { //입력완료 버튼을 클릭시 이벤트 추가 및 설정
 			public void actionPerformed(ActionEvent e) {
-				mainFrame.setIp(ipField.getText().toString()); //mainFrame의 ip필드를 IntroFrame의 ipField에 있는 텍스트로 초기화 
 				mainFrame.setNickName(nickNameField.getText().toString()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
 				dispose(); //introFrame창을 끈다.
-				mainFrame.getScore().setMyNickName(mainFrame.getNickName());
+				String s =mainFrame.getNickName();
+				mainFrame.getScore().setMyNickName(s);
 				mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
-			}
+				
+				}
 		});
 
 		setVisible(true); //introFrame을 보여준다.
-
 	}
 
 	public JTextField getIpFiedl() { //ipField의 getter
