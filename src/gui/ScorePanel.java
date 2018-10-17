@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 
 public class ScorePanel extends JPanel{
 
-	private JLabel score = new JLabel("Score");
-	private JLabel myNickName = new JLabel("");
-	private JLabel yourNickName = new JLabel("");
+	private static JLabel score = new JLabel("Score");
+	private static JLabel myNickName = new JLabel("");
+	private static JLabel yourNickName = new JLabel("");
 	private JLabel vs = new JLabel("VS");
 	private JLabel myScore = new JLabel("");
 	private JLabel yourScore = new JLabel("");
-	private int myScoreCount;
-	private int yourScoreCount;
+	private static int myScoreCount;
+	private static int yourScoreCount;
 	private Socket socket;
 	
 

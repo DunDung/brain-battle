@@ -12,7 +12,7 @@ public class MainFrame extends JFrame{
 	private Container c = this.getContentPane(); //추가
 	private ChattingPanel chat = new ChattingPanel();
 	private String nickName = null;
-	private ScorePanel score = new ScorePanel();
+	public static ScorePanel score = new ScorePanel();
 
 	public MainFrame() {
 		setLocation(new Point(700,350)); //윈도우상의 창의 위치를 잡아준다.

@@ -80,7 +80,7 @@ public class IntroFrame extends JFrame{
 				mainFrame.setNickName(nickNameField.getText().toString()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
 				dispose(); //introFrame창을 끈다.
 				String s =mainFrame.getNickName();
-				mainFrame.getScore().setMyNickName(s);
+			//	mainFrame.getScore().setMyNickName(s);
 				mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
 				
 				}

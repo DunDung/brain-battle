@@ -26,23 +26,7 @@ public class MainServer2 {
 		try {
 				Socket clientSocket =new Socket(local.getHostAddress(),9191);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
 				
-				while(true) {
-					if(mainFrame.getNickName() != null) {
-						DataOutputStream  dataOut = new DataOutputStream(clientSocket.getOutputStream());
-						dataOut.writeUTF(mainFrame.getNickName());
-						dataOut.flush();
-						break;
-					}
-				}
-				while(true) {
-					if(mainFrame.getScore().getYourNickName().trim().length() <= 1) {
-						DataInputStream dataIn = new DataInputStream(clientSocket.getInputStream());
-						String s =dataIn.readUTF();
-						mainFrame.getScore().setYourNickName(s);
-						break;
-					}
-				}
-			//	introFrame.setSocket(clientSocket);
+	
 				
 				SendThread se_thread = new SendThread(mainFrame);
 				se_thread.setSocket(clientSocket);
@@ -53,8 +37,8 @@ public class MainServer2 {
 				DataOutputStream dataOut = new DataOutputStream(clientSocket.getOutputStream());
 				dataOut.flush();
 				
-			
-			//	se_thread.start();
+				MainFrame.score.setYourNickName("클라이언트");
+				se_thread.start();
 				re_thread.start();
 				
 			
