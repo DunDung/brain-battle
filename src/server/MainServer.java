@@ -33,7 +33,6 @@ public class MainServer {
 			re_thread.setSocket(clientSocket);
 
 			se_thread.setSocket(clientSocket);
-			MainFrame.score.setMyNickName("¼­¹ö");
 			se_thread.start();
 			re_thread.start();
 

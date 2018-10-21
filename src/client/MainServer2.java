@@ -37,7 +37,6 @@ public class MainServer2 {
 				DataOutputStream dataOut = new DataOutputStream(clientSocket.getOutputStream());
 				dataOut.flush();
 				
-				MainFrame.score.setYourNickName("클라이언트");
 				se_thread.start();
 				re_thread.start();
 				

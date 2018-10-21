@@ -20,8 +20,8 @@ public class MainFrame extends JFrame{
 		setLayout(null);
 		c.add(chat); //수정
 		c.add(score);
-		chat.setBounds(1020,200,450,750);
-		score.setBounds(1020, 10, 450, 180);
+		chat.setBounds(1020,110,450,1050);
+		score.setBounds(1020, 10, 450, 100);
 	
 		pack();//컴포넌트 크기만큼 창의 크기를 잡아준다.
 		setLocationRelativeTo(null); //(null)을 넣음으로써 화면중앙에 배치
