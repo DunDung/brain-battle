@@ -15,6 +15,7 @@ public class ReceiveThread extends Thread{
 	private MainFrame mainFrame; //추가
 	private ScorePanel score;
 	private SendThread send;
+	private String [] nickName; 
 
 	public ReceiveThread(MainFrame mainFrame, SendThread send) { //생성자 추가
 		this.mainFrame = mainFrame;
@@ -33,10 +34,16 @@ public class ReceiveThread extends Thread{
 			
 			
 			while(true) {
-			
+				if(mainFrame.getScore().getYourNickName().equals("")) {
+					String str = buf.readLine();
+					System.out.println(str);
+					mainFrame.getScore().setYourNickName(str);
+				}
+					
+				else {
 				receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				mainFrame.getChat().taAdd(receiveString+"\n"); //JTestArea에 추가해준다.
-				
+				}
 			}
 		}catch(IOException e) {
 			e.printStackTrace();

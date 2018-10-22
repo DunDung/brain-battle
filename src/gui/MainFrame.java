@@ -11,8 +11,7 @@ import javax.swing.JLabel;
 public class MainFrame extends JFrame{
 	private Container c = this.getContentPane(); //추가
 	private ChattingPanel chat = new ChattingPanel();
-	private String nickName = null;
-	public static ScorePanel score = new ScorePanel();
+	private ScorePanel score = new ScorePanel();
 
 	public MainFrame() {
 		setLocation(new Point(700,350)); //윈도우상의 창의 위치를 잡아준다.
@@ -33,12 +32,6 @@ public class MainFrame extends JFrame{
 		return chat;
 	}
 
-	public String getNickName() { //nickName필드 getter
-		return nickName;
-	}
-	public void setNickName(String nickName) { //nickName필드 setter
-		this.nickName = nickName;
-	}
 	public ScorePanel getScore() {
 		return score;
 	}

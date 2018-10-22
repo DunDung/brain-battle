@@ -19,7 +19,7 @@ import client.MainServer2;
 import server.MainServer;
 
 
-public class IntroFrame extends JFrame{ 
+public class IntroFrame2 extends JFrame{ 
 	private MainFrame mainFrame; //메인프레임 변수
 	private Container c = this.getContentPane(); //IntroFrame의 컨텐트판을 얻은 컨테이너
 	private JTextField ipField = new JTextField(); //ip를 입력할 JTextField
@@ -31,7 +31,7 @@ public class IntroFrame extends JFrame{
 
 	private Socket socket;
 
-	public IntroFrame(MainFrame mainFrame) {
+	public IntroFrame2(MainFrame mainFrame) {
 		this.mainFrame = mainFrame; //MainFrame변수 mainFrame 초기화
 
 		setTitle("BrainBattle"); //타이틀 설정
