@@ -15,10 +15,10 @@ public class ScorePanel extends JPanel{
 //	private static JLabel myNickName = new JLabel("");
 //	private static JLabel yourNickName = new JLabel("");
 	private JLabel vs = new JLabel("VS");
-	private JLabel myScore = new JLabel("");
-	private JLabel yourScore = new JLabel("");
-	private static int myScoreCount;
-	private static int yourScoreCount;
+	private JLabel myScore = new JLabel(""+myScoreCount);
+	private JLabel yourScore = new JLabel(""+yourScoreCount);
+	private static int myScoreCount = 0;
+	private static int yourScoreCount = 0;
 	private Socket socket;
 	
 
@@ -33,19 +33,22 @@ public class ScorePanel extends JPanel{
 		//레이아웃이 없기에 위치를 각자 지정해 준다.
 //		myNickName.setBounds(70, 60, 150,50);
 //		yourNickName.setBounds(320, 60, 150, 50);
-		vs.setBounds(215, 60, 350, 50);
-		myScore.setBounds(100, 120, 30, 50);
-		yourScore.setBounds(350, 120, 30, 50);
+		vs.setBounds(105, 30, 350, 50);
+		myScore.setBounds(75, 30, 30, 50);
+		yourScore.setBounds(145, 30, 30, 50);
 		
 		//각 라벨들 글자크기 변경
 //		myNickName.setFont(myNickName.getFont().deriveFont(23.0f));
 //		yourNickName.setFont(yourNickName.getFont().deriveFont(23.0f));
 		vs.setFont(vs.getFont().deriveFont(19.0f));
+		vs.setForeground(Color.WHITE);
 		myScore.setFont(myScore.getFont().deriveFont(25.0f));
+		myScore.setForeground(Color.WHITE);
 		yourScore.setFont(yourScore.getFont().deriveFont(25.0f));
+		yourScore.setForeground(Color.WHITE);
 		
 		//패널 배경 색 변경 및 Score 글자 색 변경
-		setBackground(Color.WHITE);
+		setBackground(Color.black);
 
 //		
 //		enter.setBackground(Color.YELLOW); //전송 버튼 배경색 변경

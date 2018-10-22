@@ -24,9 +24,7 @@ public class MainServer2 {
 		InetAddress local = InetAddress.getLocalHost();
 		
 		try {
-				Socket clientSocket =new Socket(local.getHostAddress(),9191);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
-				
-	
+				Socket clientSocket =new Socket(local.getHostAddress(),9876);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
 				
 				SendThread se_thread = new SendThread(mainFrame);
 				se_thread.setSocket(clientSocket);

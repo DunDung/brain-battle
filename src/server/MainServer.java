@@ -24,7 +24,7 @@ public class MainServer {
 		introFrame = new IntroFrame(mainFrame); //introFrame 객체 생성
 
 		try {
-			serverSocket = new ServerSocket(9191); //서버소켓을 포트번호로 받아서 초기화 한다.
+			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
 
 

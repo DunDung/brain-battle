@@ -20,7 +20,7 @@ public class MainFrame extends JFrame{
 		setLayout(null);
 		c.add(chat); //수정
 		c.add(score);
-		chat.setBounds(1020,110,450,1050);
+		chat.setBounds(1020,115,450,950);
 		score.setBounds(1020, 10, 450, 100);
 	
 		pack();//컴포넌트 크기만큼 창의 크기를 잡아준다.
