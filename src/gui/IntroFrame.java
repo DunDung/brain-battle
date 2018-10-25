@@ -5,8 +5,10 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,9 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import client.MainServer2;
-import server.MainServer;
 
 
 public class IntroFrame extends JFrame{ 
@@ -28,6 +27,7 @@ public class IntroFrame extends JFrame{
 	private JLabel nickName = new JLabel("닉네임  :"); //닉네임을 입력할 필드라는 것을 알려줄 JLabel
 	private JButton inputOk = new JButton("입력완료"); //닉네임과 ip를 입력 후에 누를 버튼 
 	private JButton ipDoNotKnow = new JButton("IP를 모른다면"); //ip를 아는법을 알려줄 버튼
+
 
 	private Socket socket;
 
@@ -81,21 +81,12 @@ public class IntroFrame extends JFrame{
 		inputOk.addActionListener(new ActionListener() { //입력완료 버튼을 클릭시 이벤트 추가 및 설정
 			public void actionPerformed(ActionEvent e) {
 				mainFrame.getScore().setMyNickName(nickNameField.getText().toString()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
-				MainServer2.ip = ipField.getText().toString();
-				try {
-					System.out.println(MainServer.data(nickNameField.getText().toString()));
-					System.out.println(MainServer2.data(nickNameField.getText().toString()));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
 				dispose(); //introFrame창을 끈다.
 				mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
-				
-				}
-			
-				
+
+			}
+
+
 		});
 		setVisible(true); //introFrame을 보여준다.
 	}
@@ -107,8 +98,6 @@ public class IntroFrame extends JFrame{
 		this.socket = socket;
 	}
 
-	public void yourNick(String nick) {
-		mainFrame.getScore().setYourNickName(nick);
-	}
+
 }
 

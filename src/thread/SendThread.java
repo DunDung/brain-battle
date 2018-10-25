@@ -2,8 +2,10 @@ package thread;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -17,8 +19,9 @@ public class SendThread extends Thread {
 	private MainFrame mainFrame;
 
 
-	public SendThread(MainFrame mainFrame) { //생성자 추가
+	public SendThread(MainFrame mainFrame, Socket socket) { //생성자 추가
 		this.mainFrame = mainFrame;
+		this.socket = socket;
 	}
 
 	@Override
@@ -26,16 +29,6 @@ public class SendThread extends Thread {
 		super.run();
 		try {
 			sendWriter = new PrintWriter(socket.getOutputStream());  //setSocket으로 초기화한 소켓의 아웃풋스트림을 저장한다.
-			while(true) {
-				if(!mainFrame.getScore().getMyNickName().equals("")) {
-					System.out.println(mainFrame.getScore().getMyNickName());
-					sendWriter.println(mainFrame.getScore().getMyNickName());
-					
-					break;
-				}
-				else
-					continue;
-			}
 			
 			mainFrame.getChat().getTf().addActionListener(new SendEvent());//enter키를 누를 때 이벤트
 			mainFrame.getChat().getEnter().addActionListener(new SendEvent()); //전송버튼을 누를 때 이벤트
@@ -44,9 +37,7 @@ public class SendThread extends Thread {
 			e.printStackTrace();
 		}
 	}
-	public void setSocket(Socket socket) {  //client소켓으로 초기화하는 용도.
-		this.socket = socket;
-	}
+
 
 	class SendEvent implements ActionListener{ //enter키를 누를 때와 "전송"버튼을 눌렀을 때의 이벤트 클래스
 		@Override

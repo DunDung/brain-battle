@@ -68,11 +68,11 @@ public class ScorePanel extends JPanel{
 	}
 	
 	public String getMyNickName() {
-		return myNickName.getText().toString();
+		return myNickName.getText().toString().trim();
 	}
 	
 	public String getYourNickName() {
-		return yourNickName.getText().toString();
+		return yourNickName.getText().toString().trim();
 	}
 
 	public int getMyScore() {
