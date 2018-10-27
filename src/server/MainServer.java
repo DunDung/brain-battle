@@ -1,9 +1,11 @@
 package server;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import client.MainServer2;
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.NickNameThread;
@@ -22,6 +24,7 @@ public class MainServer {
 
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;
+		MainServer2.ip = InetAddress.getLocalHost().getHostAddress();
 		try {
 
 			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.

@@ -31,17 +31,23 @@ public class ScorePanel extends JPanel{
 		add(myScore);
 		add(yourScore);
 		//레이아웃이 없기에 위치를 각자 지정해 준다.
-		myNickName.setBounds(170, 30, 150,50);
-		yourNickName.setBounds(320, 30, 150, 50);
-		vs.setBounds(105, 30, 350, 50);
-		myScore.setBounds(75, 30, 30, 50);
-		yourScore.setBounds(145, 30, 30, 50);
+		myNickName.setBounds(15, 60, 130,30);
+		yourNickName.setBounds(299, 60, 130, 30);
+		myScore.setBounds(181, 15, 30, 50);
+		vs.setBounds(210, 15, 350, 50);
+		yourScore.setBounds(250, 15, 30, 50);
 		
-		//각 라벨들 글자크기 변경
-		myNickName.setFont(myNickName.getFont().deriveFont(23.0f));
-		myNickName.setForeground(Color.WHITE);
-		yourNickName.setFont(yourNickName.getFont().deriveFont(23.0f));
-		yourNickName.setForeground(Color.WHITE);
+		//각 라벨들 글씨 크기 및 글씨 색, 라벨 배경색 변경
+		myNickName.setFont(myNickName.getFont().deriveFont(20.0f));
+		myNickName.setForeground(Color.BLACK); //글씨 색
+		myNickName.setBackground(Color.WHITE); //배경 색
+		myNickName.setOpaque(true); //라벨 투명도 설정
+		myNickName.setHorizontalAlignment(JLabel.CENTER); //닉네임 가운데 정렬
+		yourNickName.setFont(yourNickName.getFont().deriveFont(20.0f));
+		yourNickName.setForeground(Color.BLACK);
+		yourNickName.setBackground(Color.WHITE);
+		yourNickName.setOpaque(true);
+		yourNickName.setHorizontalAlignment(JLabel.CENTER);
 		
 		vs.setFont(vs.getFont().deriveFont(19.0f));
 		vs.setForeground(Color.WHITE);
