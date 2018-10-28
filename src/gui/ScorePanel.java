@@ -52,9 +52,9 @@ public class ScorePanel extends JPanel{
 		vs.setFont(vs.getFont().deriveFont(19.0f));
 		vs.setForeground(Color.WHITE);
 		myScore.setFont(myScore.getFont().deriveFont(25.0f));
-		myScore.setForeground(Color.WHITE);
+		myScore.setForeground(Color.BLUE);
 		yourScore.setFont(yourScore.getFont().deriveFont(25.0f));
-		yourScore.setForeground(Color.WHITE);
+		yourScore.setForeground(Color.RED);
 		
 		//패널 배경 색 변경 및 Score 글자 색 변경
 		setBackground(Color.black);

@@ -13,7 +13,7 @@ import thread.NickNameThread;
 import thread.ReceiveThread;
 import thread.SendThread;
 
-public class MainServer2 {
+public class Client {
 	public static MainFrame mainFrame;
 	public static IntroFrame introFrame;
 	public static String ip;

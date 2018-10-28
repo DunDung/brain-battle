@@ -5,14 +5,14 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import client.MainServer2;
+import client.Client;
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.NickNameThread;
 import thread.ReceiveThread;
 import thread.SendThread;
 
-public class MainServer {
+public class Server {
 
 	public static MainFrame mainFrame; //MainFrmae 
 	public static IntroFrame introFrame; //introFrmae
@@ -24,7 +24,7 @@ public class MainServer {
 
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;
-		MainServer2.ip = InetAddress.getLocalHost().getHostAddress();
+		Client.ip = InetAddress.getLocalHost().getHostAddress(); //클라이언트의 ip를 서버pc의 ip로 초기화
 		try {
 
 			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
