@@ -22,9 +22,7 @@ public class NickNameThread extends Thread{
 		try {
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			String s = null;
 			while(true) {
-				System.out.println(mainFrame.getScore().getMyNickName());
 				if(!mainFrame.getScore().getMyNickName().equals("")) {
 					writer.println(mainFrame.getScore().getMyNickName());
 					break;
