@@ -9,6 +9,7 @@ import client.Client;
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.NickNameThread;
+import thread.ProgressGameThread;
 import thread.ReceiveThread;
 import thread.SendThread;
 
@@ -24,7 +25,7 @@ public class Server {
 
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;
-		Client.ip = InetAddress.getLocalHost().getHostAddress(); //클라이언트의 ip를 서버pc의 ip로 초기화
+	//	Client.ip = InetAddress.getLocalHost().getHostAddress(); //클라이언트의 ip를 서버pc의 ip로 초기화
 		try {
 
 			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
@@ -32,11 +33,14 @@ public class Server {
 			SendThread se_thread = new SendThread(mainFrame, clientSocket);
 			ReceiveThread re_thread = new ReceiveThread(mainFrame, clientSocket);
 			NickNameThread  nick_thread = new NickNameThread(mainFrame, clientSocket);
-
+			ProgressGameThread game_thread = new ProgressGameThread(mainFrame, clientSocket);
+			
 			nick_thread.start();
 			nick_thread.join();			
 			se_thread.start();
 			re_thread.start();
+		
+			game_thread.start();
 
 		}catch(IOException e){
 			e.printStackTrace();

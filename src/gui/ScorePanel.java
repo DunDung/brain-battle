@@ -11,14 +11,15 @@ import javax.swing.JPanel;
 
 public class ScorePanel extends JPanel{
 
-	private  JLabel myNickName = new JLabel("");
-	private  JLabel yourNickName = new JLabel("");
+	private JLabel myNickName = new JLabel("");
+	private JLabel yourNickName = new JLabel("");
 	private JLabel vs = new JLabel("VS");
-	private  int myScoreCount = 0;
-	private  int yourScoreCount = 0;
+	private int myScoreCount = 0;
+	private int yourScoreCount = 0;
 	private JLabel myScore = new JLabel(""+myScoreCount);
 	private JLabel yourScore = new JLabel(""+yourScoreCount);
 	private Socket socket;
+	private boolean nickState = false;
 	
 
 	public ScorePanel() {
@@ -74,11 +75,11 @@ public class ScorePanel extends JPanel{
 	}
 	
 	public String getMyNickName() {
-		return myNickName.getText().toString().trim();
+		return this.myNickName.getText().toString().trim();
 	}
 	
 	public String getYourNickName() {
-		return yourNickName.getText().toString().trim();
+		return this.yourNickName.getText().toString().trim();
 	}
 
 	public int getMyScore() {
@@ -97,9 +98,13 @@ public class ScorePanel extends JPanel{
 		this.yourScoreCount = score;
 	}
 	
-	public void setSocket(Socket socket) {  //client소켓으로 초기화하는 용도.
-		this.socket = socket;
+	public void setNcikState() {  
+		this.nickState = true;
 	}
+	public boolean getNickState() {
+		return nickState;
+	}
+	
 	
 }
 

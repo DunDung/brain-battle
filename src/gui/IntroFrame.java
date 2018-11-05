@@ -80,8 +80,9 @@ public class IntroFrame extends JFrame{
 
 		inputOk.addActionListener(new ActionListener() { //입력완료 버튼을 클릭시 이벤트 추가 및 설정
 			public void actionPerformed(ActionEvent e) {
-				mainFrame.getScore().setMyNickName(nickNameField.getText().toString()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
 				
+				mainFrame.getScore().setMyNickName(nickNameField.getText().toString()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
+				mainFrame.getScore().setNcikState();
 				dispose(); //introFrame창을 끈다.
 				mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
 			}

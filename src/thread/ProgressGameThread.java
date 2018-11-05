@@ -8,12 +8,14 @@ import java.net.Socket;
 
 import gui.MainFrame;
 
-public class NickNameThread extends Thread{
-
-	private Socket socket;
+public class ProgressGameThread extends Thread{
+	private boolean myReady = false;
+	private boolean yourReady = false;
 	private MainFrame mainFrame;
-	private final long halfOneSecond = 500;
-	public NickNameThread(MainFrame mainFrame, Socket socket) {
+	private Socket socket;
+	private final long oneSecond = 1000;
+	
+	public ProgressGameThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
 	}
@@ -22,20 +24,15 @@ public class NickNameThread extends Thread{
 		try {
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			while(true) {
-				Thread.sleep(halfOneSecond);
-				if(mainFrame.getScore().getNickState()) {
-					writer.println(mainFrame.getScore().getMyNickName());
-					break;
-				}
-				else
-					continue;
-			}
-			mainFrame.getScore().setYourNickName(buf.readLine());
+			
+			
+//			if(myReady && yourReady) {
+//				System.out.println("준비완료");
+//			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		} 
 	}
+	
+	
 }
