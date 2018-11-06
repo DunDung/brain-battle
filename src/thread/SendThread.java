@@ -44,7 +44,7 @@ public class SendThread extends Thread {
 		public void actionPerformed(ActionEvent e) { 
 			
 			String 	sendString =mainFrame.getChat().getTf().getText(); //택스트 필드에 있는 문자열을 sendString에 저장한다.
-			sendWriter.println(mainFrame.getScore().getMyNickName() +" :"+ sendString ); //소켓의 아웃풋스트림에 sendString을 보낸다.
+			sendWriter.println("chat/"+mainFrame.getScore().getMyNickName() +" :"+ sendString ); //소켓의 아웃풋스트림에 sendString을 보낸다.
 			mainFrame.getChat().getTa().append(mainFrame.getScore().getMyNickName() +" :"+ sendString +"\n");  //JTextArea에 sendString을 추가한다.
 			mainFrame.getChat().getTf().setText(""); //텍스트 필드를 다시 아무것도 없는 상태로 만든다.
 			sendWriter.flush(); //버퍼링되어 아직 기록되지 않은 데이터를 출력 스트림에 모두 출력한다.

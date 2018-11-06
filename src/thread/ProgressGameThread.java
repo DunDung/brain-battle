@@ -24,14 +24,21 @@ public class ProgressGameThread extends Thread{
 		try {
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			while(true) {
+				Thread.sleep(oneSecond);
+				if(mainFrame.getGame().getPlayOk()) {
+					writer.println("true");
+				}
+			}
+			String s = buf.readLine(); 
+			if(s.equals(true))
+				writer.println("readyOk/");
 			
-			
-//			if(myReady && yourReady) {
-//				System.out.println("준비완료");
-//			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		} 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
