@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class MainFrame extends JFrame{
 	private Container c = this.getContentPane(); //Ãß°¡
 	private ChattingPanel chat = new ChattingPanel();
-	private static ScorePanel score = new ScorePanel();
+	private ScorePanel score = new ScorePanel();
 	private GamePanel game = new GamePanel(this);
 
 	public MainFrame() {
@@ -38,7 +38,7 @@ public class MainFrame extends JFrame{
 		return chat;
 	}
 
-	public static ScorePanel getScore() {
+	public ScorePanel getScore() {
 		return score;
 	}
 	
