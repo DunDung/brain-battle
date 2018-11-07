@@ -30,18 +30,21 @@ public class Server {
 
 			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
-			SendThread se_thread = new SendThread(mainFrame, clientSocket);
-			ReceiveThread re_thread = new ReceiveThread(mainFrame, clientSocket);
-			NickNameThread  nick_thread = new NickNameThread(mainFrame, clientSocket);
-			ProgressGameThread game_thread = new ProgressGameThread(mainFrame, clientSocket);
+			SendThread seThread = new SendThread(mainFrame, clientSocket);
+			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
+			NickNameThread  nickThread = new NickNameThread(mainFrame, clientSocket);
+			ProgressGameThread gameThread = new ProgressGameThread(mainFrame, clientSocket);
 			
-			nick_thread.start();
-			nick_thread.join();			
-			se_thread.start();
-			re_thread.start();
+			nickThread.start();
+			nickThread.join();			
+			
+			gameThread.start();
+			gameThread.join();
+			
+			seThread.start();
+			reThread.start();
 		
-			game_thread.start();
-
+			
 		}catch(IOException e){
 			e.printStackTrace();
 		}

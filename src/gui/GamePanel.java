@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -18,9 +19,11 @@ public class GamePanel extends JPanel{
 	private JTextField tf = new JTextField();
 	private JButton enter = new JButton("답안전송");
 	private JButton ready = new JButton();
+	private JLabel readyOk = new JLabel();
 	private MainFrame mainFrame;
 	private JLabel question;
 	private boolean playOk =false;
+	private JLabel start ;
 
 	public GamePanel(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -29,6 +32,7 @@ public class GamePanel extends JPanel{
 		this.setBackground(Color.LIGHT_GRAY);
 		ready = setButton(ready, "./image/Ready.png");
 		question = labelSet(question, "./image/Q2.png");
+		start = labelSet(start,"./image/Q2.png");
 
 		add(tf);
 		add(enter);
@@ -50,12 +54,17 @@ public class GamePanel extends JPanel{
 		}); 
 
 		//add(question);
-
+		add(start);
+		start.setVisible(false);
 		ready.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) { //버튼의 이미지를 바꿔주고 준비완료 됐음을 알림
-				setButton(ready, "./image/ReadyOk.png");
-				mainFrame.getChat().getTa().append("System :"+mainFrame.getScore().getMyNickName()+"님 준비 완료\n");
+				remove(ready);
+				ImageIcon img = new ImageIcon(("./image/ReadyOk.png"));
+				img = new ImageIcon(img.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+				readyOk = new JLabel(img);
+				add(readyOk);
+				readyOk.setBounds(410, 500, 200, 200);
 				playOk = true;
 			}
 		});
@@ -84,10 +93,15 @@ public class GamePanel extends JPanel{
 		ImageIcon img = new ImageIcon((url));
 		img = new ImageIcon(img.getImage().getScaledInstance(980, 860, Image.SCALE_SMOOTH));
 		l = new JLabel(img);
-		l.setBounds(10, 10, 980, 860);
+//		l.setBounds(10, 10, 980, 860);
+		l.setBounds(10, 350, 980, 200);
 		return l;
 	}
 	public boolean getPlayOk() {
 		return this.playOk;
+	}
+	public void startGame() {
+		this.readyOk.setVisible(false);
+		this.start.setVisible(true);
 	}
 }

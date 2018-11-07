@@ -13,7 +13,6 @@ public class ProgressGameThread extends Thread{
 	private boolean yourReady = false;
 	private MainFrame mainFrame;
 	private Socket socket;
-	private final long oneSecond = 1000;
 	
 	public ProgressGameThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
@@ -24,15 +23,25 @@ public class ProgressGameThread extends Thread{
 		try {
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
+			mainFrame.getChat().taAdd("System :준비가 완료되면 Ready버튼을 눌러주세요.\n");
+			
 			while(true) {
-				Thread.sleep(oneSecond);
+				Thread.sleep(100);
 				if(mainFrame.getGame().getPlayOk()) {
-					writer.println("true");
+					writer.println("ready");
+					break;
 				}
+				else
+					continue;
 			}
-			String s = buf.readLine(); 
-			if(s.equals(true))
-				writer.println("readyOk/");
+			String ready = buf.readLine();
+			if(ready.equals("ready")) {
+				mainFrame.getGame().startGame();
+				mainFrame.getChat().taAdd("System :채팅기능 활성화\n");
+			}
+				
+			
 			
 		} catch (IOException e1) {
 			e1.printStackTrace();

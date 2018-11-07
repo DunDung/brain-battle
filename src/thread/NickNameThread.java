@@ -12,7 +12,6 @@ public class NickNameThread extends Thread{
 
 	private Socket socket;
 	private MainFrame mainFrame;
-	private final long halfOneSecond = 500;
 	public NickNameThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
@@ -23,7 +22,7 @@ public class NickNameThread extends Thread{
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			while(true) {
-				Thread.sleep(halfOneSecond);
+				Thread.sleep(50);
 				if(mainFrame.getScore().getNickState()) {
 					writer.println(mainFrame.getScore().getMyNickName());
 					break;

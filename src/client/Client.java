@@ -23,17 +23,20 @@ public class Client {
 
 		try {
 			Socket clientSocket = new Socket(InetAddress.getLocalHost().getHostAddress(),9876);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
-			SendThread se_thread = new SendThread(mainFrame, clientSocket);
-			ReceiveThread re_thread = new ReceiveThread(mainFrame, clientSocket);
-			NickNameThread nick_thread = new NickNameThread(mainFrame, clientSocket);
-			ProgressGameThread game_thread = new ProgressGameThread(mainFrame, clientSocket);
+			SendThread seThread = new SendThread(mainFrame, clientSocket);
+			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
+			NickNameThread nickThread = new NickNameThread(mainFrame, clientSocket);
+			ProgressGameThread gameThread = new ProgressGameThread(mainFrame, clientSocket);
 			
-			nick_thread.start();
-			nick_thread.join();
+			nickThread.start();
+			nickThread.join();
 
-			se_thread.start();
-			re_thread.start();
-			game_thread.start();
+			gameThread.start();
+			gameThread.join();
+			
+			seThread.start();
+			reThread.start();
+			
 
 		}catch(IOException e){
 			e.printStackTrace();
