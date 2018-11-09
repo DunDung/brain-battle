@@ -11,6 +11,7 @@ import thread.NickNameThread;
 import thread.ReadyThread;
 import thread.ReceiveThread;
 import thread.ChatSendThread;
+import thread.GameThread;
 
 public class Client {
 	public static MainFrame mainFrame;
@@ -27,13 +28,15 @@ public class Client {
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
 			NickNameThread nickThread = new NickNameThread(mainFrame, clientSocket);
 			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
-			
+			GameThread gameThread = new GameThread(mainFrame, clientSocket);
+
 			nickThread.start();
 			nickThread.join();
 
 			readyThread.start();
 			readyThread.join();
 			
+			gameThread.start();
 			chatThread.start();
 			reThread.start();
 			

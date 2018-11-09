@@ -1,17 +1,16 @@
 package server;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import client.Client;
 import gui.IntroFrame;
 import gui.MainFrame;
+import thread.ChatSendThread;
+import thread.GameThread;
 import thread.NickNameThread;
 import thread.ReadyThread;
 import thread.ReceiveThread;
-import thread.ChatSendThread;
 
 public class Server {
 
@@ -34,6 +33,7 @@ public class Server {
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
 			NickNameThread  nickThread = new NickNameThread(mainFrame, clientSocket);
 			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
+			GameThread gameThread = new GameThread(mainFrame, clientSocket);
 			
 			nickThread.start();
 			nickThread.join();			
@@ -41,6 +41,7 @@ public class Server {
 			readyThread.start();
 			readyThread.join();
 			
+			gameThread.start();
 			chatThread.start();
 			reThread.start();
 		
