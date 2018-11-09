@@ -27,6 +27,10 @@ public class GamePanel extends JPanel{
 	private JLabel readyOk = new JLabel(new ImageIcon("./image/ReadyOk.png"));
 	private boolean playOk =false;
 	private JLabel quiz= new JLabel(new ImageIcon("./image/Rule.png"));
+	private JLabel goalScore = new JLabel(new ImageIcon("./image/Goal.png"));
+	private JButton [] score = {new JButton(new ImageIcon("./image/3.png")), new JButton(new ImageIcon("./image/5.png")),
+								new JButton(new ImageIcon("./image/7.png")), new JButton(new ImageIcon("./image/10.png"))}; 
+	
 
 
 	public GamePanel() {
@@ -37,6 +41,7 @@ public class GamePanel extends JPanel{
 		add(ready);
 		add(quiz);
 		add(readyOk);
+		ready.setVisible(false);
 		
 		
 		quiz.setVisible(false);
@@ -89,5 +94,11 @@ public class GamePanel extends JPanel{
 	}
 	public JLabel getQuiz() {
 		return quiz;
+	}
+	public void setGoalScore() {
+		add(goalScore);
+		goalScore.setBounds(5,5, 968 ,148);
+		add(score[0]);
+		score[0].setBounds(5, 149, 968, 148);
 	}
 }
