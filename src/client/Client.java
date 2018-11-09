@@ -8,9 +8,9 @@ import java.net.UnknownHostException;
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.NickNameThread;
-import thread.ProgressGameThread;
+import thread.ReadyThread;
 import thread.ReceiveThread;
-import thread.SendThread;
+import thread.ChatSendThread;
 
 public class Client {
 	public static MainFrame mainFrame;
@@ -23,18 +23,18 @@ public class Client {
 
 		try {
 			Socket clientSocket = new Socket(InetAddress.getLocalHost().getHostAddress(),9876);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
-			SendThread seThread = new SendThread(mainFrame, clientSocket);
+			ChatSendThread chatThread = new ChatSendThread(mainFrame, clientSocket);
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
 			NickNameThread nickThread = new NickNameThread(mainFrame, clientSocket);
-			ProgressGameThread gameThread = new ProgressGameThread(mainFrame, clientSocket);
+			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
 			
 			nickThread.start();
 			nickThread.join();
 
-			gameThread.start();
-			gameThread.join();
+			readyThread.start();
+			readyThread.join();
 			
-			seThread.start();
+			chatThread.start();
 			reThread.start();
 			
 

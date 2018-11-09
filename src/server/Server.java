@@ -9,9 +9,9 @@ import client.Client;
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.NickNameThread;
-import thread.ProgressGameThread;
+import thread.ReadyThread;
 import thread.ReceiveThread;
-import thread.SendThread;
+import thread.ChatSendThread;
 
 public class Server {
 
@@ -30,18 +30,18 @@ public class Server {
 
 			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
-			SendThread seThread = new SendThread(mainFrame, clientSocket);
+			ChatSendThread chatThread = new ChatSendThread(mainFrame, clientSocket);
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
 			NickNameThread  nickThread = new NickNameThread(mainFrame, clientSocket);
-			ProgressGameThread gameThread = new ProgressGameThread(mainFrame, clientSocket);
+			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
 			
 			nickThread.start();
 			nickThread.join();			
 			
-			gameThread.start();
-			gameThread.join();
+			readyThread.start();
+			readyThread.join();
 			
-			seThread.start();
+			chatThread.start();
 			reThread.start();
 		
 			

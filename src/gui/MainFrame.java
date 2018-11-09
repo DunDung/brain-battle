@@ -12,7 +12,7 @@ public class MainFrame extends JFrame{
 	private Container c = this.getContentPane(); //추가
 	private ChattingPanel chat = new ChattingPanel();
 	private ScorePanel score = new ScorePanel();
-	private GamePanel game = new GamePanel(this);
+	private GamePanel game = new GamePanel();
 
 	public MainFrame() {
 		setTitle("BrainBattle");
@@ -24,6 +24,7 @@ public class MainFrame extends JFrame{
 		c.add(chat); //수정
 		c.add(score);
 		c.add(game);
+		
 		
 		chat.setBounds(1020,115,450,950);
 		score.setBounds(1020, 10, 450, 100);

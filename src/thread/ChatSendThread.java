@@ -12,14 +12,14 @@ import java.net.Socket;
 import gui.MainFrame;
 
 
-public class SendThread extends Thread {
+public class ChatSendThread extends Thread {
 
 	private Socket socket;
 	private PrintWriter sendWriter;
 	private MainFrame mainFrame;
 
 
-	public SendThread(MainFrame mainFrame, Socket socket) { //생성자 추가
+	public ChatSendThread(MainFrame mainFrame, Socket socket) { //생성자 추가
 		this.mainFrame = mainFrame;
 		this.socket = socket;
 	}

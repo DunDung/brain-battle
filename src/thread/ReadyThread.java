@@ -8,13 +8,11 @@ import java.net.Socket;
 
 import gui.MainFrame;
 
-public class ProgressGameThread extends Thread{
-	private boolean myReady = false;
-	private boolean yourReady = false;
+public class ReadyThread extends Thread{
 	private MainFrame mainFrame;
 	private Socket socket;
 	
-	public ProgressGameThread(MainFrame mainFrame, Socket socket) {
+	public ReadyThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
 	}
@@ -37,18 +35,13 @@ public class ProgressGameThread extends Thread{
 			}
 			String ready = buf.readLine();
 			if(ready.equals("ready")) {
-				mainFrame.getGame().startGame();
 				mainFrame.getChat().taAdd("System :채팅기능 활성화\n");
+				mainFrame.getGame().getReadyOk().setVisible(false);
 			}
-				
-			
-			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
 }
