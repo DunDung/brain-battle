@@ -22,7 +22,7 @@ public class ReadyThread extends Thread{
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			mainFrame.getChat().taAdd("System :준비가 완료되면 Ready버튼을 눌러주세요.\n");
+			mainFrame.getChat().taAdd("System :연결되었습니다!\nSystem :준비가 완료되면 Ready버튼을 눌러주세요.\n");
 			
 			while(true) {
 				Thread.sleep(100);

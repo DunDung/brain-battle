@@ -34,6 +34,7 @@ public class ReceiveThread extends Thread{
 				switch(receiveArray[0]) {
 				case "chat":
 					mainFrame.getChat().taAdd(receiveArray[1]+"\n"); //JTestArea에 추가해준다.
+				
 				}
 			}
 

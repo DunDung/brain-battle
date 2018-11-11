@@ -40,10 +40,11 @@ public class Client {
 			setScoreThread.start();
 			setScoreThread.join();
 			
-			
-			gameThread.start();
 			chatThread.start();
 			reThread.start();
+			
+			gameThread.start();
+			
 			
 
 		}catch(IOException e){

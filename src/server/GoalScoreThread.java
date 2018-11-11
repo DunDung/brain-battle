@@ -21,7 +21,7 @@ public class GoalScoreThread extends Thread {
 			while(true) {
 				Thread.sleep(50);
 				if(mainFrame.getGame().getGoalScore() != 0) {
-					writer.println(mainFrame.getGame().getGoalScore());
+					writer.println("goal/"+mainFrame.getGame().getGoalScore());
 					break;
 				}
 				else

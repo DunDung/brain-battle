@@ -29,8 +29,8 @@ public class GamePanel extends JPanel{
 	private JLabel quiz= new JLabel(new ImageIcon("./image/Rule.png"));
 	private JLabel goalImg = new JLabel(new ImageIcon("./image/Goal.png"));
 	private JButton [] scoreImg = {new JButton(new ImageIcon("./image/3.png")), new JButton(new ImageIcon("./image/5.png")),
-								new JButton(new ImageIcon("./image/7.png")), new JButton(new ImageIcon("./image/10.png")),
-								new JButton(new ImageIcon("./image/15.png"))}; 
+								   new JButton(new ImageIcon("./image/7.png")), new JButton(new ImageIcon("./image/10.png")),
+							   	   new JButton(new ImageIcon("./image/15.png"))}; 
 	private int goalScore = 0;
 	private int goalScoreCount = 0;
 	private JLabel waitGoalScore = new JLabel(new ImageIcon("./image/setGoal.png"));
@@ -76,10 +76,7 @@ public class GamePanel extends JPanel{
 				playOk = true;
 			}
 		});
-
-
 	}
-	
 
 	public boolean getPlayOk() {
 		return this.playOk;
@@ -122,8 +119,8 @@ public class GamePanel extends JPanel{
 			scoreImg[i].setBounds(5, y, 968, 148);
 		}
 	}
-	
 }
+
 class MouseCursorEvent extends MouseAdapter {
 	JButton b;
 	
