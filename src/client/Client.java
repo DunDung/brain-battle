@@ -29,12 +29,17 @@ public class Client {
 			NickNameThread nickThread = new NickNameThread(mainFrame, clientSocket);
 			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
 			GameThread gameThread = new GameThread(mainFrame, clientSocket);
-
+			GoalScoreThread setScoreThread = new GoalScoreThread(mainFrame, clientSocket);
+			
 			nickThread.start();
 			nickThread.join();
-
+			
 			readyThread.start();
 			readyThread.join();
+			
+			setScoreThread.start();
+			setScoreThread.join();
+			
 			
 			gameThread.start();
 			chatThread.start();
