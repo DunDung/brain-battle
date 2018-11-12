@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import gui.MainFrame;
+import question.Question;
 
 
 public class ReceiveThread extends Thread{
@@ -28,20 +29,27 @@ public class ReceiveThread extends Thread{
 			while(true) {
 				String receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				String [] receiveArray = receiveString.split("/");
-				
+
 				switch(receiveArray[0]) {
 				case "chat":
 					mainFrame.getChat().taAdd(receiveArray[1]+"\n"); //JTestArea에 추가해준다.
-//				case "ready" :
-//					if(mainFrame.getGame().getPlayOk()) {
-//						writer.println("go/test");
-//						mainFrame.getGame().getReadyOk().setVisible(false);
-//					}
-//					else
-//						readyThread.start();
-//				case "go" :
-//					mainFrame.getGame().getReadyOk().setVisible(false);
-//						
+
+				case "answer":
+						System.out.println("answer진입");
+						if(Question.getQuestionMap().get(receiveArray[1]).toString().equals(receiveArray[2])) {
+							mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
+							mainFrame.getScore().repaint();
+							System.out.println("스코어 초기화");
+							writer.println("lose/");
+							System.out.println("lose보냄");
+
+						}
+					
+				case "lose":
+					System.out.println("lose받음");
+					mainFrame.getScore().addMyScore();
+					mainFrame.getScore().repaint();
+
 				}
 			}
 

@@ -102,6 +102,12 @@ public class GamePanel extends JPanel{
 	public JLabel getWaitGoalScore() {
 		return waitGoalScore;
 	}
+	public JButton getEnter() {
+		return enter;
+	}
+	public JTextField getTf() {
+		return tf;
+	}
 	
 	public void setScoreImg() {
 		int y = 5;

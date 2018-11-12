@@ -27,6 +27,10 @@ public class Question {
 	public static List getQuestionList() {
 		return Question.questionList;
 	}
+	public static Map getQuestionMap() {
+		return Question.questionMap;
+	}
+
 	
 }
 

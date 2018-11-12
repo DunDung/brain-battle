@@ -86,16 +86,16 @@ public class ScorePanel extends JPanel{
 		return myScoreCount;
 	}
 
-	public void setMyScore(int score) {
-		this.myScoreCount = score;
+	public void addMyScore() {
+		this.myScore.setText(""+ (++myScoreCount));;
 	}
 
 	public int getYourScore() {
 		return yourScoreCount;
 	}
 
-	public void setYourScore(int score) {
-		this.yourScoreCount = score;
+	public void addYourScore() {
+		this.yourScore.setText(""+ (++yourScoreCount));;
 	}
 	
 	public void setNcikState() {  
