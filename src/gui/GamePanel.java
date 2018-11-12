@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,23 +18,28 @@ import javax.swing.JTextField;
 
 public class GamePanel extends JPanel{ 	
 	public void paintComponent(Graphics g) {
-		g.drawImage(new ImageIcon("./image/BackGround.png").getImage(),0,0,null);
+		g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("BackGround.png")).getImage(),0,0,null);
 		setOpaque(false);
 		super.paintComponent(g);
 	}
+	
+
 	private JTextField tf = new JTextField();
-	private JButton enter = new JButton("답안전송");
-	private JButton ready = new JButton(new ImageIcon("./image/Ready.png"));
-	private JLabel readyOk = new JLabel(new ImageIcon("./image/ReadyOk.png"));
-	private boolean playOk =false;
-	private JLabel quiz= new JLabel(new ImageIcon("./image/Rule.png"));
-	private JLabel goalImg = new JLabel(new ImageIcon("./image/Goal.png"));
-	private JButton [] scoreImg = {new JButton(new ImageIcon("./image/3.png")), new JButton(new ImageIcon("./image/5.png")),
-								   new JButton(new ImageIcon("./image/7.png")), new JButton(new ImageIcon("./image/10.png")),
-							   	   new JButton(new ImageIcon("./image/15.png"))}; 
+	private JButton enter = new JButton("답안전송");	
+	private JButton ready = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Ready.png")));
+	private JLabel readyOk = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("ReadyOk.png")));
+	private JLabel quiz= new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Rule.png")));
+	private JLabel goalLabel = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Goal.png")));
+	private JButton [] scoreImg = {new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("3.png"))),
+								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("5.png"))),
+								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("7.png"))),
+								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("10.png"))),
+							   	   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("15.png")))}; 
+	private JLabel waitGoalScore = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("setGoal.png")));
 	private int goalScore = 0;
-	private int goalScoreCount = 0;
-	private JLabel waitGoalScore = new JLabel(new ImageIcon("./image/setGoal.png"));
+	private int scoreImgIndexCount = 0;
+	private boolean playOk =false;
+	
 
 
 	public GamePanel() {
@@ -100,8 +106,8 @@ public class GamePanel extends JPanel{
 	public void setScoreImg() {
 		int y = 5;
 		int [] score = {3, 5, 7, 10, 15};
-		add(goalImg);
-		goalImg.setBounds(5,y, 968 ,148);
+		add(goalLabel);
+		goalLabel.setBounds(5,y, 968 ,148);
 		for(int i = 0; i<score.length; i++) {
 			y+= 145;
 			add(scoreImg[i]);
@@ -109,8 +115,8 @@ public class GamePanel extends JPanel{
 			scoreImg[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					goalScore = score[goalScoreCount++];
-					goalImg.setVisible(false);
+					goalScore = score[scoreImgIndexCount++];
+					goalLabel.setVisible(false);
 					for(JButton b : scoreImg)
 						b.setVisible(false);
 				}

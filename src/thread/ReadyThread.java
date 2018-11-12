@@ -34,10 +34,9 @@ public class ReadyThread extends Thread{
 					continue;
 			}
 			String ready = buf.readLine();
-			if(ready.equals("ready")) {
-				mainFrame.getChat().taAdd("System :채팅기능 활성화\n");
+			if(ready.equals("ready")) 
 				mainFrame.getGame().getReadyOk().setVisible(false);
-			}
+			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {

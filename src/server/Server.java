@@ -40,10 +40,12 @@ public class Server {
 
 			readyThread.start();
 			readyThread.join();
-			chatThread.start();
-			reThread.start();
+			
 			setScoreThread.start();
 			setScoreThread.join();
+			
+			chatThread.start();
+			reThread.start();
 			
 			gameThread.start();
 			

@@ -42,7 +42,6 @@ public class Client {
 			
 			chatThread.start();
 			reThread.start();
-			
 			gameThread.start();
 			
 			

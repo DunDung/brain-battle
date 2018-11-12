@@ -17,6 +17,7 @@ public class ChatSendThread extends Thread {
 	private Socket socket;
 	private PrintWriter sendWriter;
 	private MainFrame mainFrame;
+	
 
 
 	public ChatSendThread(MainFrame mainFrame, Socket socket) { //생성자 추가

@@ -1,12 +1,12 @@
 package gui;
 
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -46,14 +46,17 @@ public class IntroFrame extends JFrame{
 
 	class IntroPanel extends JPanel{
 		public void paintComponent(Graphics g) {
-			g.drawImage(new ImageIcon("./image/IntroBackGround.png").getImage(),0,0,null);
+			 URL IntroBackGroundImg = this.getClass().getClassLoader().getResource("IntroBackGround.png");
+
+			g.drawImage(new ImageIcon(IntroBackGroundImg).getImage(),0,0,null);
 			setOpaque(false);
 			super.paintComponent(g);
 		} 
-
+		
 		private JTextField ipField = new JTextField(); //ip를 입력할 JTextField
 		private JTextField nickNameField = new JTextField(); //닉네임을 입력할 JTextField
-		private JButton ok = new JButton(new ImageIcon("./image/ok.png"));
+		private URL okImg =this.getClass().getClassLoader().getResource("Ok.png");
+		private JButton ok = new JButton(new ImageIcon(okImg));
 		public IntroPanel() {
 			this.setLayout(null);
 			add(ipField);
