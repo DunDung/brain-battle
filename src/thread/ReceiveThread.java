@@ -24,6 +24,8 @@ public class ReceiveThread extends Thread{
 
 		try {
 			//클라이언트 소켓의 인풋스트림으로 클라이언트 소켓이 보낸 내용을 받는다.
+			SetGoalThread setGoalThread = new SetGoalThread(mainFrame, socket);
+			GameThread gameThread = new GameThread(mainFrame, socket);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			while(true) {
@@ -32,24 +34,42 @@ public class ReceiveThread extends Thread{
 
 				switch(receiveArray[0]) {
 				case "chat":
-					mainFrame.getChat().taAdd(receiveArray[1]+"\n"); //JTestArea에 추가해준다.
-
-				case "answer":
-						System.out.println("answer진입");
-						if(Question.getQuestionMap().get(receiveArray[1]).toString().equals(receiveArray[2])) {
-							mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
-							mainFrame.getScore().repaint();
-							System.out.println("스코어 초기화");
-							writer.println("lose/");
-							System.out.println("lose보냄");
-
-						}
+					mainFrame.getChat().taAdd(receiveArray[1]+"\n");
+					break;	
+				
+				case "ready" :
+					if(mainFrame.getGame().getPlayOk()) {
+						writer.println("go/");
+						mainFrame.getGame().getReadyOk().setVisible(false);
+						setGoalThread.start();
+						break;
+					}
+					break;
 					
-				case "lose":
-					System.out.println("lose받음");
+				case "go" :
+					mainFrame.getGame().getReadyOk().setVisible(false);
+					mainFrame.getGame().getWaitGoalScore().setVisible(true);
+					break;
+					
+				case "goal" :
+					mainFrame.getGame().getWaitGoalScore().setVisible(false);
+					mainFrame.getGame().setGoalScore(Integer.parseInt(receiveArray[1]));
+					gameThread.start();
+					break;
+					
+				case "answer":
+					if(Question.getQuestionMap().get(receiveArray[1]).toString().equals(receiveArray[2])) {
+						mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
+						mainFrame.getScore().repaint();
+						writer.println("win/");
+						break;
+					}
+					break;
+
+				case "win":
 					mainFrame.getScore().addMyScore();
 					mainFrame.getScore().repaint();
-
+					break;
 				}
 			}
 

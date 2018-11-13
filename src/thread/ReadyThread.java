@@ -27,16 +27,10 @@ public class ReadyThread extends Thread{
 			while(true) {
 				Thread.sleep(100);
 				if(mainFrame.getGame().getPlayOk()) {
-					writer.println("ready");
+					writer.println("ready/");
 					break;
 				}
-				else
-					continue;
 			}
-			String ready = buf.readLine();
-			if(ready.equals("ready")) 
-				mainFrame.getGame().getReadyOk().setVisible(false);
-			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {

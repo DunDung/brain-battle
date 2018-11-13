@@ -1,4 +1,4 @@
-package server;
+package thread;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,12 +6,14 @@ import java.net.Socket;
 
 import gui.MainFrame;
 
-public class GoalScoreThread extends Thread {
+public class SetGoalThread extends Thread {
 	private Socket socket;
 	private MainFrame mainFrame;
-	public GoalScoreThread(MainFrame mainFrame, Socket socket) {
+	private GameThread gameThread ;
+	public SetGoalThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
+		this.gameThread = new GameThread(mainFrame, socket);
 	}
 	@Override
 	public void run() {
@@ -21,11 +23,10 @@ public class GoalScoreThread extends Thread {
 			while(true) {
 				Thread.sleep(50);
 				if(mainFrame.getGame().getGoalScore() != 0) {
-					writer.println(mainFrame.getGame().getGoalScore());
+					writer.println("goal/"+mainFrame.getGame().getGoalScore());
+					gameThread.start();
 					break;
 				}
-				else
-					continue;
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
