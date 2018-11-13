@@ -39,7 +39,7 @@ public class GamePanel extends JPanel{
 	private int goalScore = 0;
 	private int scoreImgIndexCount = 0;
 	private boolean playOk =false;
-	
+	private boolean turnEnd = false;
 
 
 	public GamePanel() {
@@ -107,6 +107,12 @@ public class GamePanel extends JPanel{
 	}
 	public JTextField getTf() {
 		return tf;
+	}
+	public boolean getTurnEnd() {
+		return turnEnd;
+	}
+	public void setTurnEnd(boolean turn) {
+		turnEnd = turn;
 	}
 	
 	public void setScoreImg() {

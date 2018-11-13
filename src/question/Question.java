@@ -8,30 +8,40 @@ import java.util.Map;
 
 public class Question {
 	private static Map<String, String> questionMap = new HashMap<>();
-	private static List<String> questionList = new ArrayList<>();
+	private  List<String> questionList = new ArrayList<>();
 
 	public Question() {
 		setQuestion();
 	}
 	void setQuestion() {
 		Question.questionMap.put("Q1.png", "11");
-		Question.questionList.add("Q1.png");
+		questionList.add("Q1.png");
 		Question.questionMap.put("Q2.png", "À§Çè");
-		Question.questionList.add("Q2.png");
+		questionList.add("Q2.png");
 		Question.questionMap.put("Q3.png", "1");
-		Question.questionList.add("Q3.png");
+		questionList.add("Q3.png");
 		Question.questionMap.put("Q4.png", "7");
-		Question.questionList.add("Q4.png");
-		Collections.shuffle(Question.questionList);
+		questionList.add("Q4.png");
 	}
-	public static List getQuestionList() {
-		return Question.questionList;
+	public List<String> getQuestionList() {
+		return questionList;
 	}
-	public static Map getQuestionMap() {
+	public static Map<String, String> getQuestionMap() {
 		return Question.questionMap;
 	}
 
-	
+	@Override
+	public String toString() {
+		StringBuilder buildList = new StringBuilder();
+		for(int i=0; i<questionList.size(); i++) {
+			buildList.append(questionList.get(i));
+			if(questionList.size()-1 != i)
+				buildList.append("/");
+		}
+		return buildList.toString();
+	}
+
+
 }
 
 

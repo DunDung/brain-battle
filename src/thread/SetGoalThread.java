@@ -3,8 +3,10 @@ package thread;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Collections;
 
 import gui.MainFrame;
+import question.Question;
 
 public class SetGoalThread extends Thread {
 	private Socket socket;
@@ -13,7 +15,6 @@ public class SetGoalThread extends Thread {
 	public SetGoalThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
-		this.gameThread = new GameThread(mainFrame, socket);
 	}
 	@Override
 	public void run() {
@@ -24,10 +25,17 @@ public class SetGoalThread extends Thread {
 				Thread.sleep(50);
 				if(mainFrame.getGame().getGoalScore() != 0) {
 					writer.println("goal/"+mainFrame.getGame().getGoalScore());
-					gameThread.start();
 					break;
 				}
 			}
+			Question question = new Question();
+			Collections.shuffle(question.getQuestionList());
+			GameThread gameThread = new GameThread(mainFrame, socket,question.toString().split("/"));
+			gameThread.start();
+			System.out.println(question);
+			writer.println("questionList/"+question);
+			
+			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {

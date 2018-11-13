@@ -25,9 +25,9 @@ public class ReceiveThread extends Thread{
 		try {
 			//클라이언트 소켓의 인풋스트림으로 클라이언트 소켓이 보낸 내용을 받는다.
 			SetGoalThread setGoalThread = new SetGoalThread(mainFrame, socket);
-			GameThread gameThread = new GameThread(mainFrame, socket);
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
+			Question chathNull = new Question();
 			while(true) {
 				String receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				String [] receiveArray = receiveString.split("/");
@@ -39,14 +39,14 @@ public class ReceiveThread extends Thread{
 				
 				case "ready" :
 					if(mainFrame.getGame().getPlayOk()) {
-						writer.println("go/");
+						writer.println("start/");
 						mainFrame.getGame().getReadyOk().setVisible(false);
 						setGoalThread.start();
 						break;
 					}
 					break;
 					
-				case "go" :
+				case "start" :
 					mainFrame.getGame().getReadyOk().setVisible(false);
 					mainFrame.getGame().getWaitGoalScore().setVisible(true);
 					break;
@@ -54,13 +54,22 @@ public class ReceiveThread extends Thread{
 				case "goal" :
 					mainFrame.getGame().getWaitGoalScore().setVisible(false);
 					mainFrame.getGame().setGoalScore(Integer.parseInt(receiveArray[1]));
+					break;
+					
+				case "questionList" :
+					String [] questionArray = new String[receiveArray.length-1];
+					for(int i=1; i<receiveArray.length; i++) {
+						questionArray[i-1] = receiveArray[i];
+					}
+					GameThread gameThread = new GameThread(mainFrame, socket, questionArray);
 					gameThread.start();
 					break;
 					
 				case "answer":
-					if(Question.getQuestionMap().get(receiveArray[1]).toString().equals(receiveArray[2])) {
+					if(Question.getQuestionMap().get(receiveArray[1]).equals(receiveArray[2])) {
 						mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
 						mainFrame.getScore().repaint();
+						mainFrame.getGame().setTurnEnd(true);
 						writer.println("win/");
 						break;
 					}
@@ -68,6 +77,7 @@ public class ReceiveThread extends Thread{
 
 				case "win":
 					mainFrame.getScore().addMyScore();
+					mainFrame.getGame().setTurnEnd(true);
 					mainFrame.getScore().repaint();
 					break;
 				}

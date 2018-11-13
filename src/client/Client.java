@@ -11,7 +11,6 @@ import thread.NickNameThread;
 import thread.ReadyThread;
 import thread.ReceiveThread;
 import thread.ChatSendThread;
-import thread.GameThread;
 
 public class Client {
 	public static MainFrame mainFrame;
