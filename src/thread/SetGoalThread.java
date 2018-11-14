@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Collections;
-
 import gui.MainFrame;
 import question.Question;
 
 public class SetGoalThread extends Thread {
 	private Socket socket;
 	private MainFrame mainFrame;
-	private GameThread gameThread ;
+	
 	public SetGoalThread(MainFrame mainFrame, Socket socket) {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
@@ -34,7 +33,6 @@ public class SetGoalThread extends Thread {
 			gameThread.start();
 			System.out.println(question);
 			writer.println("questionList/"+question);
-			
 			
 		} catch (IOException e1) {
 			e1.printStackTrace();

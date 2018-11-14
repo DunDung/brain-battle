@@ -1,11 +1,14 @@
 package gui;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -80,6 +83,17 @@ public class IntroFrame extends JFrame{
 					mainFrame.getScore().setNcikState();
 					dispose(); //introFrame창을 끈다.
 					mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
+				}
+			});
+			ok.addMouseListener(new MouseAdapter() {
+				@Override 
+				public void mouseEntered(MouseEvent e) { // 마우스를 버튼 위에 올렸을 때 
+					ok.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양 으로 변경
+				}
+
+				@Override 
+				public void mouseExited(MouseEvent e) { // 마우스를 버튼에서 올리지 않았을 때 
+					ok.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값으로 변경 
 				}
 			});
 		}

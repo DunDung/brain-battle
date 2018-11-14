@@ -3,15 +3,12 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.ChatSendThread;
-import thread.GameThread;
 import thread.NickNameThread;
 import thread.ReadyThread;
 import thread.ReceiveThread;
-import thread.SetGoalThread;
 
 public class Server {
 

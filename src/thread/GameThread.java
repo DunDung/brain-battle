@@ -43,10 +43,14 @@ public class GameThread extends Thread {
 			mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameStart.png")));
 			Thread.sleep(1000);
 			while(true) {
-				if(mainFrame.getScore().getMyScore() == mainFrame.getGame().getGoalScore())
+				if(mainFrame.getScore().getMyScore() == mainFrame.getGame().getGoalScore()) {
+					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameOver.png")));
 					break;
-				if(mainFrame.getScore().getYourScore() == mainFrame.getGame().getGoalScore())
+				}
+				if(mainFrame.getScore().getYourScore() == mainFrame.getGame().getGoalScore()) {
+					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameOver.png")));
 					break;
+				}
 				mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(questionArray[questionIndex])));
 				if(mainFrame.getGame().getTurnEnd()) {
 					questionIndex++;

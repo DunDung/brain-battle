@@ -2,11 +2,8 @@ package gui;
 
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -37,8 +34,6 @@ public class ChattingPanel extends JPanel{
 		
 		enter.setBackground(Color.YELLOW); //전송 버튼 배경색 변경
 		ta.setBackground(Color.LIGHT_GRAY); //채팅창 배경색 변경
-		
-	
 		
 	}
 	public JTextArea getTa() { //채팅창 getter

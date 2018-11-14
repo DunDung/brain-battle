@@ -3,22 +3,25 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.net.Socket;
+import java.awt.Graphics;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class ScorePanel extends JPanel{
-
+public class ScorePanel extends JPanel{ 	
+	public void paintComponent(Graphics g) {
+		g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("ScoreBackGround.png")).getImage(),0,0,null);
+		setOpaque(false);
+		super.paintComponent(g);
+	}
 	private JLabel myNickName = new JLabel("");
 	private JLabel yourNickName = new JLabel("");
-	private JLabel vs = new JLabel("VS");
 	private int myScoreCount = 0;
 	private int yourScoreCount = 0;
 	private JLabel myScore = new JLabel(""+myScoreCount);
 	private JLabel yourScore = new JLabel(""+yourScoreCount);
-	private Socket socket;
 	private boolean nickState = false;
 	
 
@@ -27,14 +30,12 @@ public class ScorePanel extends JPanel{
 		//패널에 추가
 		add(myNickName);
 		add(yourNickName);
-		add(vs);
 		add(myScore);
 		add(yourScore);
 		//레이아웃이 없기에 위치를 각자 지정해 준다.
-		myNickName.setBounds(15, 60, 130,30);
+		myNickName.setBounds(15, 60, 100,20);
 		yourNickName.setBounds(299, 60, 130, 30);
 		myScore.setBounds(181, 15, 30, 50);
-		vs.setBounds(210, 15, 350, 50);
 		yourScore.setBounds(250, 15, 30, 50);
 		
 		//각 라벨들 글씨 크기 및 글씨 색, 라벨 배경색 변경
@@ -50,8 +51,6 @@ public class ScorePanel extends JPanel{
 		yourNickName.setOpaque(true);
 		yourNickName.setHorizontalAlignment(JLabel.CENTER);
 		
-		vs.setFont(vs.getFont().deriveFont(19.0f));
-		vs.setForeground(Color.WHITE);
 		myScore.setFont(myScore.getFont().deriveFont(25.0f));
 		myScore.setForeground(Color.BLUE);
 		yourScore.setFont(yourScore.getFont().deriveFont(25.0f));
@@ -60,9 +59,6 @@ public class ScorePanel extends JPanel{
 		//패널 배경 색 변경 및 Score 글자 색 변경
 		setBackground(Color.black);
 
-//		
-//		enter.setBackground(Color.YELLOW); //전송 버튼 배경색 변경
-//		ta.setBackground(Color.LIGHT_GRAY); //채팅창 배경색 변경
 		
 	}
 	public void setMyNickName(String nickName) {
@@ -104,7 +100,6 @@ public class ScorePanel extends JPanel{
 	public boolean getNickState() {
 		return nickState;
 	}
-	
 	
 }
 

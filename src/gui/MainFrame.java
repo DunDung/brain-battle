@@ -3,9 +3,7 @@ package gui;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 
 public class MainFrame extends JFrame{
@@ -26,9 +24,9 @@ public class MainFrame extends JFrame{
 		c.add(game);
 		
 		
-		chat.setBounds(1020,115,450,950);
-		score.setBounds(1020, 10, 450, 100);
-		game.setBounds(10, 10 , 1000, 935);
+		chat.setBounds(1020,120,450,950);
+		score.setBounds(1020, 15, 450, 100);
+		game.setBounds(20, 15 , 1000, 935);
 		pack();//컴포넌트 크기만큼 창의 크기를 잡아준다.
 		setLocationRelativeTo(null); //(null)을 넣음으로써 화면중앙에 배치
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//프레임창을 닫을경우 프로세스를 종료

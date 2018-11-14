@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.NickNameThread;
@@ -36,8 +35,6 @@ public class Client {
 			chatThread.start();
 			reThread.start();
 			
-			
-
 		}catch(IOException e){
 			e.printStackTrace();
 		}
