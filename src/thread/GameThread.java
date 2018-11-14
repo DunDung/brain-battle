@@ -33,8 +33,6 @@ public class GameThread extends Thread {
 
 
 			mainFrame.getGame().getQuiz().setVisible(true);
-			Thread.sleep(3500);
-			mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("StartCount3.png")));
 			Thread.sleep(1000);
 			mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("StartCount2.png")));
 			Thread.sleep(1000);

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class GamePanel extends JPanel{ 	
 	public void paintComponent(Graphics g) {
@@ -22,10 +23,10 @@ public class GamePanel extends JPanel{
 	
 
 	private JTextField tf = new JTextField();
-	private JButton enter = new JButton("답안전송");	
+	private JButton enter = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerSend.png")));	
 	private JButton ready = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Ready.png")));
 	private JLabel readyOk = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("ReadyOk.png")));
-	private JLabel quiz= new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Rule.png")));
+	private JLabel quiz= new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("StartCount3.png")));
 	private JLabel goalLabel = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Goal.png")));
 	private JButton [] scoreImg = {new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("3.png"))),
 								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("5.png"))),
@@ -42,8 +43,7 @@ public class GamePanel extends JPanel{
 	public GamePanel() {
 		this.setLayout(null);
 		
-		add(tf);
-		add(enter);
+		
 		add(ready);
 		add(quiz);
 		add(readyOk);
@@ -53,20 +53,18 @@ public class GamePanel extends JPanel{
 		readyOk.setVisible(false);
 		waitGoalScore.setVisible(false);
 		
-		tf.setBounds(350, 885, 200, 50);
-		enter.setBounds(548, 885, 100, 50);
-		ready.setBounds(410, 400, 200, 200);
-		quiz.setBounds(5, 5, 968, 875);
-		readyOk.setBounds(410, 400, 200, 200);
-		waitGoalScore.setBounds(5, 5, 968, 875);
+		ready.setBounds(410, 400, 250, 210);
+		readyOk.setBounds(410, 400, 250, 210);
+		quiz.setBounds(0, 0, 980, 885);
+		waitGoalScore.setBounds(0, 0, 980, 885);
 		
-		enter.setBackground(Color.YELLOW); //전송 버튼 배경색 변경
-		enter.setFont(enter.getFont().deriveFont(15.0f));
 		tf.setFont(enter.getFont().deriveFont(16.0f));
+
+		enter.setBorder(new LineBorder(Color.BLACK)); //배경 테두리
+		tf.setBorder(new LineBorder(Color.BLACK));
 
 		ready.setContentAreaFilled(false); //버튼 내용영역 비우기
 		ready.setBorderPainted(false); //버튼 외곽선 지우기
-		
 		
 		ready.addMouseListener(new MouseCursorEvent(ready));
 			
@@ -111,14 +109,20 @@ public class GamePanel extends JPanel{
 	public void setTurnEnd(boolean turn) {
 		turnEnd = turn;
 	}
+	public void setTfAndEnter() {
+		add(tf);
+		add(enter);
+		tf.setBounds(0, 885, 878, 50);
+		enter.setBounds(878, 885, 101, 50);
+	}
 	
 	public void setScoreImg() {
-		int y = 5;
+		int y = 0;
 		int [] score = {3, 5, 7, 10, 15};
 		add(goalLabel);
-		goalLabel.setBounds(5,y, 968 ,148);
+		goalLabel.setBounds(0,y, 980 ,148);
 		for(int i = 0; i<score.length; i++) {
-			y+= 145;
+			y+= 148;
 			add(scoreImg[i]);
 			scoreImg[i].addMouseListener(new MouseCursorEvent(scoreImg[i]));
 			scoreImg[i].addActionListener(new ActionListener() {
@@ -131,7 +135,7 @@ public class GamePanel extends JPanel{
 				}
 				
 			});
-			scoreImg[i].setBounds(5, y, 968, 148);
+			scoreImg[i].setBounds(0, y, 980, 148);
 		}
 	}
 }

@@ -18,7 +18,7 @@ public class Server {
 	public static void main(String [] args) throws IOException, InterruptedException {
 		mainFrame = new MainFrame(); //mainFrmae 객체 생성
 		introFrame = new IntroFrame(mainFrame); //introFrame 객체 생성
-		introFrame.getIpField().setText("서버는 ip가 필요 없습니다!");
+		introFrame.getIpField().setText(" 서버는 ip가 필요 없습니다!");
 
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;

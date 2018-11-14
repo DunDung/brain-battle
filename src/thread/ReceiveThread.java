@@ -41,6 +41,8 @@ public class ReceiveThread extends Thread{
 					if(mainFrame.getGame().getPlayOk()) {
 						writer.println("start/");
 						mainFrame.getGame().getReadyOk().setVisible(false);
+						mainFrame.getGame().setTfAndEnter();
+						mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
 						setGoalThread.start();
 						break;
 					}
@@ -48,6 +50,8 @@ public class ReceiveThread extends Thread{
 					
 				case "start" :
 					mainFrame.getGame().getReadyOk().setVisible(false);
+					mainFrame.getGame().setTfAndEnter();
+					mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
 					mainFrame.getGame().getWaitGoalScore().setVisible(true);
 					break;
 					

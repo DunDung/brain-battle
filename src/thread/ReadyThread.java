@@ -25,6 +25,7 @@ public class ReadyThread extends Thread{
 				Thread.sleep(100);
 				if(mainFrame.getGame().getPlayOk()) {
 					writer.println("ready/");
+					mainFrame.getChat().taAdd("System :준비완료!\n");
 					break;
 				}
 			}

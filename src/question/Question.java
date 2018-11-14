@@ -32,13 +32,13 @@ public class Question {
 
 	@Override
 	public String toString() {
-		StringBuilder buildList = new StringBuilder();
+		StringBuffer BufferList = new StringBuffer();
 		for(int i=0; i<questionList.size(); i++) {
-			buildList.append(questionList.get(i));
+			BufferList.append(questionList.get(i));
 			if(questionList.size()-1 != i)
-				buildList.append("/");
+				BufferList.append("/");
 		}
-		return buildList.toString();
+		return BufferList.toString();
 	}
 
 
