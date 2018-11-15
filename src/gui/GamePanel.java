@@ -23,6 +23,8 @@ public class GamePanel extends JPanel{
 	
 
 	private JTextField tf = new JTextField();
+	private JButton ruleButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("RuleButton.png")));
+	private JLabel rule = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Rule.png")));
 	private JButton enter = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerSend.png")));	
 	private JButton ready = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Ready.png")));
 	private JLabel readyOk = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("ReadyOk.png")));
@@ -43,16 +45,20 @@ public class GamePanel extends JPanel{
 	public GamePanel() {
 		this.setLayout(null);
 		
-		
+		add(ruleButton);
 		add(ready);
 		add(quiz);
 		add(readyOk);
 		add(waitGoalScore);
+		add(rule);
 		
 		quiz.setVisible(false);
 		readyOk.setVisible(false);
 		waitGoalScore.setVisible(false);
+		rule.setVisible(false);
 		
+		rule.setBounds(414, 1, 565, 386);
+		ruleButton.setBounds(760, 1, 219,87);
 		ready.setBounds(410, 400, 250, 210);
 		readyOk.setBounds(410, 400, 250, 210);
 		quiz.setBounds(0, 0, 980, 885);
@@ -60,13 +66,15 @@ public class GamePanel extends JPanel{
 		
 		tf.setFont(enter.getFont().deriveFont(16.0f));
 
+		ruleButton.setBorder(new LineBorder(Color.BLACK));
 		enter.setBorder(new LineBorder(Color.BLACK)); //배경 테두리
 		tf.setBorder(new LineBorder(Color.BLACK));
 
 		ready.setContentAreaFilled(false); //버튼 내용영역 비우기
 		ready.setBorderPainted(false); //버튼 외곽선 지우기
 		
-		ready.addMouseListener(new MouseCursorEvent(ready));
+		ruleButton.addMouseListener(new MouseCursorEvent());
+		ready.addMouseListener(new MouseCursorEvent());
 			
 		
 		ready.addActionListener(new ActionListener(){
@@ -124,7 +132,7 @@ public class GamePanel extends JPanel{
 		for(int i = 0; i<score.length; i++) {
 			y+= 148;
 			add(scoreImg[i]);
-			scoreImg[i].addMouseListener(new MouseCursorEvent(scoreImg[i]));
+			scoreImg[i].addMouseListener(new MouseCursorEvent());
 			scoreImg[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -137,23 +145,29 @@ public class GamePanel extends JPanel{
 			});
 			scoreImg[i].setBounds(0, y, 980, 148);
 		}
+
+	}
+	class MouseCursorEvent extends MouseAdapter {
+		
+		@Override 
+		public void mouseEntered(MouseEvent e) { // 마우스를 버튼 위에 올렸을 때 
+			setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양 으로 변경
+			if(e.getSource().equals(ready))
+				ready.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("MouseOnReady.png")));
+			if(e.getSource().equals(ruleButton))
+				rule.setVisible(true);
+		}
+
+		@Override 
+		public void mouseExited(MouseEvent e) { // 마우스를 버튼에서 올리지 않았을 때 
+			setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값으로 변경
+			if(e.getSource().equals(ready))
+				ready.setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("Ready.png")));
+			if(e.getSource().equals(ruleButton))
+				rule.setVisible(false);
+		}
+		
 	}
 }
 
-class MouseCursorEvent extends MouseAdapter {
-	JButton b;
-	
-	public MouseCursorEvent(JButton b) {
-		this.b = b;
-	}
-	@Override 
-	public void mouseEntered(MouseEvent e) { // 마우스를 버튼 위에 올렸을 때 
-		b.setCursor(new Cursor(Cursor.HAND_CURSOR));// 손가락모양 으로 변경
-	}
 
-	@Override 
-	public void mouseExited(MouseEvent e) { // 마우스를 버튼에서 올리지 않았을 때 
-		b.setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 디폴트값으로 변경 
-	}
-	
-}
