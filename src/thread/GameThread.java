@@ -28,10 +28,11 @@ public class GameThread extends Thread {
 	public void run() {
 		try {
 			writer = new PrintWriter(socket.getOutputStream(),true);
+			TimerThread timer = new TimerThread(mainFrame);
 			mainFrame.getGame().getEnter().addActionListener(new AnswerSendEvent());
 			mainFrame.getGame().getTf().addActionListener(new AnswerSendEvent());
 
-
+			
 			mainFrame.getGame().getQuiz().setVisible(true);
 			Thread.sleep(1000);
 			mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("StartCount2.png")));
@@ -40,6 +41,7 @@ public class GameThread extends Thread {
 			Thread.sleep(1000);
 			mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameStart.png")));
 			Thread.sleep(1000);
+			mainFrame.getGame().getTimer().setVisible(true);
 			while(true) {
 				if(mainFrame.getScore().getMyScore() == mainFrame.getGame().getGoalScore()) {
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameOver.png")));
@@ -49,11 +51,12 @@ public class GameThread extends Thread {
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameOver.png")));
 					break;
 				}
-				mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(questionArray[questionIndex])));
 				if(mainFrame.getGame().getTurnEnd()) {
 					questionIndex++;
 					mainFrame.getGame().setTurnEnd(false);
 				}
+				mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(questionArray[questionIndex])));
+				timer.start();
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();

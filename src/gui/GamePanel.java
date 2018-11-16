@@ -40,6 +40,7 @@ public class GamePanel extends JPanel{
 	private int scoreImgIndexCount = 0;
 	private boolean playOk =false;
 	private boolean turnEnd = false;
+	private JLabel timer = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("T60.png")));
 
 
 	public GamePanel() {
@@ -51,7 +52,11 @@ public class GamePanel extends JPanel{
 		add(readyOk);
 		add(waitGoalScore);
 		add(rule);
+		add(timer);
 		
+		timer.setBounds(829, 2, 150, 150);
+		
+		timer.setVisible(false);
 		quiz.setVisible(false);
 		readyOk.setVisible(false);
 		waitGoalScore.setVisible(false);
@@ -111,11 +116,17 @@ public class GamePanel extends JPanel{
 	public JTextField getTf() {
 		return tf;
 	}
+	public JButton getRuleButton() {
+		return ruleButton;
+	}
 	public boolean getTurnEnd() {
 		return turnEnd;
 	}
 	public void setTurnEnd(boolean turn) {
 		turnEnd = turn;
+	}
+	public JLabel getTimer() {
+		return timer;
 	}
 	public void setTfAndEnter() {
 		add(tf);

@@ -18,7 +18,7 @@ public class Question {
 		questionList.add("Q1.png");
 		Question.questionMap.put("Q2.png", "À§Çè");
 		questionList.add("Q2.png");
-		Question.questionMap.put("Q3.png", "1");
+		Question.questionMap.put("Q3.png", "87");
 		questionList.add("Q3.png");
 		Question.questionMap.put("Q4.png", "7");
 		questionList.add("Q4.png");
