@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+
 import gui.MainFrame;
 import question.Question;
 
@@ -76,6 +77,7 @@ public class ReceiveThread extends Thread{
 						mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
 						mainFrame.getScore().repaint();
 						mainFrame.getGame().setTurnEnd(true);
+						TimerThread.setTimerStop(true);
 						writer.println("win/");
 						break;
 					}
@@ -84,6 +86,7 @@ public class ReceiveThread extends Thread{
 				case "win":
 					mainFrame.getScore().addMyScore();
 					mainFrame.getGame().setTurnEnd(true);
+					TimerThread.setTimerStop(true);
 					mainFrame.getScore().repaint();
 					break;
 				}
