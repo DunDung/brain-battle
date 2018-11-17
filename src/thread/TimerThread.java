@@ -20,6 +20,7 @@ public class TimerThread extends Thread{
 	public TimerThread(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
+	
 	@Override
 	public void run() {
 		try {

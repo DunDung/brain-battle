@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Image/question"/>
 	<classpathentry kind="src" path="Image/timer"/>
-	<classpathentry excluding="timer/" kind="src" path="Image"/>
+	<classpathentry excluding="timer/|question/" kind="src" path="Image"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
