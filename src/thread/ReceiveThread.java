@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javax.swing.ImageIcon;
+
 import gui.MainFrame;
 import question.Question;
 
@@ -74,20 +76,28 @@ public class ReceiveThread extends Thread{
 					
 				case "answer":
 					if(Question.getQuestionMap().get(receiveArray[1]).equals(receiveArray[2])) {
+						mainFrame.getGame().setOtherCorrect(true);
 						mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
 						mainFrame.getScore().repaint();
-						mainFrame.getGame().setTurnEnd(true);
 						TimerThread.setTimerStop(true);
-						writer.println("win/");
+						writer.println("answerOk/");
 						break;
 					}
-					break;
+					else {
+						writer.println("answerWrong/");
+						break;
+					}
 
-				case "win":
+				case "answerOk":
 					mainFrame.getScore().addMyScore();
 					mainFrame.getGame().setTurnEnd(true);
+					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerOk.png")));
 					TimerThread.setTimerStop(true);
 					mainFrame.getScore().repaint();
+					break;
+				
+				case "answerWrong" :
+					mainFrame.getGame().setWrong(true);
 					break;
 				}
 			}

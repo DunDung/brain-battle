@@ -36,12 +36,13 @@ public class GamePanel extends JPanel{
 								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("10.png"))),
 							   	   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("15.png")))}; 
 	private JLabel waitGoalScore = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("setGoal.png")));
+	private JLabel timer = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("T60.png")));
 	private int goalScore = 0;
 	private int scoreImgIndexCount = 0;
 	private boolean playOk =false;
 	private boolean turnEnd = false;
-	private JLabel timer = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("T60.png")));
-
+	private boolean wrong = false;
+	private boolean otherCorrect = false;
 
 	public GamePanel() {
 		this.setLayout(null);
@@ -124,6 +125,18 @@ public class GamePanel extends JPanel{
 	}
 	public void setTurnEnd(boolean turn) {
 		turnEnd = turn;
+	}
+	public void setWrong(boolean wrong) {
+		this.wrong = wrong;
+	}
+	public boolean getWrong() {
+		return wrong;
+	}
+	public void setOtherCorrect(boolean otherCorrect) {
+		this.otherCorrect = otherCorrect;
+	}
+	public boolean getOtherCorrect() {
+		return otherCorrect;
 	}
 	public JLabel getTimer() {
 		return timer;
