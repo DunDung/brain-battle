@@ -25,7 +25,7 @@ public class SetGoalThread extends Thread {
 				Thread.sleep(50);
 				if(mainFrame.getGame().getGoalScore() != 0) {
 					writer.println("goal/"+mainFrame.getGame().getGoalScore());
-					break;
+					break;.
 				}
 			}
 			Question question = new Question();
