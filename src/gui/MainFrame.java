@@ -11,6 +11,7 @@ public class MainFrame extends JFrame{
 	private ChattingPanel chat = new ChattingPanel();
 	private ScorePanel score = new ScorePanel();
 	private GamePanel game = new GamePanel();
+	private String ip = new String("");
 
 	public MainFrame() {
 		setTitle("BrainBattle");
@@ -44,9 +45,23 @@ public class MainFrame extends JFrame{
 	public GamePanel getGame() {
 		return game;
 	}
+	public void newGame() {
+		remove(game);
+		game = new GamePanel();
+		add(game);
+		game.setBounds(20, 15 , 1000, 935);
+		this.repaint();
+	}
 	
 	public void viewTrue() { //호출 시 mainFrame을 화면에 띄울 메소드
 		setVisible(true);
+	}
+	
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	public String getIp() {
+		return ip;
 	}
 	
 }

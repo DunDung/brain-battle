@@ -32,7 +32,6 @@ public class SetGoalThread extends Thread {
 			Collections.shuffle(question.getQuestionList());
 			GameThread gameThread = new GameThread(mainFrame, socket,question.toString().split("/"));
 			gameThread.start();
-			System.out.println(question);
 			writer.println("questionList/"+question);
 			
 		} catch (IOException e1) {

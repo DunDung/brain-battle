@@ -56,9 +56,7 @@ public class ScorePanel extends JPanel{
 		yourScore.setHorizontalAlignment(JLabel.CENTER); 
 
 		
-		//패널 배경 색 변경 및 Score 글자 색 변경
-		setBackground(Color.black);
-
+		
 
 	}
 	public void setMyNickName(String nickName) {
@@ -99,6 +97,14 @@ public class ScorePanel extends JPanel{
 	}
 	public boolean getNickState() {
 		return nickState;
+	}
+	
+	public void scoreReset() {
+		this.myScoreCount = 0;
+		this.myScore.setText(""+ myScoreCount);
+		this.yourScoreCount = 0;
+		this.yourScore.setText(""+yourScoreCount);
+		this.repaint();
 	}
 
 }

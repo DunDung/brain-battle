@@ -43,32 +43,48 @@ public class GameThread extends Thread {
 			mainFrame.getGame().getTimer().setVisible(true);
 			timer.start();
 			while(true) {
-				if(mainFrame.getScore().getMyScore() == mainFrame.getGame().getGoalScore()) { //내가 이겼을 때
-					Thread.sleep(1000);
-					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameOver.png")));
-					break;
-				}
-				if(mainFrame.getScore().getYourScore() == mainFrame.getGame().getGoalScore()) { //상대방이 이겼을 때
-					Thread.sleep(1000);
-					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("GameOver.png")));
-					break;
-				}
-				if(mainFrame.getGame().getTurnEnd()) { //시간 종료 또는 내가 낸 답이 정답일 때, 턴 종료
-					Thread.sleep(1000);
+				if(mainFrame.getGame().getOtherCorrect()|| mainFrame.getGame().getIAmCorrect()) { //상대방이 맞췄을 때, 내가 낸 답이 정답일 때 -> 턴 종료
 					questionIndex++;
-					mainFrame.getGame().setTurnEnd(false);
+					if(mainFrame.getGame().getOtherCorrect()) {
+						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("OtherCorrect.png")));
+						mainFrame.getGame().setOtherCorrect(false);
+					}
+					else {
+						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerOk.png")));
+						mainFrame.getGame().setIAmCorrect(false);
+					}
+						Thread.sleep(1000);
+					
 				}
 				if(mainFrame.getGame().getWrong()) { //내가 낸 답이 정답이 아닐 때
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerWrong.png")));
 					Thread.sleep(1000);
 					mainFrame.getGame().setWrong(false);
 				}
-				if(mainFrame.getGame().getOtherCorrect()) { //상대방이 맞췄을 때, 턴 종료
-					questionIndex++;
-					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("OtherCorrect.png")));
+				
+				if(mainFrame.getGame().getTurnEnd()) { //시간 종료 , 턴 종료
 					Thread.sleep(1000);
-					mainFrame.getGame().setOtherCorrect(false);
+					questionIndex++;
+					mainFrame.getGame().setTurnEnd(false);
 				}
+				if(mainFrame.getScore().getMyScore() == mainFrame.getGame().getGoalScore()) { //내가 이겼을 때
+					timer.killTimer();
+					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("YouWin.png")));
+					mainFrame.getGame().setYesAndNo();
+					mainFrame.getGame().getYes().addActionListener(new YesOrNoEvent());
+					mainFrame.getGame().getNo().addActionListener(new YesOrNoEvent());
+					break;
+
+				}
+				if(mainFrame.getScore().getYourScore() == mainFrame.getGame().getGoalScore()) { //상대방이 이겼을 때
+					timer.killTimer();
+					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("YouLose.png")));
+					mainFrame.getGame().setYesAndNo();
+					mainFrame.getGame().getYes().addActionListener(new YesOrNoEvent());
+					mainFrame.getGame().getNo().addActionListener(new YesOrNoEvent());
+					break;
+				}
+				
 				mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(questionArray[questionIndex])));
 			}
 		} catch (IOException e1) {
@@ -85,6 +101,19 @@ public class GameThread extends Thread {
 				writer.println("answer/" + questionArray[questionIndex] + "/" + answer); 
 			mainFrame.getGame().getTf().setText(""); //텍스트 필드를 다시 아무것도 없는 상태로 만든다.
 			writer.flush(); //버퍼링되어 아직 기록되지 않은 데이터를 출력 스트림에 모두 출력한다.			}
+		}
+	}
+	class YesOrNoEvent implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(mainFrame.getGame().getYes())){
+				mainFrame.newGame();
+				mainFrame.getScore().scoreReset();
+				ReadyThread ready = new ReadyThread(mainFrame, socket);
+				ready.start();
+			}
+			else
+				System.exit(0);
 		}
 	}
 }

@@ -36,7 +36,6 @@ public class ChatSendThread extends Thread {
 		}
 	}
 
-
 	class SendEvent implements ActionListener{ //enter키를 누를 때와 "전송"버튼을 눌렀을 때의 이벤트 클래스
 		@Override
 		public void actionPerformed(ActionEvent e) { 

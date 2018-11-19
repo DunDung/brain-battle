@@ -16,6 +16,7 @@ public class TimerThread extends Thread{
 			"T11.png", "T10.png", "T9.png", "T8.png", "T7.png", "T6.png", "T5.png",
 			"T4.png", "T3.png", "T2.png", "T1.png"};
 	private static boolean timerStop = false;
+	private boolean timerEnd = false;
 	
 	public TimerThread(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -24,7 +25,7 @@ public class TimerThread extends Thread{
 	@Override
 	public void run() {
 		try {
-			while(true) {
+			while(!timerEnd) {
 			for(int i=0; i<=timer.length; i++) {
 				if(timerStop) 
 					break;
@@ -39,12 +40,15 @@ public class TimerThread extends Thread{
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		} catch (IllegalThreadStateException e) {
-			
-		}
+		} 
 	}
 	public static void setTimerStop(boolean stop) {
 		TimerThread.timerStop = stop;
+	}
+	
+	public void killTimer() {
+		this.timerEnd = true;
+		setTimerStop(true);
 	}
 }
 

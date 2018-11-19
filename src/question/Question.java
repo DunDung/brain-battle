@@ -22,6 +22,16 @@ public class Question {
 		questionList.add("Q3.png");
 		Question.questionMap.put("Q4.png", "7");
 		questionList.add("Q4.png");
+		Question.questionMap.put("Q5.png", "ºê¶óÁú");
+		questionList.add("Q5.png");
+		Question.questionMap.put("Q6.png", "220");
+		questionList.add("Q6.png");
+		Question.questionMap.put("Q7.png", "545+5=550");
+		questionList.add("Q7.png");
+		Question.questionMap.put("Q8.png", "9717");
+		questionList.add("Q8.png");
+		Question.questionMap.put("Q9.png", "34");
+		questionList.add("Q9.png");
 	}
 	public List<String> getQuestionList() {
 		return questionList;

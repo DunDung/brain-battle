@@ -20,8 +20,6 @@ public class GamePanel extends JPanel{
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-	
-
 	private JTextField tf = new JTextField();
 	private JButton ruleButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("RuleButton.png")));
 	private JLabel rule = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Rule.png")));
@@ -37,12 +35,15 @@ public class GamePanel extends JPanel{
 							   	   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("15.png")))}; 
 	private JLabel waitGoalScore = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("setGoal.png")));
 	private JLabel timer = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("T60.png")));
+	private JButton yes =  new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Yes.png")));
+	private JButton no =  new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("No.png")));
 	private int goalScore = 0;
 	private int scoreImgIndexCount = 0;
 	private boolean playOk =false;
 	private boolean turnEnd = false;
 	private boolean wrong = false;
 	private boolean otherCorrect = false;
+	private boolean iAmCorrect  = false;
 
 	public GamePanel() {
 		this.setLayout(null);
@@ -138,6 +139,12 @@ public class GamePanel extends JPanel{
 	public boolean getOtherCorrect() {
 		return otherCorrect;
 	}
+	public void setIAmCorrect(boolean iAmCorrect) {
+		this.iAmCorrect = iAmCorrect;
+	}
+	public boolean getIAmCorrect() {
+		return iAmCorrect;
+	}
 	public JLabel getTimer() {
 		return timer;
 	}
@@ -147,7 +154,20 @@ public class GamePanel extends JPanel{
 		tf.setBounds(0, 885, 878, 50);
 		enter.setBounds(878, 885, 101, 50);
 	}
-	
+	public void setYesAndNo() {
+		add(yes);
+		add(no);
+		yes.addMouseListener(new MouseCursorEvent());
+		no.addMouseListener(new MouseCursorEvent());
+		yes.setBounds(198, 611, 237, 74);
+		no.setBounds(543, 611, 237, 74);
+	}
+	public JButton getYes() {
+		return yes;
+	}
+	public JButton getNo() {
+		return no;
+	}
 	public void setScoreImg() {
 		int y = 0;
 		int [] score = {3, 5, 7, 10, 15};

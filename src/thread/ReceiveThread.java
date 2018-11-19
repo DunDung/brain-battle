@@ -27,10 +27,10 @@ public class ReceiveThread extends Thread{
 
 		try {
 			//클라이언트 소켓의 인풋스트림으로 클라이언트 소켓이 보낸 내용을 받는다.
-			SetGoalThread setGoalThread = new SetGoalThread(mainFrame, socket);
+			
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
-			Question chathNull = new Question();
+			Question chathNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
 			while(true) {
 				String receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				String [] receiveArray = receiveString.split("/");
@@ -47,6 +47,7 @@ public class ReceiveThread extends Thread{
 						mainFrame.getGame().setTfAndEnter();
 						mainFrame.getGame().getRuleButton().setVisible(false);
 						mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
+						SetGoalThread setGoalThread = new SetGoalThread(mainFrame, socket);
 						setGoalThread.start();
 						break;
 					}
@@ -89,15 +90,15 @@ public class ReceiveThread extends Thread{
 					}
 
 				case "answerOk":
-					mainFrame.getScore().addMyScore();
-					mainFrame.getGame().setTurnEnd(true);
-					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerOk.png")));
+					mainFrame.getGame().setIAmCorrect(true);
 					TimerThread.setTimerStop(true);
+					mainFrame.getScore().addMyScore();
 					mainFrame.getScore().repaint();
 					break;
 				
 				case "answerWrong" :
 					mainFrame.getGame().setWrong(true);
+
 					break;
 				}
 			}

@@ -38,8 +38,6 @@ public class IntroFrame extends JFrame{
 
 		add(intro);
 		intro.setBounds(0,0,810,630);
-		//	revalidate();
-		//	repaint();
 		setVisible(true); //introFrame을 보여준다.
 		
 	}
@@ -74,11 +72,11 @@ public class IntroFrame extends JFrame{
 			nickNameField.setFont(new Font("Dialog", Font.BOLD, 34));
 			nickNameField.setText(" ");
 			
-			ok.setBounds(280, 500, 237, 74);
+			ok.setBounds(282, 500, 237, 74);
 
-			ok.addActionListener(new ActionListener() { //입력완료 버튼을 클릭시 이벤트 추가 및 설정
+			ok.addActionListener(new ActionListener() { //ok 버튼을 클릭시 이벤트 추가 및 설정
 				public void actionPerformed(ActionEvent e) {
-
+					mainFrame.setIp(ipField.getText().toString().trim());
 					mainFrame.getScore().setMyNickName(nickNameField.getText().toString().trim()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
 					mainFrame.getScore().setNcikState();
 					dispose(); //introFrame창을 끈다.

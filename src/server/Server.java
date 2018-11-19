@@ -3,6 +3,8 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+
 import gui.IntroFrame;
 import gui.MainFrame;
 import thread.ChatSendThread;
@@ -12,13 +14,13 @@ import thread.ReceiveThread;
 
 public class Server {
 
-	public static MainFrame mainFrame; //MainFrmae 
-	public static IntroFrame introFrame; //introFrmae
+	public static MainFrame mainFrame; 
+	public static IntroFrame introFrame;
 
 	public static void main(String [] args) throws IOException, InterruptedException {
-		mainFrame = new MainFrame(); //mainFrmae 객체 생성
-		introFrame = new IntroFrame(mainFrame); //introFrame 객체 생성
-		introFrame.getIpField().setText(" 서버는 ip가 필요 없습니다!");
+		mainFrame = new MainFrame(); //MainFrame 객체를 생성한다. setVisible(false)이기 때문에 보이지 않는다.
+		introFrame = new IntroFrame(mainFrame); //사용자로부터 ip와 닉네임을 입력받기 위한 Frame
+		introFrame.getIpField().setText(" 서버는 ip가 필요 없습니다!"); 
 
 		ServerSocket serverSocket = null; 
 		Socket clientSocket  =null;
@@ -43,6 +45,8 @@ public class Server {
 			
 		}catch(IOException e){
 			e.printStackTrace();
+		}catch(Exception e) {
+			mainFrame.getChat().taAdd("System :상대방과의 연결이 끊어졌습니다.\n");
 		}
 
 
