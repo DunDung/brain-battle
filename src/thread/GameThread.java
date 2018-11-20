@@ -33,14 +33,6 @@ public class GameThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			try {
-				File f = new File(Main.class.getResource("¸àºØ.mp3").toURI());
-				Player p = new Player(new FileInputStream(f));
-				p.play();
-				p.close();
-			} catch (JavaLayerException | URISyntaxException e) {
-				e.printStackTrace();
-			}
 			writer = new PrintWriter(socket.getOutputStream(),true);
 			mainFrame.getGame().getEnter().addActionListener(new AnswerSendEvent());
 			mainFrame.getGame().getTf().addActionListener(new AnswerSendEvent());
