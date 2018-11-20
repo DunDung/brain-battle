@@ -2,14 +2,19 @@ package thread;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 
 import gui.MainFrame;
-import question.Question;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+import sun.tools.jar.Main;
 
 public class GameThread extends Thread {
 	private MainFrame mainFrame;
@@ -17,7 +22,7 @@ public class GameThread extends Thread {
 	PrintWriter writer;
 	private String[] questionArray;
 	private int questionIndex = 0;
-	TimerThread timer;
+	private TimerThread timer;
 	public GameThread(MainFrame mainFrame, Socket socket, String [] questionArray)  {
 		this.mainFrame = mainFrame;
 		this.socket = socket;
@@ -28,10 +33,17 @@ public class GameThread extends Thread {
 	@Override
 	public void run() {
 		try {
+			try {
+				File f = new File(Main.class.getResource("¸àºØ.mp3").toURI());
+				Player p = new Player(new FileInputStream(f));
+				p.play();
+				p.close();
+			} catch (JavaLayerException | URISyntaxException e) {
+				e.printStackTrace();
+			}
 			writer = new PrintWriter(socket.getOutputStream(),true);
 			mainFrame.getGame().getEnter().addActionListener(new AnswerSendEvent());
 			mainFrame.getGame().getTf().addActionListener(new AnswerSendEvent());
-
 			mainFrame.getGame().getQuiz().setVisible(true);
 			Thread.sleep(1000);
 			mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("StartCount2.png")));

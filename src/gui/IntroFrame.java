@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
+
 public class IntroFrame extends JFrame{ 	
 
 	private MainFrame mainFrame; //메인프레임 변수
@@ -47,9 +48,7 @@ public class IntroFrame extends JFrame{
 
 	class IntroPanel extends JPanel{
 		public void paintComponent(Graphics g) {
-			 URL IntroBackGroundImg = this.getClass().getClassLoader().getResource("IntroBackGround.png");
-
-			g.drawImage(new ImageIcon(IntroBackGroundImg).getImage(),0,0,null);
+			g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("IntroBackGround.png")).getImage(),0,0,null);
 			setOpaque(false);
 			super.paintComponent(g);
 		} 
