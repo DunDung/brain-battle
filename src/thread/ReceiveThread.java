@@ -30,7 +30,7 @@ public class ReceiveThread extends Thread{
 			
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
-			Question chathNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
+			Question catchNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
 			while(true) {
 				String receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveSring에 저장한다.
 				String [] receiveArray = receiveString.split("/");

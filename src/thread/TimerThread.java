@@ -17,6 +17,7 @@ public class TimerThread extends Thread{
 			"T4.png", "T3.png", "T2.png", "T1.png"};
 	private static boolean timerStop = false;
 	private boolean timerEnd = false;
+	private boolean hint = false;
 	
 	public TimerThread(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -32,6 +33,9 @@ public class TimerThread extends Thread{
 				if(i==timer.length) {
 					mainFrame.getGame().setTurnEnd(true);
 					break;
+				}
+				if(i == 30) {
+					hint = true;
 				}
 				mainFrame.getGame().getTimer().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(timer[i])));
 				Thread.sleep(1000);
@@ -49,6 +53,12 @@ public class TimerThread extends Thread{
 	public void killTimer() {
 		this.timerEnd = true;
 		setTimerStop(true);
+	}
+	public boolean getHint() {
+		return hint;
+	}
+	public void setHint(boolean hint) {
+		this.hint = hint;
 	}
 }
 
