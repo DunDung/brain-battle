@@ -64,7 +64,6 @@ public class GameThread extends Thread {
 				}
 				
 				if(mainFrame.getGame().getTurnEnd()) { //시간 종료 , 턴 종료
-					Thread.sleep(1000);
 					questionIndex++;
 					timer.setHint(false);
 					mainFrame.getGame().setTurnEnd(false);

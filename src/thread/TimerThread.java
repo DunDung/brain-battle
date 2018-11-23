@@ -30,7 +30,7 @@ public class TimerThread extends Thread{
 			for(int i=0; i<=timer.length; i++) {
 				if(timerStop) 
 					break;
-				if(i==timer.length) {
+				if(i>=timer.length) {
 					mainFrame.getGame().setTurnEnd(true);
 					break;
 				}
