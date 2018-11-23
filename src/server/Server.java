@@ -41,9 +41,7 @@ public class Server {
 			
 			chatThread.start();
 			reThread.start();
-			
-		
-			
+
 		}catch(IOException e){
 			e.printStackTrace();
 		}catch(Exception e) {
