@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -19,14 +21,14 @@ import javax.swing.JTextField;
 
 
 
+
 public class IntroFrame extends JFrame{ 	
 
 	private MainFrame mainFrame; //메인프레임 변수
 	private IntroPanel intro = new IntroPanel();
 
 
-
-	public IntroFrame(MainFrame mainFrame) {
+	public IntroFrame(MainFrame mainFrame)  throws FileNotFoundException, URISyntaxException{
 		this.mainFrame = mainFrame; //MainFrame변수 mainFrame 초기화
 		setTitle("BrainBattle"); //타이틀 설정
 		setLocation(new Point(700,350)); //윈도우상의 창의 위치를 잡아준다.

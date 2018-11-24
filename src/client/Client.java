@@ -4,7 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
+
+import bgm.BgmControlThread;
+import bgm.IntroBgm;
 import gui.IntroFrame;
 import gui.MainFrame;
 import javazoom.jl.decoder.JavaLayerException;
@@ -16,9 +20,10 @@ import thread.ChatSendThread;
 public class Client {
 	public static MainFrame mainFrame;
 	public static IntroFrame introFrame;
+	private static IntroBgm introBgm = new IntroBgm();
 	public static String ip; //사용자로부터 입력받은 ip를 저장할 변수
 
-	public static void main(String [] args) throws UnknownHostException, InterruptedException, FileNotFoundException, JavaLayerException {
+	public static void main(String [] args) throws FileNotFoundException, URISyntaxException  {
 		mainFrame = new MainFrame(); //MainFrame 객체를 생성한다. setVisible(false)이기 때문에 보이지 않는다.
 		introFrame = new IntroFrame(mainFrame); //사용자로부터 ip와 닉네임을 입력받기 위한 Frame
 
