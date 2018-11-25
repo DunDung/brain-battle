@@ -14,17 +14,11 @@ public class IntroBgm extends Thread{
 	@Override
 	public void run() {
 			try {
-				Thread.sleep(0);
 				intro = new Player(new FileInputStream(new File(IntroBgm.class.getClassLoader().getResource("Intro.mp3").toURI())));
 				intro.play();
 			} catch (FileNotFoundException | JavaLayerException | URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-		
-			
+			} 
 	}
 }

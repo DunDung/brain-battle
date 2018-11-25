@@ -20,7 +20,6 @@ import thread.ChatSendThread;
 public class Client {
 	public static MainFrame mainFrame;
 	public static IntroFrame introFrame;
-	private static IntroBgm introBgm = new IntroBgm();
 	public static String ip; //사용자로부터 입력받은 ip를 저장할 변수
 
 	public static void main(String [] args) throws FileNotFoundException, URISyntaxException  {
