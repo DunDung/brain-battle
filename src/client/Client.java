@@ -5,13 +5,9 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URISyntaxException;
-import java.net.UnknownHostException;
 
-import bgm.BgmControlThread;
-import bgm.IntroBgm;
 import gui.IntroFrame;
 import gui.MainFrame;
-import javazoom.jl.decoder.JavaLayerException;
 import thread.NickNameThread;
 import thread.ReadyThread;
 import thread.ReceiveThread;

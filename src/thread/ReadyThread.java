@@ -20,7 +20,6 @@ public class ReadyThread extends Thread{
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			
 			mainFrame.getChat().taAdd("System :연결되었습니다! 먼저 게임설명을 읽어주세요.\nSystem :준비가 완료되면 Ready버튼을 눌러주세요.\n");
-			
 			while(true) {
 				Thread.sleep(100);
 				if(mainFrame.getGame().getPlayOk()) {

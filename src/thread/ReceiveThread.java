@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import javax.swing.ImageIcon;
-
+import bgm.BgmControlThread;
 import gui.MainFrame;
 import question.Question;
 
@@ -16,6 +15,7 @@ public class ReceiveThread extends Thread{
 	private Socket socket;
 	private MainFrame mainFrame; //추가
 	private static boolean start = false;
+//	private BgmControlThread bgm = new BgmControlThread();
 	public ReceiveThread(MainFrame mainFrame, Socket socket) { //생성자 추가
 		this.mainFrame = mainFrame;
 		this.socket = socket;
@@ -27,7 +27,7 @@ public class ReceiveThread extends Thread{
 
 		try {
 			//클라이언트 소켓의 인풋스트림으로 클라이언트 소켓이 보낸 내용을 받는다.
-			
+//			bgm.start();
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			Question catchNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
@@ -36,10 +36,11 @@ public class ReceiveThread extends Thread{
 				String [] receiveArray = receiveString.split("/");
 
 				switch(receiveArray[0]) {
+				
 				case "chat":
 					mainFrame.getChat().taAdd(receiveArray[1]+"\n");
 					break;	
-				
+					
 				case "ready" :
 					if(mainFrame.getGame().getPlayOk()) {
 						writer.println("start/");
@@ -48,6 +49,7 @@ public class ReceiveThread extends Thread{
 						mainFrame.getGame().getRuleButton().setVisible(false);
 						mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
 						SetGoalThread setGoalThread = new SetGoalThread(mainFrame, socket);
+//						bgm.setIntroControl(false);
 						setGoalThread.start();
 						break;
 					}
@@ -59,6 +61,7 @@ public class ReceiveThread extends Thread{
 					mainFrame.getGame().getRuleButton().setVisible(false);
 					mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
 					mainFrame.getGame().getWaitGoalScore().setVisible(true);
+//					bgm.setIntroControl(false);
 					break;
 					
 				case "goal" :
