@@ -109,8 +109,8 @@ public class GameThread extends Thread {
 			if(e.getSource().equals(mainFrame.getGame().getYes())){
 				mainFrame.newGame();
 				mainFrame.getScore().scoreReset();
-				ReadyThread ready = new ReadyThread(mainFrame, socket);
-				ready.start();
+				PreSettingThread preSetThread = new PreSettingThread(mainFrame, socket);
+				preSetThread.start();
 			}
 			else
 				System.exit(0);

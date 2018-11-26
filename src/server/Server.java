@@ -8,9 +8,7 @@ import java.net.URISyntaxException;
 
 import gui.IntroFrame;
 import gui.MainFrame;
-import thread.ChatSendThread;
-import thread.NickNameThread;
-import thread.ReadyThread;
+import thread.PreSettingThread;
 import thread.ReceiveThread;
 
 public class Server {
@@ -31,17 +29,10 @@ public class Server {
 
 			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
-			ChatSendThread chatThread = new ChatSendThread(mainFrame, clientSocket);
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
-			NickNameThread  nickThread = new NickNameThread(mainFrame, clientSocket);
-			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
+			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket);
 
-			nickThread.start();
-			nickThread.join();			
-
-			readyThread.start();
-			
-			chatThread.start();
+			preSetThread.start();
 			reThread.start();
 
 		}catch(IOException e){

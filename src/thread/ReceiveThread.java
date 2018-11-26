@@ -1,24 +1,29 @@
 package thread;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URISyntaxException;
 
 import bgm.BgmControlThread;
 import gui.MainFrame;
+import javazoom.jl.decoder.JavaLayerException;
 import question.Question;
 
 
-public class ReceiveThread extends Thread{
+public class ReceiveThread extends Thread {
 	private Socket socket;
 	private MainFrame mainFrame; //추가
 	private static boolean start = false;
 //	private BgmControlThread bgm = new BgmControlThread();
-	public ReceiveThread(MainFrame mainFrame, Socket socket) { //생성자 추가
+	BgmControlThread bgm =null;
+	public ReceiveThread(MainFrame mainFrame, Socket socket) throws FileNotFoundException, JavaLayerException, URISyntaxException{ //생성자 추가
 		this.mainFrame = mainFrame;
 		this.socket = socket;
+		this.bgm = new BgmControlThread();
 	}
 
 	@Override
@@ -27,7 +32,7 @@ public class ReceiveThread extends Thread{
 
 		try {
 			//클라이언트 소켓의 인풋스트림으로 클라이언트 소켓이 보낸 내용을 받는다.
-//			bgm.start();
+			bgm.start();
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			Question catchNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
@@ -40,6 +45,9 @@ public class ReceiveThread extends Thread{
 				case "chat":
 					mainFrame.getChat().taAdd(receiveArray[1]+"\n");
 					break;	
+				case "nickName" :
+					mainFrame.getScore().setYourNickName(receiveArray[1]);
+					break;
 					
 				case "ready" :
 					if(mainFrame.getGame().getPlayOk()) {
@@ -49,7 +57,7 @@ public class ReceiveThread extends Thread{
 						mainFrame.getGame().getRuleButton().setVisible(false);
 						mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
 						SetGoalThread setGoalThread = new SetGoalThread(mainFrame, socket);
-//						bgm.setIntroControl(false);
+						bgm.closeIntro();
 						setGoalThread.start();
 						break;
 					}
@@ -60,8 +68,8 @@ public class ReceiveThread extends Thread{
 					mainFrame.getGame().setTfAndEnter();
 					mainFrame.getGame().getRuleButton().setVisible(false);
 					mainFrame.getChat().taAdd("System :게임을 시작합니다.\n");
+					bgm.closeIntro();
 					mainFrame.getGame().getWaitGoalScore().setVisible(true);
-//					bgm.setIntroControl(false);
 					break;
 					
 				case "goal" :
@@ -85,6 +93,7 @@ public class ReceiveThread extends Thread{
 						mainFrame.getScore().repaint();
 						TimerThread.setTimerStop(true);
 						writer.println("answerOk/");
+						bgm.answer();
 						break;
 					}
 					else {
@@ -105,8 +114,7 @@ public class ReceiveThread extends Thread{
 					break;
 				}
 			}
-
-		}catch(IOException e) {
+		} catch (IOException|JavaLayerException|InterruptedException | URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}

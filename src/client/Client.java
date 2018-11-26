@@ -8,10 +8,8 @@ import java.net.URISyntaxException;
 
 import gui.IntroFrame;
 import gui.MainFrame;
-import thread.NickNameThread;
-import thread.ReadyThread;
+import thread.PreSettingThread;
 import thread.ReceiveThread;
-import thread.ChatSendThread;
 
 public class Client {
 	public static MainFrame mainFrame;
@@ -31,17 +29,10 @@ public class Client {
 //				}
 //			}
 			Socket clientSocket = new Socket(InetAddress.getLocalHost().getHostAddress(),9876);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
-			ChatSendThread chatThread = new ChatSendThread(mainFrame, clientSocket); //채팅을 전송할 채팅쓰레드 생성
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
-			NickNameThread nickThread = new NickNameThread(mainFrame, clientSocket);
-			ReadyThread readyThread = new ReadyThread(mainFrame, clientSocket);
+			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket);
 
-			nickThread.start();
-			nickThread.join();
-
-			readyThread.start();
-
-			chatThread.start();
+			preSetThread.start();
 			reThread.start();
 
 		}catch(IOException e){
@@ -49,8 +40,6 @@ public class Client {
 		}catch(Exception e) {
 			mainFrame.getChat().taAdd("System :상대방과의 연결이 끊어졌습니다.\n");
 		}
-
-
 	}
 
 }
