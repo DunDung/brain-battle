@@ -18,7 +18,6 @@ public class ReceiveThread extends Thread {
 	private Socket socket;
 	private MainFrame mainFrame; //추가
 	private static boolean start = false;
-//	private BgmControlThread bgm = new BgmControlThread();
 	BgmControlThread bgm =null;
 	public ReceiveThread(MainFrame mainFrame, Socket socket) throws FileNotFoundException, JavaLayerException, URISyntaxException{ //생성자 추가
 		this.mainFrame = mainFrame;
@@ -93,7 +92,6 @@ public class ReceiveThread extends Thread {
 						mainFrame.getScore().repaint();
 						TimerThread.setTimerStop(true);
 						writer.println("answerOk/");
-						bgm.answer();
 						break;
 					}
 					else {
@@ -110,11 +108,10 @@ public class ReceiveThread extends Thread {
 				
 				case "answerWrong" :
 					mainFrame.getGame().setWrong(true);
-
 					break;
 				}
 			}
-		} catch (IOException|JavaLayerException|InterruptedException | URISyntaxException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

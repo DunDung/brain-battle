@@ -1,8 +1,13 @@
 package thread;
 
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
 import javax.swing.ImageIcon;
 
+import bgm.BgmControlThread;
 import gui.MainFrame;
+import javazoom.jl.decoder.JavaLayerException;
 
 public class TimerThread extends Thread{
 	private MainFrame mainFrame;
@@ -37,6 +42,12 @@ public class TimerThread extends Thread{
 				if(i == 30) {
 					hint = true;
 				}
+				if(i == 10)
+					try {
+						soundOn();
+					} catch (FileNotFoundException | JavaLayerException | URISyntaxException e) {
+						e.printStackTrace();
+					}
 				mainFrame.getGame().getTimer().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(timer[i])));
 				Thread.sleep(1000);
 			}
@@ -59,6 +70,9 @@ public class TimerThread extends Thread{
 	}
 	public void setHint(boolean hint) {
 		this.hint = hint;
+	}
+	public void soundOn() throws FileNotFoundException, InterruptedException, JavaLayerException, URISyntaxException {
+		BgmControlThread.tenSecond();
 	}
 }
 
