@@ -19,39 +19,39 @@ public class TimerThread extends Thread{
 			"T25.png", "T24.png", "T23.png", "T22.png", "T21.png", "T20.png", "T19.png",
 			"T18.png", "T17.png", "T16.png", "T15.png", "T14.png", "T13.png", "T12.png",
 			"T11.png", "T10.png", "T9.png", "T8.png", "T7.png", "T6.png", "T5.png",
-			"T4.png", "T3.png", "T2.png", "T1.png"};
+			"T4.png", "T3.png", "T2.png", "T1.png", "T0.png"};
 	private static boolean timerStop = false;
 	private boolean timerEnd = false;
 	private boolean hint = false;
-	
+
 	public TimerThread(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
-	
+
 	@Override
 	public void run() {
 		try {
 			while(!timerEnd) {
-			for(int i=0; i<=timer.length; i++) {
-				if(timerStop) 
-					break;
-				if(i>=timer.length) {
-					mainFrame.getGame().setTurnEnd(true);
-					break;
-				}
-				if(i == 30) {
-					hint = true;
-				}
-				if(i == 10)
-					try {
-						soundOn();
-					} catch (FileNotFoundException | JavaLayerException | URISyntaxException e) {
-						e.printStackTrace();
+				for(int i=0; i<timer.length; i++) {
+					if(timerStop) 
+						break;
+					if(i == 31) {
+						hint = true;
 					}
-				mainFrame.getGame().getTimer().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(timer[i])));
-				Thread.sleep(1000);
-			}
-			setTimerStop(false);
+					if(i<51)
+						Thread.sleep(1000);
+					
+					if(i >= 51) {
+						try {
+							soundOn();
+						} catch (FileNotFoundException | JavaLayerException | URISyntaxException e) {
+							e.printStackTrace();
+						}
+					}
+					mainFrame.getGame().getTimer().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(timer[i])));
+				}
+				mainFrame.getGame().setTurnEnd(true);
+				setTimerStop(false);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class TimerThread extends Thread{
 	public static void setTimerStop(boolean stop) {
 		TimerThread.timerStop = stop;
 	}
-	
+
 	public void killTimer() {
 		this.timerEnd = true;
 		setTimerStop(true);

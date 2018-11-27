@@ -10,24 +10,23 @@ import javazoom.jl.player.Player;
 
 public class BgmControlThread extends Thread{
 	private Player intro;
-	private Player gameProgress;
-	
+
 
 	public BgmControlThread() throws FileNotFoundException, JavaLayerException, URISyntaxException {
 		intro = new Player(new FileInputStream(new File(BgmControlThread.class.getClassLoader().getResource("Intro.mp3").toURI())));
 	}
 	@Override
 	public void run() {
-				try {
-						intro.play();
-						while(true) {
-							Player gameProgress = new Player(new FileInputStream(new File(BgmControlThread.class.getClassLoader().getResource("GameProgress.mp3").toURI())));
-							gameProgress.play();
-						}
-				} catch (URISyntaxException|FileNotFoundException|JavaLayerException e) {
-					e.printStackTrace();
-				}
-				
+		try {
+			intro.play();
+			while(true) {
+				Player gameProgress = new Player(new FileInputStream(new File(BgmControlThread.class.getClassLoader().getResource("GameProgress.mp3").toURI())));
+				gameProgress.play();
+			}
+		} catch (URISyntaxException|FileNotFoundException|JavaLayerException e) {
+			e.printStackTrace();
+		}
+
 	}
 	public void closeIntro() {
 		intro.close();
@@ -56,6 +55,6 @@ public class BgmControlThread extends Thread{
 		Player tenSecond = new Player(new FileInputStream(new File(BgmControlThread.class.getClassLoader().getResource("10second2.mp3").toURI()))); 
 		tenSecond.play();
 	}
-	
-	
+
+
 }

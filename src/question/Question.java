@@ -37,7 +37,7 @@ public class Question {
 		Question.questionHintMap.put("Q7.png", "Q7Hint.png");
 		questionList.add("Q7.png");
 		Question.questionMap.put("Q8.png", "9717");
-		Question.questionHintMap.put("8Q.png", "Q8Hint.png");
+		Question.questionHintMap.put("Q8.png", "Q8Hint.png");
 		questionList.add("Q8.png");
 		Question.questionMap.put("Q9.png", "34");
 		Question.questionHintMap.put("Q9.png", "Q9Hint.png");
