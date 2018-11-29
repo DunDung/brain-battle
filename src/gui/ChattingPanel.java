@@ -55,10 +55,6 @@ public class ChattingPanel extends JPanel{
 	public JButton getEnter() { //전송 버튼 getter
 		return enter;
 	}
-	public void taAdd(String a) { //채팅화면에 사용자가 입력한 텍스트를 추가하는 메소드
-		this.ta.append(a);
-	}
-
 
 }
 

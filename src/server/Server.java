@@ -27,22 +27,17 @@ public class Server {
 		Socket clientSocket  =null;
 		try {
 
-			serverSocket = new ServerSocket(9876); //서버소켓을 포트번호로 받아서 초기화 한다.
+			serverSocket = new ServerSocket(9999); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
 			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
 			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket);
 
 			preSetThread.start();
 			reThread.start();
-
-		}catch(IOException e){
-			e.printStackTrace();
+			
 		}catch(Exception e) {
-			mainFrame.getChat().taAdd("System :상대방과의 연결이 끊어졌습니다.\n");
+			System.out.println(e);
+			mainFrame.getChat().getTa().append("System :상대방과의 연결이 끊어졌습니다.\n");
 		}
-
-
 	}
-
-
 }

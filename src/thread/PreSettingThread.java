@@ -36,16 +36,17 @@ public class PreSettingThread extends Thread{
 				} 
 			}
 
-			mainFrame.getChat().taAdd("System :연결되었습니다! 먼저 게임설명을 읽어주세요.\nSystem :준비가 완료되면 Ready버튼을 눌러주세요.\n");
+			mainFrame.getChat().getTa().append("System :연결되었습니다! 먼저 게임설명을 읽어주세요.\nSystem :준비가 완료되면 Ready버튼을 눌러주세요.\n");
 
 			while(true) { //준비완료 
 				Thread.sleep(100);
 				if(mainFrame.getGame().getPlayOk()) {
 					writer.println("ready/");
-					mainFrame.getChat().taAdd("System :준비완료!\n");
+					mainFrame.getChat().getTa().append("System :준비완료!\n");
 					break;
 				}
 			}
+			
 		} catch (IOException  | InterruptedException e) { 
 			e.printStackTrace(); 
 		} 

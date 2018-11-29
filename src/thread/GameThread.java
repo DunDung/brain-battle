@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 
-import bgm.BgmControlThread;
 import gui.MainFrame;
 import javazoom.jl.decoder.JavaLayerException;
 import question.Question;
@@ -54,18 +53,18 @@ public class GameThread extends Thread {
 					if(mainFrame.getGame().getOtherCorrect()) {
 						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("OtherCorrect.png")));
 						mainFrame.getGame().setOtherCorrect(false);
-						BgmControlThread.otherCorrect();
+						BgmControlThread.playSoundEffect("OtherCorrect.mp3");
 					}
 					else {
 						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerOk.png")));
 						mainFrame.getGame().setIAmCorrect(false);
-						BgmControlThread.answerOk();
+						BgmControlThread.playSoundEffect("AnswerOk.mp3");
 					}
-
 				}
+				
 				if(mainFrame.getGame().getWrong()) { //내가 낸 답이 정답이 아닐 때
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerWrong.png")));
-					BgmControlThread.wrong();
+					BgmControlThread.playSoundEffect("Wrong.mp3");
 					mainFrame.getGame().setWrong(false);
 				}
 
@@ -82,10 +81,10 @@ public class GameThread extends Thread {
 					mainFrame.getGame().getNo().addActionListener(new YesOrNoEvent());
 					if(mainFrame.getScore().getYourScore() == mainFrame.getGame().getGoalScore()){
 						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("YouLose.png")));
-						BgmControlThread.lose();
+						BgmControlThread.playSoundEffect("Lose.mp3");
 					}else {
 						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("YouWin.png")));
-						BgmControlThread.win();
+						BgmControlThread.playSoundEffect("Win.mp3");
 					}
 					break;
 				}
@@ -95,15 +94,7 @@ public class GameThread extends Thread {
 				if(!timer.getHint())
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(questionArray[questionIndex])));
 			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (JavaLayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException | InterruptedException | JavaLayerException | URISyntaxException e) {
 			e.printStackTrace();
 		} 
 	}

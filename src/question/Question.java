@@ -55,7 +55,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		StringBuffer BufferList = new StringBuffer();
+		StringBuffer BufferList = new StringBuffer(); //ThreadSafe한 StringBuffer를 사용하였다.
 		for(int i=0; i<questionList.size(); i++) {
 			BufferList.append(questionList.get(i));
 			if(questionList.size()-1 != i)

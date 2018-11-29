@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 
 import javax.swing.ImageIcon;
 
-import bgm.BgmControlThread;
 import gui.MainFrame;
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -38,7 +37,7 @@ public class TimerThread extends Thread{
 					if(i == 31) {
 						hint = true;
 					}
-					if(i<51)
+					if(i<51&&i>0)
 						Thread.sleep(1000);
 					
 					if(i >= 51) {
@@ -72,7 +71,7 @@ public class TimerThread extends Thread{
 		this.hint = hint;
 	}
 	public void soundOn() throws FileNotFoundException, InterruptedException, JavaLayerException, URISyntaxException {
-		BgmControlThread.tenSecond();
+		BgmControlThread.playSoundEffect("10second2.mp3");
 	}
 }
 
