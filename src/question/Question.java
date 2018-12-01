@@ -42,6 +42,27 @@ public class Question {
 		Question.questionMap.put("Q9.png", "34");
 		Question.questionHintMap.put("Q9.png", "Q9Hint.png");
 		questionList.add("Q9.png");
+		Question.questionMap.put("Q10.png", "35");
+		Question.questionHintMap.put("Q10.png", "Q10Hint.png");
+		questionList.add("Q10.png");
+		Question.questionMap.put("Q11.png", "42");
+		Question.questionHintMap.put("Q11.png", "Q11Hint.png");
+		questionList.add("Q11.png");
+		Question.questionMap.put("Q12.png", "마굿간");
+		Question.questionHintMap.put("Q12.png", "Q12Hint.png");
+		questionList.add("Q12.png");
+		Question.questionMap.put("Q13.png", "회오리");
+		Question.questionHintMap.put("Q13.png", "Q13Hint.png");
+		questionList.add("Q13.png");
+		Question.questionMap.put("Q14.png", "3");
+		Question.questionHintMap.put("Q14.png", "Q14Hint.png");
+		questionList.add("Q14.png");
+		Question.questionMap.put("Q15.png", "21");
+		Question.questionHintMap.put("Q15.png", "Q15Hint.png");
+		questionList.add("Q15.png");
+		Question.questionMap.put("Q16.png", "3");
+		Question.questionHintMap.put("Q16.png", "Q16Hint.png");
+		questionList.add("Q16.png");
 	}
 	public List<String> getQuestionList() {
 		return questionList;
