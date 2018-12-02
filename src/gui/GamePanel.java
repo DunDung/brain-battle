@@ -28,17 +28,16 @@ public class GamePanel extends JPanel{
 	private JLabel readyOk = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("ReadyOk.png")));
 	private JLabel quiz= new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("StartCount3.png")));
 	private JLabel goalLabel = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("Goal.png")));
-	private JButton [] scoreImg = {new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("3.png"))),
-								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("5.png"))),
-								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("7.png"))),
-								   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("10.png"))),
-							   	   new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("15.png")))}; 
+	private JButton [] scoreImg = {new JButton("3", new ImageIcon(this.getClass().getClassLoader().getResource("3.png"))),
+								   new JButton("5", new ImageIcon(this.getClass().getClassLoader().getResource("5.png"))),
+								   new JButton("7",new ImageIcon(this.getClass().getClassLoader().getResource("7.png"))),
+								   new JButton("10",new ImageIcon(this.getClass().getClassLoader().getResource("10.png"))),
+							   	   new JButton("15",new ImageIcon(this.getClass().getClassLoader().getResource("15.png")))}; 
 	private JLabel waitGoalScore = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("setGoal.png")));
 	private JLabel timer = new JLabel(new ImageIcon(this.getClass().getClassLoader().getResource("T60.png")));
 	private JButton yes =  new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Yes.png")));
 	private JButton no =  new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("No.png")));
 	private int goalScore = 0;
-	private int scoreImgIndexCount = 0;
 	private boolean playOk =false;
 	private boolean turnEnd = false;
 	private boolean wrong = false;
@@ -170,22 +169,21 @@ public class GamePanel extends JPanel{
 	}
 	public void setScoreImg() {
 		int y = 0;
-		int [] score = {3, 5, 7, 10, 15};
 		add(goalLabel);
 		goalLabel.setBounds(0,y, 980 ,148);
-		for(int i = 0; i<score.length; i++) {
+		for(int i = 0; i<scoreImg.length; i++) {
 			y+= 148;
 			add(scoreImg[i]);
 			scoreImg[i].addMouseListener(new MouseCursorEvent());
 			scoreImg[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					goalScore = score[scoreImgIndexCount++];
+					JButton temp = (JButton) e.getSource();
+					goalScore = Integer.parseInt(temp.getText());
 					goalLabel.setVisible(false);
 					for(JButton b : scoreImg)
 						b.setVisible(false);
 				}
-				
 			});
 			scoreImg[i].setBounds(0, y, 980, 148);
 		}
