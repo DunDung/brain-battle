@@ -11,18 +11,18 @@ import javax.swing.JPanel;
 
 
 public class ScorePanel extends JPanel{ 	
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) { //배경이미지 넣기
 		g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("ScoreBackGround.png")).getImage(),0,0,null);
 		setOpaque(false);
 		super.paintComponent(g);
 	}
-	private JLabel myNickName = new JLabel("");
-	private JLabel yourNickName = new JLabel("");
-	private int myScoreCount = 0;
-	private int yourScoreCount = 0;
-	private JLabel myScore = new JLabel(""+myScoreCount);
-	private JLabel yourScore = new JLabel(""+yourScoreCount);
-	private boolean nickState = false;
+	private JLabel myNickName = new JLabel(""); //나의 닉네임을 표시할 라벨
+	private JLabel yourNickName = new JLabel(""); //상대방의 닉네임을 표시할 라벨
+	private int myScoreCount = 0; //나의 점수를 나타낼 변수
+	private int yourScoreCount = 0; //상대의 점수를 나타낼 변수
+	private JLabel myScore = new JLabel(""+myScoreCount); //나의 점수를 표시할 라벨
+	private JLabel yourScore = new JLabel(""+yourScoreCount); //상대의 점수를 표시할 라벨
+	private boolean nickState = false; //나의 닉네임이 설정된 상태인지 아닌지 나타낼 변수
 
 
 	public ScorePanel() {
@@ -32,6 +32,7 @@ public class ScorePanel extends JPanel{
 		add(yourNickName);
 		add(myScore);
 		add(yourScore);
+		
 		//레이아웃이 없기에 위치를 각자 지정해 준다.
 		myNickName.setBounds(98, 8, 92,22);
 		yourNickName.setBounds(262, 8, 92, 22);
@@ -54,20 +55,16 @@ public class ScorePanel extends JPanel{
 		yourScore.setFont(new Font("Dialog", Font.BOLD, 50));
 		yourScore.setForeground(Color.RED);
 		yourScore.setHorizontalAlignment(JLabel.CENTER); 
-
-		
-		
-
 	}
+	
+	//멤버변수 getter / setter
 	public void setMyNickName(String nickName) {
 		this.myNickName.setText(nickName);
 	}
-
 	public void setYourNickName(String nickName) {
 		this.yourNickName.setText(nickName);
 
 	}
-
 	public String getMyNickName() {
 		return this.myNickName.getText().toString().trim();
 	}
@@ -99,14 +96,16 @@ public class ScorePanel extends JPanel{
 		return nickState;
 	}
 	
+	//다시시작 시에 스코어를 초기화할 메소드
 	public void scoreReset() {
-		this.myScoreCount = 0;
-		this.myScore.setText(""+ myScoreCount);
+		//내 점수, 상대점수 0으로 초기화
+		this.myScoreCount = 0; 
 		this.yourScoreCount = 0;
+		//내 점수 라벨, 상대 점수 라벨, 0으로 초기화
+		this.myScore.setText(""+ myScoreCount);
 		this.yourScore.setText(""+yourScoreCount);
-		this.repaint();
+		this.repaint(); //다시 그려준다.
 	}
-
 }
 
 

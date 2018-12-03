@@ -29,8 +29,8 @@ public class Server {
 
 			serverSocket = new ServerSocket(9999); //서버소켓을 포트번호로 받아서 초기화 한다.
 			clientSocket = serverSocket.accept();  //클라이언트소켓은 서버소켓에 접근한 소켓으로 초기화한다.
-			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
-			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket);
+			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket); // 상대방으로 부터 받은 메세지를 처리할 쓰레드
+			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket); //사전 설정을 하고 프로그램을 연속적으로 이어갈 쓰레드
 
 			preSetThread.start();
 			reThread.start();

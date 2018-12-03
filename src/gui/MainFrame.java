@@ -45,12 +45,12 @@ public class MainFrame extends JFrame{
 	public GamePanel getGame() {
 		return game;
 	}
-	public void newGame() {
-		remove(game);
-		game = new GamePanel();
-		add(game);
-		game.setBounds(20, 15 , 1000, 935);
-		this.repaint();
+	public void newGame() { //게임종료시 yes버튼 클릭시
+		remove(game); //메인프레임에서 game패널을 제거한후
+		game = new GamePanel(); //새로 게임패널을 생성하고
+		add(game); //추가한다
+		game.setBounds(20, 15 , 1000, 935); //위치설정
+		this.repaint(); //메인프레임에 다시 그려준다.
 	}
 	
 	public void viewTrue() { //호출 시 mainFrame을 화면에 띄울 메소드

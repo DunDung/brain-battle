@@ -7,14 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Question {
-	private static Map<String, String> questionMap = new HashMap<>();
-	private static Map<String, String> questionHintMap = new HashMap<>();
-	private  List<String> questionList = new ArrayList<>();
+	private static Map<String, String> questionMap = new HashMap<>(); //문제와 답을 저장할 Map
+	private static Map<String, String> questionHintMap = new HashMap<>(); //문제와 그 문제의 힌트를 저장할 Map
+	private  List<String> questionList = new ArrayList<>(); //문제 Image의 이름이 저장될 List
 
-	public Question() {
-		setQuestion();
-	}
-	void setQuestion() {
+	public Question() { //멤버변수들에 문제와 관련된 정보를 삽입
 		Question.questionMap.put("Q1.png", "11");
 		Question.questionHintMap.put("Q1.png", "Q1Hint.png");
 		questionList.add("Q1.png");
@@ -90,7 +87,27 @@ public class Question {
 		Question.questionMap.put("Q25.png", "기상천외");
 		Question.questionHintMap.put("Q25.png", "Q25Hint.png");
 		questionList.add("Q25.png");
+		Question.questionMap.put("Q26.png", "개헌");
+		Question.questionHintMap.put("Q26.png", "Q26Hint.png");
+		questionList.add("Q26.png");
+		Question.questionMap.put("Q27.png", "0");
+		Question.questionHintMap.put("Q27.png", "Q27Hint.png");
+		questionList.add("Q27.png");
+		Question.questionMap.put("Q28.png", "5");
+		Question.questionHintMap.put("Q28.png", "Q28Hint.png");
+		questionList.add("Q28.png");
+		Question.questionMap.put("Q29.png", "6");
+		Question.questionHintMap.put("Q29.png", "Q29Hint.png");
+		questionList.add("Q29.png");
+		Question.questionMap.put("Q30.png", "45");
+		Question.questionHintMap.put("Q30.png", "Q30Hint.png");
+		questionList.add("Q30.png");
+		Question.questionMap.put("Q31.png", "156");
+		Question.questionHintMap.put("Q31.png", "Q31Hint.png");
+		questionList.add("Q31.png");	
 	}
+	
+	//멤버변수들 getter
 	public List<String> getQuestionList() {
 		return questionList;
 	}
@@ -101,15 +118,16 @@ public class Question {
 		return Question.questionHintMap;
 	}
 
+	//상대방에게 문제 목록을 넘겨 줄때 "/"로 목록들을 구분하기 위해  toString을 재정의 하였다.
 	@Override
 	public String toString() {
 		StringBuffer BufferList = new StringBuffer(); //ThreadSafe한 StringBuffer를 사용하였다.
 		for(int i=0; i<questionList.size(); i++) {
-			BufferList.append(questionList.get(i));
-			if(questionList.size()-1 != i)
-				BufferList.append("/");
+			BufferList.append(questionList.get(i)); //문제 하나를 추가 
+			if(questionList.size()-1 != i) //i가 마지막이 아니라면
+				BufferList.append("/"); // "/"를 추가한다.
 		}
-		return BufferList.toString();
+		return BufferList.toString(); 
 	}
 
 

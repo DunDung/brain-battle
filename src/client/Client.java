@@ -23,12 +23,12 @@ public class Client {
 //			while(mainFrame.getIp().length() == 0) {
 //				Thread.sleep(100);
 //			}
-			
+//			
 			//InetAddress.getLocalHost().getHostAddress()
 			//mainFrame.getIp()
 			Socket clientSocket = new Socket(InetAddress.getLocalHost().getHostAddress(), 9999);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
-			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket);
-			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket);
+			ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket); // 상대방으로 부터 받은 메세지를 처리할 쓰레드
+			PreSettingThread preSetThread = new PreSettingThread(mainFrame, clientSocket);//사전 설정을 하고 프로그램을 연속적으로 이어갈 쓰레드
 
 			preSetThread.start();
 			reThread.start();

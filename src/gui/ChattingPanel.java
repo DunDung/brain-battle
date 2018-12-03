@@ -3,7 +3,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,11 +14,10 @@ import javax.swing.border.LineBorder;
 
 public class ChattingPanel extends JPanel{
 	private	JTextArea ta = new JTextArea(){
-		{this.setOpaque(true);}
-		public void paintComponent(Graphics g) {
-			g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("ChatBackGround.png")).getImage(),0,0,null);
-			setOpaque(false);
-			super.paintComponent(g);
+		public void paintComponent(Graphics g) { //배경이미지를 그려준다
+			g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("ChatBackGround.png")).getImage(),0,0,null); //Graphics형 변수 g에 이미지를 그려준다.
+			setOpaque(false); // 투명하지 않게 설정함으로써 이미지가 보이게 한다.
+			super.paintComponent(g); //컴포넌트에 g를 그린다.
 		}
 	}; //채팅된 문자열들을 출력할 Area
 	private	JScrollPane ts = new JScrollPane(ta); //채팅내용이 많을 경우를 대비한 JScrollPane에 JTextArea변수인 ta추가
@@ -41,8 +39,8 @@ public class ChattingPanel extends JPanel{
 		enter.setFont(enter.getFont().deriveFont(15.0f)); 
 		tf.setFont(enter.getFont().deriveFont(16.0f));
 		ta.setFont(enter.getFont().deriveFont(16.0f));
-
-		enter.setBorder(new LineBorder(Color.BLACK)); //배경 테두리
+		//배경 테두리
+		enter.setBorder(new LineBorder(Color.BLACK)); 
 		tf.setBorder(new LineBorder(Color.BLACK));
 
 	}
@@ -57,8 +55,3 @@ public class ChattingPanel extends JPanel{
 	}
 
 }
-
-
-
-
-
