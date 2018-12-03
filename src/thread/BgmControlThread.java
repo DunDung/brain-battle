@@ -16,7 +16,6 @@ public class BgmControlThread extends Thread{
 
 
 	public BgmControlThread() throws FileNotFoundException, JavaLayerException, URISyntaxException {
-		//		intro = new Player(new FileInputStream(new File(BgmControlThread.class.getClassLoader().getResource("Intro.mp3").toURI())));
 		InputStream is = this.getClass().getClassLoader().getResourceAsStream("Intro.mp3");
 		intro = new Player(is);
 	}
