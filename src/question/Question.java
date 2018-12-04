@@ -105,6 +105,18 @@ public class Question {
 		Question.questionMap.put("Q31.png", "156");
 		Question.questionHintMap.put("Q31.png", "Q31Hint.png");
 		questionList.add("Q31.png");	
+		Question.questionMap.put("Q32.png", "³×´ú¶õµå");
+		Question.questionHintMap.put("Q32.png", "Q32Hint.png");
+		questionList.add("Q32.png");
+		Question.questionMap.put("Q33.png", "S");
+		Question.questionHintMap.put("Q33.png", "Q33Hint.png");
+		questionList.add("Q33.png");
+		Question.questionMap.put("Q34.png", ".");
+		Question.questionHintMap.put("Q34.png", "Q34Hint.png");
+		questionList.add("Q34.png");
+		Question.questionMap.put("Q35.png", "26");
+		Question.questionHintMap.put("Q35.png", "Q35Hint.png");
+		questionList.add("Q35.png");
 	}
 	
 	//¸â¹öº¯¼öµé getter
