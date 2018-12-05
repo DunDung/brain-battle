@@ -30,7 +30,9 @@ public class ReceiveThread extends Thread {
 
 		try {
 			//클라이언트 소켓의 인풋스트림으로 클라이언트 소켓이 보낸 내용을 받는다.
-			bgm.start();
+			bgm.start(); //bgm쓰레드를 시작함으로써 인트로음악을 튼다.
+			
+			//연결된 소켓의 inputStream과 outputStream으로 주고받기위한 변수 초기화
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
 			Question catchNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
@@ -65,52 +67,54 @@ public class ReceiveThread extends Thread {
 					break;
 					
 				case "start" : //시작
-					mainFrame.getGame().getReadyOk().setVisible(false);           
-					mainFrame.getGame().setTfAndEnter();						
-					mainFrame.getGame().getRuleButton().setVisible(false);			
+					//시작신호를 받은 상대방도 똑같은 환경을 만들어준다.
+					mainFrame.getGame().getReadyOk().setVisible(false);       
+					mainFrame.getGame().setTfAndEnter(); 						
+					mainFrame.getGame().getRuleButton().setVisible(false);
 					mainFrame.getChat().getTa().append("System :게임을 시작합니다.\n");   
-					bgm.closeIntro();                                               //시작신호를 받은 상대방도 똑같은 환경을 만들어준다.                                              
+					bgm.closeIntro();                                                                                         
 					
+					//상대방 플레이어가 목표점수를 설정할 동안 기다려 달라는 이미지를 표시한다.
 					mainFrame.getGame().getWaitGoalScore().setVisible(true);
 					break;
 					
-				case "goal" :
-					mainFrame.getGame().getWaitGoalScore().setVisible(false);
-					mainFrame.getGame().setGoalScore(Integer.parseInt(receiveArray[1]));
+				case "goal" ://목표점수
+					mainFrame.getGame().getWaitGoalScore().setVisible(false); //목표점수 설정동안 기다려달라는 이미지를 안보이게 한다.
+					mainFrame.getGame().setGoalScore(Integer.parseInt(receiveArray[1])); //받아온 목표점수를 Integer로 바꾼후 게임패널에 초기화한다.
 					break;
 					
-				case "questionList" :
-					String [] questionArray = new String[receiveArray.length-1];
-					for(int i=1; i<receiveArray.length; i++) {
-						questionArray[i-1] = receiveArray[i];
+				case "questionList" ://문제목록, 같은 문제를 보여주기 위해 한쪽에서만 섞고 한쪽은 목록을 받아야한다.
+					String [] questionArray = new String[receiveArray.length-1];//문제목록을 받아오기 위한 String형 배열
+					for(int i=1; i<receiveArray.length; i++) { //receiveArray[0]은 questionList라는 키워드기 때문에 i=1이다.
+						questionArray[i-1] = receiveArray[i]; // questionArray[0]부터 섞인 문제목록으로 채운다.
 					}
-					GameThread gameThread = new GameThread(mainFrame, socket, questionArray);
+					GameThread gameThread = new GameThread(mainFrame, socket, questionArray); //받아온 문제목록으로 게임쓰레드를 초기화후 실행
 					gameThread.start();
 					break;
 					
-				case "answer":
-					if(Question.getQuestionMap().get(receiveArray[1]).equals(receiveArray[2])) {
-						mainFrame.getGame().setOtherCorrect(true);
-						mainFrame.getScore().addYourScore(); //소켓구조상 상대방점수 올린다.
-						mainFrame.getScore().repaint();
-						TimerThread.setTimerStop(true);
-						writer.println("answerOk/");
+				case "answer": //정답 제출 , 이 정답은 상대방이 보내온 정답이다, 정답이 맞는지 Question클래스의 QuestionMap를 문제번호를 key로 value로 비교한다. 
+					if(Question.getQuestionMap().get(receiveArray[1]).equals(receiveArray[2])) { //맞았을 시
+						mainFrame.getGame().setOtherCorrect(true); //상대방이 맞았음을 알린다.
+						mainFrame.getScore().addYourScore(); //상대방점수 올린다.
+						mainFrame.getScore().repaint(); //스코어를 다시그린다.
+						TimerThread.setTimerStop(true); //타이머를 멈춘 후 새로 시작할 수 있게 한다.
+						writer.println("answerOk/"); //상대방에게 정답이 맞다고 보낸다.
 						break;
 					}
-					else {
-						writer.println("answerWrong/");
+					else { //틀렸을 시
+						writer.println("answerWrong/"); // 상대방에게 정답이 아니라고 보낸다.
 						break;
 					}
 
-				case "answerOk":
-					mainFrame.getGame().setIAmCorrect(true);
-					TimerThread.setTimerStop(true);
-					mainFrame.getScore().addMyScore();
-					mainFrame.getScore().repaint();
+				case "answerOk": //내가낸 답이 맞았을 시
+					mainFrame.getGame().setIAmCorrect(true); //내가맞았음을 알린다.
+					TimerThread.setTimerStop(true); //타이머를 멈춘 후 새로 시작할 수 있게 한다.
+					mainFrame.getScore().addMyScore(); //나의 점수를 올린다.
+					mainFrame.getScore().repaint(); //스코어를 다시 그린다.
 					break;
 				
-				case "answerWrong" :
-					mainFrame.getGame().setWrong(true);
+				case "answerWrong" : //내가 틀렸을 시
+					mainFrame.getGame().setWrong(true); //내가 틀렸음을 알린다.
 					break;
 				}
 			}
