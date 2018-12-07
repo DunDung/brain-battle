@@ -22,7 +22,7 @@ public class ScorePanel extends JPanel{
 	private int yourScoreCount = 0; //상대의 점수를 나타낼 변수
 	private JLabel myScore = new JLabel(""+myScoreCount); //나의 점수를 표시할 라벨
 	private JLabel yourScore = new JLabel(""+yourScoreCount); //상대의 점수를 표시할 라벨
-	private boolean nickState = false; //나의 닉네임이 설정된 상태인지 아닌지 나타낼 변수
+//	private boolean nickState = false; //나의 닉네임이 설정된 상태인지 아닌지 나타낼 변수
 
 
 	public ScorePanel() {
@@ -89,13 +89,13 @@ public class ScorePanel extends JPanel{
 		this.yourScore.setText(""+ (++yourScoreCount));;
 	}
 
-	public void setNcikState() {  
-		this.nickState = true;
-	}
-	public boolean getNickState() {
-		return nickState;
-	}
-	
+//	public void setNcikState() {  
+//		this.nickState = true;
+//	}
+//	public boolean getNickState() {
+//		return nickState;
+//	}
+//	
 	//다시시작 시에 스코어를 초기화할 메소드
 	public void scoreReset() {
 		//내 점수, 상대점수 0으로 초기화

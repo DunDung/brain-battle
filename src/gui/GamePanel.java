@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import userState.UserState;
+
 public class GamePanel extends JPanel{ 	
 	public void paintComponent(Graphics g) { //배경 넣기
 		g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("BackGround.png")).getImage(),0,0,null);//Graphics형 변수 g에 이미지를 그려준다.
@@ -38,11 +40,11 @@ public class GamePanel extends JPanel{
 	private JButton yes =  new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Yes.png"))); //게임종료 시 다시 시작하겠냐는 물음에 응답하는 Yes버튼
 	private JButton no =  new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("No.png")));//게임종료시 다시 시작하겠냐는 물음에 응답하는 No버튼
 	private int goalScore = 0; //버튼을 눌러 목표점수를 설정 시 초기화될 변수
-	private boolean playOk =false; //준비완료인지 아닌지를 나타내 줄 변수
-	private boolean turnEnd = false; //턴 종료를 나타낼 변수
-	private boolean wrong = false; //내가 낸 답이 틀렸음을 나타낼 변수
-	private boolean otherCorrect = false; //상대방이 맞췄음을 나타낼 변수
-	private boolean iAmCorrect  = false; //내가 맞췄음을 나타낼 변수
+//	private boolean playOk =false; //준비완료인지 아닌지를 나타내 줄 변수
+//	private boolean turnEnd = false; //턴 종료를 나타낼 변수
+//	private boolean wrong = false; //내가 낸 답이 틀렸음을 나타낼 변수
+//	private boolean otherCorrect = false; //상대방이 맞췄음을 나타낼 변수
+//	private boolean iAmCorrect  = false; //내가 맞췄음을 나타낼 변수
 
 	public GamePanel() { //생성자
 		this.setLayout(null); //레이아웃 없음
@@ -93,15 +95,12 @@ public class GamePanel extends JPanel{
 			public void actionPerformed(ActionEvent e) { //클릭시
 				ready.setVisible(false); //레디버튼을 안보이게하고
 				readyOk.setVisible(true); //readyOK라벨을 보이게 한다
-				playOk = true; //준비완료가 됐음을 나타낼 playOk변수를 true로 초기화
+				UserState.setPlayOk(true); //준비완료가 됐음을 나타낼 playOk변수를 true로 초기화
 			}
 		});
 	}
 	
 	//멤버변수들 getter/setter
-	public boolean getPlayOk() {
-		return this.playOk;
-	}
 	public JLabel getReadyOk() {
 		return this.readyOk;
 	}
@@ -126,30 +125,33 @@ public class GamePanel extends JPanel{
 	public JButton getRuleButton() {
 		return ruleButton;
 	}
-	public boolean getTurnEnd() {
-		return turnEnd;
-	}
-	public void setTurnEnd(boolean turn) {
-		turnEnd = turn;
-	}
-	public void setWrong(boolean wrong) {
-		this.wrong = wrong;
-	}
-	public boolean getWrong() {
-		return wrong;
-	}
-	public void setOtherCorrect(boolean otherCorrect) {
-		this.otherCorrect = otherCorrect;
-	}
-	public boolean getOtherCorrect() {
-		return otherCorrect;
-	}
-	public void setIAmCorrect(boolean iAmCorrect) {
-		this.iAmCorrect = iAmCorrect;
-	}
-	public boolean getIAmCorrect() {
-		return iAmCorrect;
-	}
+//	public boolean getPlayOk() {
+//		return this.playOk;
+//	}
+//	public boolean getTurnEnd() {
+//		return turnEnd;
+//	}
+//	public void setTurnEnd(boolean turn) {
+//		turnEnd = turn;
+//	}
+//	public void setWrong(boolean wrong) {
+//		this.wrong = wrong;
+//	}
+//	public boolean getWrong() {
+//		return wrong;
+//	}
+//	public void setOtherCorrect(boolean otherCorrect) {
+//		this.otherCorrect = otherCorrect;
+//	}
+//	public boolean getOtherCorrect() {
+//		return otherCorrect;
+//	}
+//	public void setIAmCorrect(boolean iAmCorrect) {
+//		this.iAmCorrect = iAmCorrect;
+//	}
+//	public boolean getIAmCorrect() {
+//		return iAmCorrect;
+//	}
 	public JLabel getTimer() {
 		return timer;
 	}

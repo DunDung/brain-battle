@@ -12,15 +12,16 @@ import javax.swing.ImageIcon;
 import gui.MainFrame;
 import javazoom.jl.decoder.JavaLayerException;
 import question.Question;
+import userState.UserState;
 
 public class GameThread extends Thread {
 	private MainFrame mainFrame; //메인프레임
 	private Socket socket; //연결된 소켓
-	PrintWriter writer; //상대 ReceiveThread에 보낼 변수
+	private PrintWriter writer; //상대 ReceiveThread에 보낼 변수
 	private String[] questionArray; //문제목록 배열
 	private int questionIndex = 0; //문제목록 배열의 현재 인덱스를 나타낼 변수
 	private TimerThread timer; //타이머 변수
-	Question catchNull = new Question(); //힌트이미지로 바꿀 때 null포인트 에러 방지	
+	private Question catchNull = new Question(); //생성자에서 문제이미지와 힌트이미지를 추가하였기 때문에 static이여도 객체를 생성하지 않으면 nullPoint에러가 발생	
 
 	public GameThread(MainFrame mainFrame, Socket socket, String [] questionArray)  {
 		this.mainFrame = mainFrame;
@@ -47,31 +48,31 @@ public class GameThread extends Thread {
 			timer.start(); //타이머 쓰레드를 시작 시킨다.
 			
 			while(true) { //게임 진행
-				if(mainFrame.getGame().getOtherCorrect()|| mainFrame.getGame().getIAmCorrect()) { //상대방이 맞췄을 때, 내가 낸 답이 정답일 때 -> 턴 종료
+				if(UserState.isOtherCorrect()|| UserState.isMyCorrect()) { //상대방이 맞췄을 때, 내가 낸 답이 정답일 때 -> 턴 종료
 					questionIndex++; //퀴즈 인덱스 +1
 					timer.setHint(false); //저번 턴에 Hint를 보여줬을 수 있으므로 false로 설정
-					if(mainFrame.getGame().getOtherCorrect()) { //만약 상대방이 맞췄을 시
+					if(UserState.isOtherCorrect()) { //만약 상대방이 맞췄을 시
 						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("OtherCorrect.png"))); //상대방이 맞췄다는 이미지로 바꾼다
-						mainFrame.getGame().setOtherCorrect(false); //ReceiveThread에서 바꾼 게임 패널의 OhterCorrect를 false로 다시 초기화
+						UserState.setOtherCorrect(false); //ReceiveThread에서 바꾼  OhterCorrect를 false로 다시 초기화
 						BgmControlThread.playSoundEffect("OtherCorrect.mp3"); //Thread.sleep대신 1초짜리 효과음을 넣었다. 효과음이 재생되는동안 정지된다.
 					}
 					else { //내가 맞췄을 시
 						mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerOk.png"))); //맞췄다는 이미지로 바꾼 후
-						mainFrame.getGame().setIAmCorrect(false); //ReceiveThread에서 바꾼 게임 패널의 IAmCorrect를 false로 다시 초기화
+						UserState.setMyCorrect(false); //ReceiveThread에서 바꾼 myCorrect를 false로 다시 초기화
 						BgmControlThread.playSoundEffect("AnswerOk.mp3"); //효과음 재생
 					}
 				}
 				
-				if(mainFrame.getGame().getWrong()) { //내가 낸 답이 정답이 아닐 때
+				if(UserState.isWrong()) { //내가 낸 답이 정답이 아닐 때
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource("AnswerWrong.png"))); //틀렸다는 이미지를 보여준다.
 					BgmControlThread.playSoundEffect("Wrong.mp3"); //효과음 재생
-					mainFrame.getGame().setWrong(false); //ReceiveThread에서 바꾼 게임 패널의 wrong을 false로 다시 초기화
+					UserState.setWrong(false); //ReceiveThread에서 바꾼  wrong을 false로 다시 초기화
 				}
 
-				if(mainFrame.getGame().getTurnEnd()) { //시간 종료 , 턴 종료
+				if(UserState.isTurnEnd()) { //시간 종료 , 턴 종료
 					questionIndex++;//퀴즈인덱스 +1
 					timer.setHint(false); //저번 턴에 Hint를 보여줬을 수 있으므로 false로 설정
-					mainFrame.getGame().setTurnEnd(false); //ReceiveThread에서 턴이 끝난 것을 알리는 게임패널의 turnEnd를 다시 false로 초기화
+					UserState.setTurnEnd(false); //ReceiveThread에서 바꾼 turnEnd를 다시 false로 초기화
 				}
 				//내가 이기거나, 상대방이 이겼을 때
 				if(mainFrame.getScore().getMyScore() == mainFrame.getGame().getGoalScore() || mainFrame.getScore().getYourScore() == mainFrame.getGame().getGoalScore()) { 
@@ -88,11 +89,11 @@ public class GameThread extends Thread {
 					}
 					break;
 				}
-				if(timer.getHint()) //timerThread에서 30초가 지나서 hint변수가 true가 되면
+				if(timer.isHint()) //timerThread에서 30초가 지나서 hint변수가 true가 되면
 					//그 문제의 문제와 힌트까지 보여주는 이미지로 바꾼다.
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(Question.getQuestionHintMap().get(questionArray[questionIndex]))));
 
-				if(!timer.getHint()) //30초 전일 시, hint ==false
+				if(!timer.isHint()) //30초 전일 시, hint ==false
 					//퀴즈목록배열의 인덱스의 퀴즈 이미지를 보여준다.
 					mainFrame.getGame().getQuiz().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(questionArray[questionIndex])));
 			}

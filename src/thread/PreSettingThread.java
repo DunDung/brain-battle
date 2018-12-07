@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter; 
 import java.net.Socket; 
 import gui.MainFrame;
+import userState.UserState;
 
 public class PreSettingThread extends Thread{ 
 	private Socket socket;  
@@ -28,7 +29,7 @@ public class PreSettingThread extends Thread{
 
 			while(true) { //사용자가 닉네임을 초기화 할때 까지 계속 하여 돈다.
 				Thread.sleep(50); 
-				if(mainFrame.getScore().getNickState()) {  //초기화 됐을 시
+				if(UserState.isNickState()) {  //초기화 됐을 시
 					if(mainFrame.getScore().getMyNickName().trim().length() == 0) //닉네임을 공백으로 입력했을 시
 						break; //while문 빠져나감
 					writer.println("nickName/"+mainFrame.getScore().getMyNickName()); //공백이 아닐 시 receiveThread에 설정한 닉네임을 키워드와 함께 보낸다.
@@ -40,7 +41,7 @@ public class PreSettingThread extends Thread{
 			
 			while(true) { //준비완료  버튼을 누를 때 까지 계속 돈다.
 				Thread.sleep(100); 
-				if(mainFrame.getGame().getPlayOk()) { //사용자가 준비완료 버튼을 눌러서 playOk가 true가 됐을 경우
+				if(UserState.isPlayOk()) { //사용자가 준비완료 버튼을 눌러서 playOk가 true가 됐을 경우
 					writer.println("ready/"); //상대에게 ready 키워드를 보낸다.
 					mainFrame.getChat().getTa().append("System :준비완료!\n"); //채팅창에 준비완료가 처리됐음을 알린다. 
 					break; //while문 빠져나감

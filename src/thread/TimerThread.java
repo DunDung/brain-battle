@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import gui.MainFrame;
 import javazoom.jl.decoder.JavaLayerException;
+import userState.UserState;
 
 public class TimerThread extends Thread{
 	private MainFrame mainFrame;
@@ -49,7 +50,7 @@ public class TimerThread extends Thread{
 					}
 					mainFrame.getGame().getTimer().setIcon(new ImageIcon(this.getClass().getClassLoader().getResource(timer[i]))); //이미지를 계속해서 바꿔주며 시간을 표시한다.
 				}
-				mainFrame.getGame().setTurnEnd(true); //게임쓰레드에서 이번 턴이 끝났다는 걸 알 수 있도록 setTurnEnd 파라미터를 true로 넘긴다.
+				UserState.setTurnEnd(true); //게임쓰레드에서 이번 턴이 끝났다는 걸 알 수 있도록 turnEnd를 true로 초기화.
 				setTimerStop(false); //timerStop으로 for문을 끝냈을 경우가 있으므로 for문이 끝난 뒤에 항상 false로 바꿔준다.
 			}
 		} catch (InterruptedException e) {
@@ -61,7 +62,7 @@ public class TimerThread extends Thread{
 	public static void setTimerStop(boolean stop) {
 		TimerThread.timerStop = stop;
 	}
-	public boolean getHint() {
+	public boolean isHint() {
 		return hint;
 	}
 	public void setHint(boolean hint) {

@@ -11,13 +11,14 @@ import java.net.URISyntaxException;
 import gui.MainFrame;
 import javazoom.jl.decoder.JavaLayerException;
 import question.Question;
+import userState.UserState;
 
 
 public class ReceiveThread extends Thread {
 	private Socket socket;
 	private MainFrame mainFrame; //추가
 	private static boolean start = false;
-	BgmControlThread bgm =null;
+	private BgmControlThread bgm =null;
 	public ReceiveThread(MainFrame mainFrame, Socket socket) throws FileNotFoundException, JavaLayerException, URISyntaxException{ //생성자 추가
 		this.mainFrame = mainFrame;
 		this.socket = socket;
@@ -35,7 +36,7 @@ public class ReceiveThread extends Thread {
 			//연결된 소켓의 inputStream과 outputStream으로 주고받기위한 변수 초기화
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
-			Question catchNull = new Question(); //정답을 비교할 때 null포인트 에러 방지
+			Question catchNull = new Question(); ////생성자서 문제이미지와 답을 추가하였기에 static이여도 객체를 생성하지 않으면 nullPoint에러가 발생	
 			
 			while(true) {
 				String receiveString = buf.readLine(); //클라이언트가 보낸 문자열을  읽어서 receiveString에 저장한다.
@@ -52,7 +53,7 @@ public class ReceiveThread extends Thread {
 					break;
 					
 				case "ready" : //준비완료 
-					if(mainFrame.getGame().getPlayOk()) { //나도 준비완료 되었을 경우
+					if(UserState.isPlayOk()) { //나도 준비완료 되었을 경우
 						writer.println("start/"); //상대에게 start를 보낸다
 						mainFrame.getGame().getReadyOk().setVisible(false); //준비완료 버튼을 사라지게 한다.
 						mainFrame.getGame().setTfAndEnter(); //답안전송할 텍스트필드와 버튼을 추가
@@ -94,9 +95,8 @@ public class ReceiveThread extends Thread {
 					
 				case "answer": //정답 제출 , 이 정답은 상대방이 보내온 정답이다, 정답이 맞는지 Question클래스의 QuestionMap를 문제번호를 key로 value로 비교한다. 
 						receiveArray[2] = receiveArray[2].toUpperCase(); //대문자로 바꿔서 다시 저장
-						System.out.println("문제번호 "+receiveArray[1]+ " 답  "+receiveArray[2]);
 					if(Question.getQuestionMap().get(receiveArray[1]).equals(receiveArray[2])) { //맞았을 시
-						mainFrame.getGame().setOtherCorrect(true); //상대방이 맞았음을 알린다.
+						UserState.setOtherCorrect(true);; //상대방이 맞았음을 알린다.
 						mainFrame.getScore().addYourScore(); //상대방점수 올린다.
 						mainFrame.getScore().repaint(); //스코어를 다시그린다.
 						TimerThread.setTimerStop(true); //타이머를 멈춘 후 새로 시작할 수 있게 한다.
@@ -109,14 +109,14 @@ public class ReceiveThread extends Thread {
 					}
 
 				case "answerOk": //내가낸 답이 맞았을 시
-					mainFrame.getGame().setIAmCorrect(true); //내가맞았음을 알린다.
+					UserState.setMyCorrect(true); //내가맞았음을 알린다.
 					TimerThread.setTimerStop(true); //타이머를 멈춘 후 새로 시작할 수 있게 한다.
 					mainFrame.getScore().addMyScore(); //나의 점수를 올린다.
 					mainFrame.getScore().repaint(); //스코어를 다시 그린다.
 					break;
 				
 				case "answerWrong" : //내가 틀렸을 시
-					mainFrame.getGame().setWrong(true); //내가 틀렸음을 알린다.
+					UserState.setWrong(true); //내가 틀렸음을 알린다.
 					break;
 				}
 			}

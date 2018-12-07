@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import userState.UserState;
+
 public class IntroFrame extends JFrame{ 	
 
 	private MainFrame mainFrame; //메인프레임 변수
@@ -77,7 +79,7 @@ public class IntroFrame extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 					mainFrame.setIp(ipField.getText().toString().trim()); //ipField에서 ip를 가져와 메인프레임의 ip필드에 저장한다.
 					mainFrame.getScore().setMyNickName(nickNameField.getText().toString().trim()); //mainFrame의 nickName필드를 IntroFrame의 nickNameField에 있는 텍스트로 초기화
-					mainFrame.getScore().setNcikState(); //닉네임을 초기화했다는 것을 알려줄 메소드 호출
+					UserState.setNickState(true); //닉네임상태를 true로 초기화
 					dispose(); //introFrame창을 끈다.
 					mainFrame.viewTrue(); //안보이게 해두었던 mainFrame을 보이게 한다
 				}
