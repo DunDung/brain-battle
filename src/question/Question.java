@@ -120,6 +120,12 @@ public class Question {
 		Question.questionMap.put("Q36.png", "1");
 		Question.questionHintMap.put("Q36.png", "Q36Hint.png");
 		questionList.add("Q36.png");
+		Question.questionMap.put("Q37.png", "9");
+		Question.questionHintMap.put("Q37.png", "Q37Hint.png");
+		questionList.add("Q37.png");
+		Question.questionMap.put("Q38.png", "CEABD");
+		Question.questionHintMap.put("Q38.png", "Q38Hint.png");
+		questionList.add("Q38.png");
 	}
 	
 	//¸â¹öº¯¼öµé getter

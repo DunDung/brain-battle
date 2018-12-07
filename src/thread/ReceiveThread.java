@@ -93,6 +93,8 @@ public class ReceiveThread extends Thread {
 					break;
 					
 				case "answer": //정답 제출 , 이 정답은 상대방이 보내온 정답이다, 정답이 맞는지 Question클래스의 QuestionMap를 문제번호를 key로 value로 비교한다. 
+						receiveArray[2] = receiveArray[2].toUpperCase(); //대문자로 바꿔서 다시 저장
+						System.out.println("문제번호 "+receiveArray[1]+ " 답  "+receiveArray[2]);
 					if(Question.getQuestionMap().get(receiveArray[1]).equals(receiveArray[2])) { //맞았을 시
 						mainFrame.getGame().setOtherCorrect(true); //상대방이 맞았음을 알린다.
 						mainFrame.getScore().addYourScore(); //상대방점수 올린다.
