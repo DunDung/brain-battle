@@ -15,7 +15,7 @@
 퀴즈를 먼저 맞춘 플레이어가 1점을 획득한다. 랜덤으로 지정된 한명의 사용자가 설정한 목표점수에 먼저 도달하는 플레이어가 승리하는 퀴즈게임
 ### 실행화면
 ![INTRO](./Image/INTRO.png)
-![WAIT](./Image/WAIT.png)
+![WAIT](./Image/Wait.png)
 ![GOALSETTING](./Image/GOALSETTING.png)
 ![GAME](./Image/GAME.png)
 ![GAMEHINT](./Image/GAMEHINT.png)
