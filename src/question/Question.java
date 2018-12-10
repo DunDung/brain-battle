@@ -126,6 +126,43 @@ public class Question {
 		Question.questionMap.put("Q38.png", "CEABD");
 		Question.questionHintMap.put("Q38.png", "Q38Hint.png");
 		questionList.add("Q38.png");
+		Question.questionMap.put("Q39.png", "위성도시");
+		Question.questionHintMap.put("Q39.png", "Q39Hint.png");
+		questionList.add("Q39.png");
+		Question.questionMap.put("Q40.png", "님비현상");
+		Question.questionHintMap.put("Q40.png", "Q40Hint.png");
+		questionList.add("Q40.png");
+		Question.questionMap.put("Q41.png", "뉴델리");
+		Question.questionHintMap.put("Q41.png", "Q41Hint.png");
+		questionList.add("Q41.png");
+		Question.questionMap.put("Q42.png", "을지문덕");
+		Question.questionHintMap.put("Q42.png", "Q42Hint.png");
+		questionList.add("Q42.png");
+		Question.questionMap.put("Q43.png", "청나라");
+		Question.questionHintMap.put("Q43.png", "Q43Hint.png");
+		questionList.add("Q43.png");
+		Question.questionMap.put("Q44.png", "남한산성");
+		Question.questionHintMap.put("Q44.png", "Q44Hint.png");
+		questionList.add("Q44.png");
+		Question.questionMap.put("Q45.png", "명량");
+		Question.questionHintMap.put("Q45.png", "Q45Hint.png");
+		questionList.add("Q45.png");
+		Question.questionMap.put("Q46.png", "헨델");
+		Question.questionHintMap.put("Q46.png", "Q46Hint.png");
+		questionList.add("Q46.png");
+		Question.questionMap.put("Q47.png", "바흐");
+		Question.questionHintMap.put("Q47.png", "Q47Hint.png");
+		questionList.add("Q47.png");
+		Question.questionMap.put("Q48.png", "프라하");
+		Question.questionHintMap.put("Q48.png", "Q48Hint.png");
+		questionList.add("Q48.png");
+		Question.questionMap.put("Q49.png", "다보탑");
+		Question.questionHintMap.put("Q49.png", "Q49Hint.png");
+		questionList.add("Q49.png");
+		Question.questionMap.put("Q50.png", "푸아그라");
+		Question.questionHintMap.put("Q50.png", "Q50Hint.png");
+		questionList.add("Q50.png");
+			
 	}
 	
 	//멤버변수들 getter
