@@ -125,33 +125,6 @@ public class GamePanel extends JPanel{
 	public JButton getRuleButton() {
 		return ruleButton;
 	}
-//	public boolean getPlayOk() {
-//		return this.playOk;
-//	}
-//	public boolean getTurnEnd() {
-//		return turnEnd;
-//	}
-//	public void setTurnEnd(boolean turn) {
-//		turnEnd = turn;
-//	}
-//	public void setWrong(boolean wrong) {
-//		this.wrong = wrong;
-//	}
-//	public boolean getWrong() {
-//		return wrong;
-//	}
-//	public void setOtherCorrect(boolean otherCorrect) {
-//		this.otherCorrect = otherCorrect;
-//	}
-//	public boolean getOtherCorrect() {
-//		return otherCorrect;
-//	}
-//	public void setIAmCorrect(boolean iAmCorrect) {
-//		this.iAmCorrect = iAmCorrect;
-//	}
-//	public boolean getIAmCorrect() {
-//		return iAmCorrect;
-//	}
 	public JLabel getTimer() {
 		return timer;
 	}
