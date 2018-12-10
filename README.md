@@ -15,9 +15,9 @@
 퀴즈를 먼저 맞춘 플레이어가 1점을 획득한다. 랜덤으로 지정된 한명의 사용자가 설정한 목표점수에 먼저 도달하는 플레이어가 승리하는 퀴즈게임
 ### 실행화면
 ![INTRO](./image/INTRO.png)
-![GOALSETTING](./image/GOALSETTING.png)
-![GAME](./image/GAME.png)
-![GAMEHINT](./image/GAMEHINT.png)
+![GOALSETTING](./Image/GOALSETTING.png)
+![GAME](./Image/GAME.png)
+![GAMEHINT](./Image/GAMEHINT.png)
 ### 게임진행
 클라이언트 사용자는 서버PC의 IP와 닉네임을 입력 한 후 게임에 접속한다.  서버 사용자는 닉네임을 입력한 후 게임에 접속한다.  
 준비가 완료된 사용자는 Ready버튼을 클릭한다. 두 명의 사용자가 전부 준비완료 됐을 시에 게임을 시작한다.  
