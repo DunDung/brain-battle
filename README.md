@@ -14,8 +14,8 @@
 ### 개요
 퀴즈를 먼저 맞춘 플레이어가 1점을 획득한다. 랜덤으로 지정된 한명의 사용자가 설정한 목표점수에 먼저 도달하는 플레이어가 승리하는 퀴즈게임
 ### 실행화면
-![INTRO](./Image/INTRO.png){: width="" height=""){: {: .center}
-![WAIT](./Image/Wait.png){:.aligncenter}
+![INTRO](./Image/INTRO.png)
+![WAIT](./Image/Wait.png)
 ![GOALSETTING](./Image/GOALSETTING.png)
 ![GAME](./Image/GAME.png)
 ![GAMEHINT](./Image/GAMEHINT.png)
@@ -24,7 +24,7 @@
 준비가 완료된 사용자는 Ready버튼을 클릭한다. 두 명의 사용자가 전부 준비완료 됐을 시에 게임을 시작한다.  
 랜덤으로 지정된 한 명의 사용자가 목표점수를 설정한다. 설정이 완료되면 퀴즈가 시작된다. 
 ### 제한시간
-한 문제당 제한시간은 60초로 오른쪽 상단에 몇초가 남았는지 보여준다. 
+한 문제당 제한시간은 60초로 오른쪽 상단에 몇초가 남았는지 보여준다.
 ### 힌트
 제한시간의 절반인 30초가 지났을 시 약간의 힌트가 문제에 표시된다.
 ### BGM, 효과음
