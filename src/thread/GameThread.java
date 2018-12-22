@@ -116,7 +116,8 @@ public class GameThread extends Thread {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(mainFrame.getGame().getYes())){ //Yes버튼을 눌렀을 경우
 				mainFrame.newGame(); //메인프레임의 newGame메소드 실행하여 game패널 재 생성
-				mainFrame.getScore().scoreReset(); //메인프레임의 스코어패널의 scoreReset()메소드를 실행하여 score판 촉화
+				mainFrame.getScore().scoreReset(); //메인프레임의 스코어패널의 scoreReset()메소드를 실행하여 score판 초기화
+				UserState.setPlayOk(false);
 				PreSettingThread preSetThread = new PreSettingThread(mainFrame, socket); //사전준비Thread를 다시 실행
 				preSetThread.start();
 			}
