@@ -1,6 +1,9 @@
 ﻿# **Brain Battle**
 더 똑똑하고 순발력 좋은 사람이 승리하는 1 대 1 퀴즈 게임 
 
+ ## 사용 기술
+ Java 8, Socket, Swing, Thread
+
  ## 목차
 * 개요
 * 시연영상
