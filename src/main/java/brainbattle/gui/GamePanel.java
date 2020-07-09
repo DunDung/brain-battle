@@ -10,44 +10,41 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import brainbattle.userState.UserState;
+import brainbattle.utils.ImageUtils;
 
 public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) { //배경 넣기
-        g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("BackGround.png")).getImage(), 0, 0,
+        g.drawImage(ImageUtils.createImage(this, "game/game-background.png"), 0, 0,
             null);//Graphics형 변수 g에 이미지를 그려준다.
         setOpaque(false); //투명하지 않게 함으로써 배경이미지가 보이게 한다.
         super.paintComponent(g); //g를 컴포넌트에 그린다.
     }
 
     private JTextField tf = new JTextField(); // 답안을 입력할 텍스트 필드
-    private JButton enter = new JButton(
-        new ImageIcon(this.getClass().getClassLoader().getResource("AnswerSend.png"))); //답안을 전송할 버튼
-    private JButton ruleButton = new JButton(
-        new ImageIcon(this.getClass().getClassLoader().getResource("RuleButton.png"))); //게임설명을 보여줄 버튼
+    private JButton enter = new JButton(ImageUtils.createImageIcon(this, "game/send-answer.png")); //답안을 전송할 버튼
+    private JButton ruleButton = new JButton(ImageUtils.createImageIcon(this, "game/game-rule-button.png")); //게임설명을 보여줄 버튼
     private JLabel rule = new JLabel(
-        new ImageIcon(this.getClass().getClassLoader().getResource("Rule.png"))); //게임설명을 적어둔 라벨
+        ImageUtils.createImageIcon(this, "game/game-rule.png")); //게임설명을 적어둔 라벨
     private JButton ready = new JButton(
-        new ImageIcon(this.getClass().getClassLoader().getResource("Ready.png"))); //레디 버튼
+        ImageUtils.createImageIcon(this, "game/ready.png")); //레디 버튼
     private JLabel readyOk = new JLabel(
-        new ImageIcon(this.getClass().getClassLoader().getResource("ReadyOk.png"))); //레디 버튼 클릭시 보여줄 라벨
-    private JLabel quiz = new JLabel(new ImageIcon(
-        this.getClass().getClassLoader().getResource("StartCount3.png"))); //퀴즈를 계속해서 띄워줄 라벨. 처음엔 스타트카운트를 해줄 3으로 초기화
+        ImageUtils.createImageIcon(this, "game/complete-ready.png")); //레디 버튼 클릭시 보여줄 라벨
+    private JLabel quiz = new JLabel(ImageUtils.createImageIcon(this, "game/3-start-count.png")); //퀴즈를 계속해서 띄워줄 라벨. 처음엔 스타트카운트를 해줄 3으로 초기화
     private JLabel goalLabel = new JLabel(
-        new ImageIcon(this.getClass().getClassLoader().getResource("Goal.png"))); //목표점수 설정시 보여줄 라벨
+        ImageUtils.createImageIcon(this, "game/set-target-score.png")); //목표점수 설정시 보여줄 라벨
     private JButton[] scoreImg = {
-        new JButton("3", new ImageIcon(this.getClass().getClassLoader().getResource("3.png"))), //목표점수 설정을 도와줄 3점 버튼
-        new JButton("5", new ImageIcon(this.getClass().getClassLoader().getResource("5.png"))), //목표점수 설정을 도와줄 5점 버튼
-        new JButton("7", new ImageIcon(this.getClass().getClassLoader().getResource("7.png"))),  //목표점수 설정을 도와줄 7점 버튼
-        new JButton("10", new ImageIcon(this.getClass().getClassLoader().getResource("10.png"))),//목표점수 설정을 도와줄 10점 버튼
-        new JButton("15", new ImageIcon(this.getClass().getClassLoader().getResource("15.png")))}; //목표점수 설정을 도와줄 15점 버튼
-    private JLabel waitGoalScore = new JLabel(new ImageIcon(
-        this.getClass().getClassLoader().getResource("setGoal.png"))); //한플레이어가 목표점수를 설정할 동안 대기하라는 설명을 적어둔 라벨
+        new JButton("3", ImageUtils.createImageIcon(this, "game/3-score.png")), //목표점수 설정을 도와줄 3점 버튼
+        new JButton("5", ImageUtils.createImageIcon(this, "game/5-score.png")), //목표점수 설정을 도와줄 5점 버튼
+        new JButton("7", ImageUtils.createImageIcon(this, "game/7-score.png")),  //목표점수 설정을 도와줄 7점 버튼
+        new JButton("10", ImageUtils.createImageIcon(this, "game/10-score.png")),//목표점수 설정을 도와줄 10점 버튼
+        new JButton("15", ImageUtils.createImageIcon(this, "game/15-score.png"))}; //목표점수 설정을 도와줄 15점 버튼
+    private JLabel waitGoalScore = new JLabel(ImageUtils.createImageIcon(this, "game/setGoal.png")); //한플레이어가 목표점수를 설정할 동안 대기하라는 설명을 적어둔 라벨
     private JLabel timer = new JLabel(
-        new ImageIcon(this.getClass().getClassLoader().getResource("T60.png"))); //타이머를 표시할 라벨 첨엔 60으로 설정
+        ImageUtils.createImageIcon(this, "timer/t60.png")); //타이머를 표시할 라벨 첨엔 60으로 설정
     private JButton yes = new JButton(
-        new ImageIcon(this.getClass().getClassLoader().getResource("Yes.png"))); //게임종료 시 다시 시작하겠냐는 물음에 응답하는 Yes버튼
+        ImageUtils.createImageIcon(this, "game/yes.png")); //게임종료 시 다시 시작하겠냐는 물음에 응답하는 Yes버튼
     private JButton no = new JButton(
-        new ImageIcon(this.getClass().getClassLoader().getResource("No.png")));//게임종료시 다시 시작하겠냐는 물음에 응답하는 No버튼
+        ImageUtils.createImageIcon(this, "game/no.png"));//게임종료시 다시 시작하겠냐는 물음에 응답하는 No버튼
     private int goalScore = 0; //버튼을 눌러 목표점수를 설정 시 초기화될 변수
     //	private boolean playOk =false; //준비완료인지 아닌지를 나타내 줄 변수
     //	private boolean turnEnd = false; //턴 종료를 나타낼 변수
@@ -202,7 +199,7 @@ public class GamePanel extends JPanel {
             setCursor(new Cursor(Cursor.HAND_CURSOR));// 커서를 손가락모양 으로 변경
             if (e.getSource().equals(ready)) //레디버튼 일 시
                 ready.setIcon(new ImageIcon(
-                    this.getClass().getClassLoader().getResource("MouseOnReady.png"))); //ready의 이미지를 바꿔준다.
+                    this.getClass().getClassLoader().getResource("hover-ready.png"))); //ready의 이미지를 바꿔준다.
             if (e.getSource().equals(ruleButton)) //게임설명 버튼일 시
                 rule.setVisible(true); //게임설명을 적어둔 rule 라벨을 보여준다.
         }
@@ -212,7 +209,7 @@ public class GamePanel extends JPanel {
             setCursor(new Cursor(Cursor.DEFAULT_CURSOR)); // 커서를 디폴트값으로 변경
             if (e.getSource().equals(ready))  //레디버튼 일 시
                 ready.setIcon(
-                    new ImageIcon(this.getClass().getClassLoader().getResource("Ready.png")));//다시 원래 이미지로 바꿔준다.
+                    ImageUtils.createImageIcon(this, "game/ready.png"));//다시 원래 이미지로 바꿔준다.
             if (e.getSource().equals(ruleButton))
                 rule.setVisible(false); //rule라벨을 사라지게 한다.
         }

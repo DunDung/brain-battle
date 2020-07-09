@@ -10,7 +10,11 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile('org.junit.jupiter:junit-jupiter:5.6.0')
+    testCompile('org.assertj:assertj-core:3.15.0')
+    compile group: 'javazoom', name: 'jlayer', version: '1.0.1'    // BGM 관련 외부라이브러리
+}
+test {
+    useJUnitPlatform()
 }

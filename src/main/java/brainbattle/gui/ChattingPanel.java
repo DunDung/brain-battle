@@ -11,18 +11,19 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import brainbattle.utils.ImageUtils;
 
 public class ChattingPanel extends JPanel{
 	private	JTextArea ta = new JTextArea(){
 		public void paintComponent(Graphics g) { //배경이미지를 그려준다
-			g.drawImage(new ImageIcon(this.getClass().getClassLoader().getResource("ChatBackGround.png")).getImage(),0,0,null); //Graphics형 변수 g에 이미지를 그려준다.
+			g.drawImage(ImageUtils.createImage(this, "game/chat-background.png"),0,0,null); //Graphics형 변수 g에 이미지를 그려준다.
 			setOpaque(false); // 투명하지 않게 설정함으로써 이미지가 보이게 한다.
 			super.paintComponent(g); //컴포넌트에 g를 그린다.
 		}
 	}; //채팅된 문자열들을 출력할 Area
 	private	JScrollPane ts = new JScrollPane(ta); //채팅내용이 많을 경우를 대비한 JScrollPane에 JTextArea변수인 ta추가
 	private	JTextField tf = new JTextField(); //채팅창에 입력할 글을 입력하는 Field
-	private JButton enter = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("ChatSend.png"))); //enter키를 누르라는 표시
+	private JButton enter = new JButton(ImageUtils.createImageIcon(this, "game/send-chat.png")); //enter키를 누르라는 표시
 
 	public ChattingPanel() {
 		setLayout(null); //레이아웃 없음
