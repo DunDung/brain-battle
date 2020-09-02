@@ -1,19 +1,14 @@
 package brainbattle.gui;
 
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import brainbattle.utils.ImageUtils;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class ScorePanel extends JPanel{
 	public void paintComponent(Graphics g) { //배경이미지 넣기
-		g.drawImage(ImageUtils.createImage(this,"score-pannel-background.png"),0,0,null);
+		g.drawImage(ImageUtils.createImage(this, "game/score-panel-background.png"), 0, 0, null);
 		setOpaque(false);
 		super.paintComponent(g);
 	}
