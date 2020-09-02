@@ -13,3 +13,5 @@ bin/
 *.iws
 *.iml
 *.ipr
+build
+

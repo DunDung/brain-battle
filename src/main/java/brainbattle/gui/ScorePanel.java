@@ -13,7 +13,7 @@ import brainbattle.utils.ImageUtils;
 
 public class ScorePanel extends JPanel{
 	public void paintComponent(Graphics g) { //배경이미지 넣기
-		g.drawImage(ImageUtils.createImage(this,"socre-pannel-background.png"),0,0,null);
+		g.drawImage(ImageUtils.createImage(this,"score-pannel-background.png"),0,0,null);
 		setOpaque(false);
 		super.paintComponent(g);
 	}

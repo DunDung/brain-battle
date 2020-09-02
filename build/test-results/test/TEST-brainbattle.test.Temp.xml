@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="brainbattle.test.Temp" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-09T10:30:28" hostname="DESKTOP-U00CC6A" time="0.088">
-  <properties/>
-  <testcase name="name()" classname="brainbattle.test.Temp" time="0.088"/>
-  <system-out><![CDATA[1
-2
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
