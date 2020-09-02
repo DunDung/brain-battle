@@ -22,11 +22,11 @@
 ### 시연영상
 [YouTube Link](https://youtu.be/LsK2tTIxsrU)  
 ### 실행화면
-![INTRO](./Image/INTRO.png)
-![WAIT](./Image/Wait.png)
-![GOALSETTING](./Image/GOALSETTING.png)
-![GAME](./Image/GAME.png)
-![GAMEHINT](./Image/GAMEHINT.png)
+![intro](src/main/resources/static/images/example/intro.png)
+![wait-screen](src/main/resources/static/images/example/wait-screen.png)
+![target-score-setting](src/main/resources/static/images/example/target-score-setting.png)
+![game-example](src/main/resources/static/images/example/game-example.png)
+![hint-example](src/main/resources/static/images/example/hint-example.png)
 ### 게임진행
 클라이언트 사용자는 서버PC의 IP와 닉네임을 입력 한 후 게임에 접속한다.  
 서버 사용자는 닉네임을 입력한 후 게임에 접속한다.  
