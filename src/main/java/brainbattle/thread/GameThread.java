@@ -1,16 +1,15 @@
 package brainbattle.thread;
 
+import brainbattle.gui.MainFrame;
+import brainbattle.question.Question;
+import brainbattle.userState.UserState;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-
-import javax.swing.*;
-
-import brainbattle.gui.MainFrame;
-import brainbattle.question.Question;
-import brainbattle.userState.UserState;
 
 public class GameThread extends Thread {
     private MainFrame mainFrame; //메인프레임

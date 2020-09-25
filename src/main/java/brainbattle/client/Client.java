@@ -1,14 +1,13 @@
 package brainbattle.client;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.URISyntaxException;
-
 import brainbattle.gui.IntroFrame;
 import brainbattle.gui.MainFrame;
 import brainbattle.thread.PreSettingThread;
 import brainbattle.thread.ReceiveThread;
+
+import java.io.FileNotFoundException;
+import java.net.Socket;
+import java.net.URISyntaxException;
 
 public class Client {
     public static MainFrame mainFrame;
@@ -20,11 +19,9 @@ public class Client {
 
         try {
             while (mainFrame.getIp().length() == 0) {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             }
 
-            //InetAddress.getLocalHost().getHostAddress()
-            //mainFrame.getIp()
             Socket clientSocket = new Socket(mainFrame.getIp(), 9999);//사용자로부터 입력받은 ip로 서버에서 지정한 포트로 접속한다.
             ReceiveThread reThread = new ReceiveThread(mainFrame, clientSocket); // 상대방으로 부터 받은 메세지를 처리할 쓰레드
             PreSettingThread preSetThread = new PreSettingThread(mainFrame,
@@ -32,12 +29,11 @@ public class Client {
 
             preSetThread.start();
             reThread.start();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             mainFrame.getChat().getTa().append("System :상대방과의 연결이 끊어졌습니다.\n");
+        } finally {
+            System.out.println("the end");
         }
     }
 

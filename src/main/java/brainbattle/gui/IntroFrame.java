@@ -1,15 +1,14 @@
 package brainbattle.gui;
 
+import brainbattle.userState.UserState;
+import brainbattle.utils.ImageUtils;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.*;
-
-import brainbattle.userState.UserState;
-import brainbattle.utils.ImageUtils;
 
 public class IntroFrame extends JFrame {
 

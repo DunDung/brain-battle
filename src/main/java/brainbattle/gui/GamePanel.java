@@ -1,16 +1,15 @@
 package brainbattle.gui;
 
+import brainbattle.userState.UserState;
+import brainbattle.utils.ImageUtils;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-
-import brainbattle.userState.UserState;
-import brainbattle.utils.ImageUtils;
 
 public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) { //배경 넣기
@@ -198,8 +197,7 @@ public class GamePanel extends JPanel {
         public void mouseEntered(MouseEvent e) { // 마우스를 버튼 위에 올렸을 때
             setCursor(new Cursor(Cursor.HAND_CURSOR));// 커서를 손가락모양 으로 변경
             if (e.getSource().equals(ready)) //레디버튼 일 시
-                ready.setIcon(new ImageIcon(
-                    this.getClass().getClassLoader().getResource("hover-ready.png"))); //ready의 이미지를 바꿔준다.
+                ready.setIcon(ImageUtils.createImageIcon(this, "game/hover-ready.png")); //ready의 이미지를 바꿔준다.
             if (e.getSource().equals(ruleButton)) //게임설명 버튼일 시
                 rule.setVisible(true); //게임설명을 적어둔 rule 라벨을 보여준다.
         }

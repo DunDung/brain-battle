@@ -1,12 +1,12 @@
 package brainbattle.thread;
 
+import brainbattle.gui.MainFrame;
+import brainbattle.question.Question;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Collections;
-
-import brainbattle.gui.MainFrame;
-import brainbattle.question.Question;
 
 public class SetGoalThread extends Thread {
     private Socket socket;

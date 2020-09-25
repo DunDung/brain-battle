@@ -1,9 +1,7 @@
 package brainbattle.gui;
 
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Point;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 
 public class MainFrame extends JFrame{

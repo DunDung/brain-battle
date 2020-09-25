@@ -1,12 +1,11 @@
 package brainbattle.thread;
 
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-
-import javax.swing.*;
-
 import brainbattle.gui.MainFrame;
 import brainbattle.userState.UserState;
+
+import javax.swing.*;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 
 public class TimerThread extends Thread {
     private MainFrame mainFrame;

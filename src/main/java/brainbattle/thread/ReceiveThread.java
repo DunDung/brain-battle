@@ -1,27 +1,24 @@
 package brainbattle.thread;
 
+import brainbattle.gui.MainFrame;
+import brainbattle.question.Question;
+import brainbattle.userState.UserState;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.URISyntaxException;
-
-import brainbattle.gui.MainFrame;
-import brainbattle.question.Question;
-import brainbattle.userState.UserState;
 
 public class ReceiveThread extends Thread {
     private Socket socket;
     private MainFrame mainFrame; //추가
     private static boolean start = false;
-    private BgmControlThread bgm = null;
+    private BgmControlThread bgm = new BgmControlThread();
 
-    public ReceiveThread(MainFrame mainFrame, Socket socket) throws FileNotFoundException, URISyntaxException { //생성자 추가
+    public ReceiveThread(MainFrame mainFrame, Socket socket) {
         this.mainFrame = mainFrame;
         this.socket = socket;
-        this.bgm = new BgmControlThread();
     }
 
     @Override
@@ -81,7 +78,7 @@ public class ReceiveThread extends Thread {
                     case "goal"://목표점수
                         mainFrame.getGame().getWaitGoalScore().setVisible(false); //목표점수 설정동안 기다려달라는 이미지를 안보이게 한다.
                         mainFrame.getGame()
-                            .setGoalScore(Integer.parseInt(receiveArray[1])); //받아온 목표점수를 Integer로 바꾼후 게임패널에 초기화한다.
+                                .setGoalScore(Integer.parseInt(receiveArray[1])); //받아온 목표점수를 Integer로 바꾼후 게임패널에 초기화한다.
                         break;
 
                     case "questionList"://문제목록, 같은 문제를 보여주기 위해 한쪽에서만 섞고 한쪽은 목록을 받아야한다.
@@ -91,7 +88,7 @@ public class ReceiveThread extends Thread {
                             questionArray[i - 1] = receiveArray[i]; // questionArray[0]부터 섞인 문제목록으로 채운다.
                         }
                         GameThread gameThread = new GameThread(mainFrame, socket,
-                            questionArray); //받아온 문제목록으로 게임쓰레드를 초기화후 실행
+                                questionArray); //받아온 문제목록으로 게임쓰레드를 초기화후 실행
                         gameThread.start();
                         break;
 

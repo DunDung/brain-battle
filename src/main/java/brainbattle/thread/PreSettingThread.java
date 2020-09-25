@@ -1,13 +1,13 @@
 package brainbattle.thread;
 
+import brainbattle.gui.MainFrame;
+import brainbattle.userState.UserState;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-
-import brainbattle.gui.MainFrame;
-import brainbattle.userState.UserState;
 
 public class PreSettingThread extends Thread {
     private Socket socket;

@@ -1,14 +1,14 @@
 package brainbattle.server;
 
-import java.io.FileNotFoundException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.URISyntaxException;
-
 import brainbattle.gui.IntroFrame;
 import brainbattle.gui.MainFrame;
 import brainbattle.thread.PreSettingThread;
 import brainbattle.thread.ReceiveThread;
+
+import java.io.FileNotFoundException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.URISyntaxException;
 
 public class Server {
 
@@ -35,7 +35,7 @@ public class Server {
             reThread.start();
 
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             mainFrame.getChat().getTa().append("System :상대방과의 연결이 끊어졌습니다.\n");
         }
     }

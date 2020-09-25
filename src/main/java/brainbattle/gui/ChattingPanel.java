@@ -1,17 +1,11 @@
 package brainbattle.gui;
 
 
-import java.awt.Color;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-
 import brainbattle.utils.ImageUtils;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 
 public class ChattingPanel extends JPanel{
 	private	JTextArea ta = new JTextArea(){
